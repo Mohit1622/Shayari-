@@ -12,7 +12,7 @@
         h1 { font-size: 1.8rem; color: #6366f1; margin-bottom: 15px; }
         #searchInput { padding: 12px; width: 90%; max-width: 400px; border-radius: 25px; border: 1px solid #ddd; outline: none; margin-bottom: 10px; }
         .container { max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px; }
-        .card { background: white; padding: 20px; border-radius: 20px; border-left: 6px solid #6366f1; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
+        .card { background: white; padding: 20px; border-radius: 20px; border-left: 6px solid #6366f1; box-shadow: 0 2px 8px rgba(0,0,0,0.03); text-align: left; }
         .footer-btns { display: flex; justify-content: flex-end; gap: 10px; border-top: 1px solid #eee; padding-top: 10px; margin-top: 15px; }
         .btn { padding: 8px 15px; border-radius: 10px; font-size: 0.8rem; cursor: pointer; border: none; text-decoration: none; font-weight: bold; }
         .copy-btn { background: #f1f5f9; color: #475569; }
@@ -45,7 +45,9 @@
 <div id="toast" class="toast">Copy Ho Gaya! ✅</div>
 
 <script>
+    // --- YAHAN SIRF SHAYARI KI LIST HAI ---
     const allShayari = [
+        "बेशक तुम जा चुके हो, पर तुम्हारा नाम आज भी, मेरे दिल की धड़कने तेज कर देता है।",
         "बेशक तुम जा चुके हो, पर तुम्हारा नाम आज भी, मेरे दिल की धड़कने तेज कर देता है।",
         "बेशक तुम जा चुके हो, पर तुम्हारा नाम आज भी, मेरे दिल की धड़कने तेज कर देता है।",
         "अरे aapko to इज़्ज़त krni chahiye thi is खामोशी ki..! Hm to iske phichhe aapki औकात छिपाये baithe the..!!",
@@ -141,6 +143,15 @@
         "Mohabbat mein jhukna koi buri baat nahi, suraj bhi dhalta hai chand ke liye.",
         "Waqt ne sikhaya hai ki har koi apna nahi hota.",
         "Tumhara naam hi kafi hai mere chehre par muskurahat lane ke liye."
+        "अरे aapko to इज़्ज़त krni chahiye thi is खामोशी ki..! Hm to iske phichhe aapki औकात छिपाये baithe the..!!",
+        "Mere pass Aana to Waqt nikal kar aana Kyunki mere pass baten bahut hain aur sunane wale koi nhi.",
+        "Kuchh लोगों Ne हमें Aise समय per धोखा Diya..! Jab हम Kisi Se Unki wafadari ki बातें kar रहे the..!!",
+        "Khatm kar diya unhone bhi is Sal Rishte jinhone Jindagi Bhar Sath nibhaane ke vade kiye the.",
+        "Bichhadne ki jaldi unhen Thi Aur Ilzaam Sara Ham per Lagaya Gaya.",
+        "Safar tumhare sath Chhota Raha lekin Jindagi Bhar Ke Liye Sabak ban gaya.",
+        "Shant chehron Ke Piche Aksar ghav Gehra Hote Hain.",
+        "Hamen तो kab se Pata Tha Ki Tum Bewafa Ho Tumhen Chaha isliye ki Shayad Tumhari fitrat Badal Jaaye.",
+        "ये जिस जगह लाकर तुमने छोड़ा है, तमाम उम्र निकल जायेगी यहाँ से निकलने में.."
     ];
 
     const feed = document.getElementById('feed');
@@ -160,7 +171,7 @@
 
     function search() {
         const q = document.getElementById('searchInput').value.toLowerCase();
-        render(myShayari.filter(s => s.toLowerCase().includes(q)));
+        render(allShayari.filter(s => s.toLowerCase().includes(q)));
     }
 
     function copyText(t) {
@@ -170,7 +181,7 @@
         setTimeout(() => toast.style.display = 'none', 2000);
     }
 
-    render(myShayari);
+    render(allShayari);
 </script>
 </body>
 </html>
