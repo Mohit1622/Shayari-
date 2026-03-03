@@ -20,7 +20,7 @@
         footer { margin-top: 40px; text-align: center; padding: 25px; background: white; border-radius: 20px; }
         .social-icons { margin: 15px 0; font-size: 1.5rem; display: flex; justify-content: center; gap: 20px; }
         .social-icons a { color: #64748b; }
-        .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #333; color: white; padding: 10px 20px; border-radius: 50px; display: none; }
+        .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #333; color: white; padding: 10px 20px; border-radius: 50px; display: none; z-index: 1000; }
     </style>
 </head>
 <body>
@@ -45,10 +45,7 @@
 <div id="toast" class="toast">Copy Ho Gaya! ✅</div>
 
 <script>
-    // --- YAHAN SIRF SHAYARI KI LIST HAI --- 
     const allShayari = [
-        "बेशक तुम जा चुके हो, पर तुम्हारा नाम आज भी, मेरे दिल की धड़कने तेज कर देता है।",
-        "बेशक तुम जा चुके हो, पर तुम्हारा नाम आज भी, मेरे दिल की धड़कने तेज कर देता है।",
         "बेशक तुम जा चुके हो, पर तुम्हारा नाम आज भी, मेरे दिल की धड़कने तेज कर देता है।",
         "अरे aapko to इज़्ज़त krni chahiye thi is खामोशी ki..! Hm to iske phichhe aapki औकात छिपाये baithe the..!!",
         "Mere pass Aana to Waqt nikal kar aana Kyunki mere pass baten bahut hain aur sunane wale koi nhi.",
@@ -124,34 +121,14 @@
         "पिता की जेब मे भले ही पैसे कम है. लेकिन मेरे लिए हमेशा वो बादशाह ही रहेंगे",
         "Stop acting like you hate relationship, Reality is : तुमने जिसे चाहा उसने तुम्हें नहीं चाहा.",
         "नींद भी उड़ जाती है दिलों की महफ़िल में, किसी को भूल कर सो जाना इतना आसान कहाँ...",
-        "नसीब के बारे में क्या कहूँ, जो दिल ने चाहा वो कभी मिला ही नहीं...", 
-        "अरे aapko to इज़्ज़त krni chahiye thi is खामोशी ki..! Hm to iske phichhe aapki औकात छिपाये baithe the..!!",
-        "Mere pass Aana to Waqt nikal kar aana Kyunki mere pass baten bahut hain aur sunane wale koi nhi.",
-        "Kuchh लोगों Ne हमें Aise समय per धोखा Diya..! Jab हम Kisi Se Unki wafadari ki बातें kar रहे the..!!",
-        "Khatm kar diya unhone bhi is Sal Rishte jinhone Jindagi Bhar Sath nibhaane ke vade kiye the.",
-        "Bichhadne ki jaldi unhen Thi Aur Ilzaam Sara Ham per Lagaya Gaya.",
-        "Safar tumhare sath Chhota Raha lekin Jindagi Bhar Ke Liye Sabak ban gaya.",
-        "Shant chehron Ke Piche Aksar ghav Gehra Hote Hain.",
-        "Uski Khushi Ke Liye use to Chhod Diya Maine per Meri Khushiyan bhi Usi ke sath Chali gai.",
-        "Hamen to kab se Pata Tha Ki Tum Bewafa Ho Tumhen Chaha isliye ki Shayad Tumhari fitrat Badal Jaaye.",
-        "Unhen Mil Hi Jaate Hain Koi Na Koi jinhen acche kirdar Nahin sirf kiraedar chahie Hote Hain.",
-        "Ek din khatm ho hi Jaenge ya to Gam nhi to FIR ham.",
-        "Jindagi Mein Ek Aisa Insan Jarur Hona chahie Jo HAL Puche To Sach bataya Ja sake.",
-        "Bewafa hi nahi berham bhi ho tum, Jindagi tabah Karke Kahate Ho ki jao ab khush raho tum.",
+        "नसीब के बारे में क्या कहूँ, जो दिल ने चाहा वो कभी मिला ही नहीं...",
+        "बेवफा ही नहीं बेरहम भी हो तुम, Jindagi tabah Karke Kahate Ho ki jao ab khush raho tum.",
         "Sach Sach batana पूरी कोशिश कर रहे हो ना उसे भुलाने की।",
-        "ये जिस जगह लाकर तुमने छोड़ा है, तमाम उम्र निकल जायेगी यहाँ से निकलने में..",
         "Mohabbat mein jhukna koi buri baat nahi, suraj bhi dhalta hai chand ke liye.",
         "Waqt ne sikhaya hai ki har koi apna nahi hota.",
-        "Tumhara naam hi kafi hai mere chehre par muskurahat lane ke liye."
-        "अरे aapko to इज़्ज़त krni chahiye thi is खामोशी ki..! Hm to iske phichhe aapki औकात छिपाये baithe the..!!",
-        "Mere pass Aana to Waqt nikal kar aana Kyunki mere pass baten bahut hain aur sunane wale koi nhi.",
-        "Kuchh लोगों Ne हमें Aise समय per धोखा Diya..! Jab हम Kisi Se Unki wafadari ki बातें kar रहे the..!!",
-        "Khatm kar diya unhone bhi is Sal Rishte jinhone Jindagi Bhar Sath nibhaane ke vade kiye the.",
-        "Bichhadne ki jaldi unhen Thi Aur Ilzaam Sara Ham per Lagaya Gaya.",
-        "Safar tumhare sath Chhota Raha lekin Jindagi Bhar Ke Liye Sabak ban gaya.",
-        "Shant chehron Ke Piche Aksar ghav Gehra Hote Hain.",
-        "Hamen तो kab se Pata Tha Ki Tum Bewafa Ho Tumhen Chaha isliye ki Shayad Tumhari fitrat Badal Jaaye.",
-        "ये जिस जगह लाकर तुमने छोड़ा है, तमाम उम्र निकल जायेगी यहाँ से निकलने में..", 
+        "Tumhara naam hi kafi hai mere chehre par muskurahat lane ke liye.",
+        "ये जिस जगह लाकर तुमने छोड़ा है, तमाम उम्र निकल जायेगी यहाँ से निकलने में..",
+        "अरे aapko to इज़्ज़त krni chahiye thi is खामोशी ki..! Hm to iske phichhe aapki औकात छिपाये baithe the..!!"
     ];
 
     const feed = document.getElementById('feed');
