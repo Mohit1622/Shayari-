@@ -4,25 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mohit Shayari World ✨</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { background-color: #f8fafc; font-family: sans-serif; padding: 10px; color: #333; }
-        header { text-align: center; padding: 25px; background: white; border-radius: 15px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        .card { background: white; padding: 20px; border-radius: 15px; margin-bottom: 15px; border-left: 6px solid #6366f1; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-        .content { font-size: 1.1rem; line-height: 1.6; margin-bottom: 15px; }
-        .btn-area { text-align: right; }
-        .btn { padding: 8px 15px; border-radius: 8px; border: none; cursor: pointer; font-weight: bold; text-decoration: none; display: inline-block; font-size: 14px; }
-        .copy { background: #eee; color: #333; }
-        .wa { background: #25d366; color: white; margin-left: 10px; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #f8fafc; font-family: sans-serif; padding: 10px; color: #334155; }
+        header { text-align: center; padding: 30px 15px; background: white; margin-bottom: 20px; border-radius: 0 0 30px 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        h1 { font-size: 1.8rem; color: #6366f1; margin-bottom: 15px; }
+        #searchInput { padding: 12px; width: 90%; max-width: 400px; border-radius: 25px; border: 1px solid #ddd; outline: none; margin-bottom: 10px; }
+        .container { max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px; }
+        .card { background: white; padding: 20px; border-radius: 20px; border-left: 6px solid #6366f1; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
+        .footer-btns { display: flex; justify-content: flex-end; gap: 10px; border-top: 1px solid #eee; padding-top: 10px; margin-top: 15px; }
+        .btn { padding: 8px 15px; border-radius: 10px; font-size: 0.8rem; cursor: pointer; border: none; text-decoration: none; font-weight: bold; }
+        .copy-btn { background: #f1f5f9; color: #475569; }
+        .wa-btn { background: #25d366; color: white; }
+        footer { margin-top: 40px; text-align: center; padding: 25px; background: white; border-radius: 20px; }
+        .social-icons { margin: 15px 0; font-size: 1.5rem; display: flex; justify-content: center; gap: 20px; }
+        .social-icons a { color: #64748b; }
+        .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #333; color: white; padding: 10px 20px; border-radius: 50px; display: none; }
     </style>
 </head>
 <body>
 
 <header>
     <h1>Mohit Shayari World ✨</h1>
-    <p>Mohit Kumar ki Diary Se...</p>
+    <input type="text" id="searchInput" onkeyup="search()" placeholder="Yahan search karein...">
 </header>
 
-<div id="feed"></div>
+<div class="container" id="feed"></div>
+
+<footer>
+    <div class="social-icons">
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-whatsapp"></i></a>
+    </div>
+    <p><strong>© 2026 Mohit Kumar</strong></p>
+    <a href="mailto:mchauhan1622@gmail.com" style="color:#6366f1; text-decoration:none; font-size: 0.8rem; display: block; margin-top: 10px;">mchauhan1622@gmail.com 📧</a>
+</footer>
+
+<div id="toast" class="toast">Copy Ho Gaya! ✅</div>
 
 <script>
     const allShayari = [
@@ -124,24 +144,33 @@
     ];
 
     const feed = document.getElementById('feed');
-    
-    allShayari.forEach(text => {
-        const div = document.createElement('div');
-        div.className = 'card';
-        div.innerHTML = `
-            <div class="content">${text}</div>
-            <div class="btn-area">
-                <button class="btn copy" onclick="copyText('${text.replace(/'/g, "\\'")}')">Copy 📋</button>
-                <a href="https://api.whatsapp.com/send?text=${encodeURIComponent(text)}" class="btn wa" target="_blank">WhatsApp 📲</a>
-            </div>
-        `;
-        feed.appendChild(div);
-    });
+    function render(data) {
+        feed.innerHTML = '';
+        data.forEach(text => {
+            const div = document.createElement('div');
+            div.className = 'card';
+            div.innerHTML = `<div class="content">${text}</div>
+                <div class="footer-btns">
+                    <button class="btn copy-btn" onclick="copyText('${text.replace(/'/g, "\\'")}')">Copy</button>
+                    <a class="btn wa-btn" href="https://api.whatsapp.com/send?text=${encodeURIComponent(text)}" target="_blank">WhatsApp</a>
+                </div>`;
+            feed.appendChild(div);
+        });
+    }
+
+    function search() {
+        const q = document.getElementById('searchInput').value.toLowerCase();
+        render(myShayari.filter(s => s.toLowerCase().includes(q)));
+    }
 
     function copyText(t) {
         navigator.clipboard.writeText(t);
-        alert("Shayari Copy ho gayi! ✅");
+        const toast = document.getElementById('toast');
+        toast.style.display = 'block';
+        setTimeout(() => toast.style.display = 'none', 2000);
     }
+
+    render(myShayari);
 </script>
 </body>
 </html>
