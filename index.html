@@ -5,89 +5,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mohit Shayari World ✨</title>
     <style>
-        body { background-color: #f8fafc; font-family: 'Arial', sans-serif; padding: 15px; color: #333; }
-        header { text-align: center; padding: 20px; background: white; border-radius: 15px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        h1 { color: #6366f1; }
-        .card { background: white; padding: 20px; border-radius: 15px; margin-bottom: 15px; border-left: 5px solid #6366f1; box-shadow: 0 2px 5px rgba(0,0,0,0.05); font-size: 1.1rem; line-height: 1.6; }
-        .btn-area { margin-top: 15px; text-align: right; }
+        body { background-color: #f8fafc; font-family: sans-serif; padding: 10px; color: #333; }
+        header { text-align: center; padding: 25px; background: white; border-radius: 15px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .card { background: white; padding: 20px; border-radius: 15px; margin-bottom: 15px; border-left: 6px solid #6366f1; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .content { font-size: 1.1rem; line-height: 1.6; margin-bottom: 15px; }
+        .btn-area { text-align: right; }
         .btn { padding: 8px 15px; border-radius: 8px; border: none; cursor: pointer; font-weight: bold; text-decoration: none; display: inline-block; font-size: 14px; }
         .copy { background: #eee; color: #333; }
         .wa { background: #25d366; color: white; margin-left: 10px; }
-        footer { text-align: center; margin-top: 30px; color: #888; font-size: 0.9rem; }
     </style>
 </head>
 <body>
 
 <header>
     <h1>Mohit Shayari World ✨</h1>
-    <p>Har jazbaat ab Hindi mein</p>
+    <p>Mohit Kumar ki Diary Se...</p>
 </header>
 
 <div id="feed"></div>
 
-<footer>
-    <p>© 2026 Mohit Kumar | Sabhi Adhikar Surakshit</p>
-</footer>
-
 <script>
-    // PDF se li gayi Hindi aur English mix shayari
+    // Isme purani aur PDF ki saari Hindi shayari mix hain
     const allShayari = [
-        [span_0](start_span)"बेशक तुम जा चुके हो, पर तुम्हारा नाम आज भी, मेरे दिल की धड़कने तेज कर देता है।[span_0](end_span)",
-        "अरे aapko to इज़्ज़त krni chahiye thi is खामोशी ki..! [span_1](start_span)Hm to iske phichhe aapki औकात छिपाये baithe the..[span_1](end_span)!!",
-        [span_2](start_span)"Mere pass Aana to Waqt nikal kar aana Kyunki mere pass baten bahut hain aur sunane wale koi nhi.[span_2](end_span)",
-        "Kuchh लोगों Ne हमें Aise समय per धोखा Diya..! [span_3](start_span)Jab हम Kisi Se Unki wafadari ki बातें kar रहे the..[span_3](end_span)!!",
-        [span_4](start_span)"Khatm kar diya unhone bhi is Sal Rishte jinhone Jindagi Bhar Sath nibhaane ke vade kiye the.[span_4](end_span)",
-        [span_5](start_span)"Bichhadne ki jaldi unhen Thi Aur Ilzaam Sara Ham per Lagaya Gaya.[span_5](end_span)",
-        [span_6](start_span)"Safar tumhare sath Chhota Raha lekin Jindagi Bhar Ke Liye Sabak ban gaya.[span_6](end_span)",
-        [span_7](start_span)"Shant chehron Ke Piche Aksar ghav Gehra Hote Hain.[span_7](end_span)",
-        [span_8](start_span)"Uski Khushi Ke Liye use to Chhod Diya Maine per Meri Khushiyan bhi Usi ke sath Chali gai.[span_8](end_span)",
-        [span_9](start_span)"Vah bhul gaye Hamen Kisi Ki Khatir To Kya Hua Ham bhi to Unki Khatir Jamana bhulaye Baithe the.[span_9](end_span)",
-        [span_10](start_span)"Jao Maaf Kiya Tumhen Aane Wale Waqt Mein Khuda Tumhare bete ko Tumhare Jaisi Ladki Se Bachaye.[span_10](end_span)",
-        [span_11](start_span)"Hamen to kab se Pata Tha Ki Tum Bewafa Ho Tumhen Chaha isliye ki Shayad Tumhari fitrat Badal Jaaye.[span_11](end_span)",
-        [span_12](start_span)"Unhen Mil Hi Jaate Hain Koi Na Koi jinhen acche kirdar Nahin sirf kiraedar chahie Hote Hain.[span_12](end_span)",
-        [span_13](start_span)"Kabhi Maaf nahin kar Paunga usko Jisne bewajah Meri Jindagi ko तहस-नहस karke rakh Diya.[span_13](end_span)",
-        [span_14](start_span)"Ek din khatm ho hi Jaenge ya to Gam nhi to FIR ham.[span_14](end_span)",
-        [span_15](start_span)"Jindagi Mein Ek Aisa Insan Jarur Hona chahie Jo HAL Puche To Sach bataya Ja sake.[span_15](end_span)",
-        [span_16](start_span)"Ek Din Tumhare Karam Tumse milane aaenge Meri Jaan Bus use Din Tumhara Mat Hona.[span_16](end_span)",
-        [span_17](start_span)"Bewafa hi nahi berham bhi ho tum Jindagi tabah Karke Kahate Ho ki jao ab khush raho tum.[span_17](end_span)",
-        [span_18](start_span)"Tum apna Charitra Kitna bhi saaf Rakh Lo lekin chhodane wala Koi Na Koi Galti nikal hi dega.[span_18](end_span)",
-        [span_19](start_span)"Kya fayda ab nishaniyan Dekhkar Rone Se Jab Sath the tab Kadar Ki Na Gai.[span_19](end_span)",
-        [span_20](start_span)"yah Mujhse Ek Ladki Nahin Bulai Jari aur log pata nahin Kaise kah Dete Hain Ki 36 aaenge 36 Jaenge.[span_20](end_span)",
-        [span_21](start_span)"Sach Sach batana Puri koshish kar rahe ho na use Bhulane ki.[span_21](end_span)",
-        [span_22](start_span)"Main Shayad ab Tumhari Soch Mein Bhi Nahin Aur Tu Mujhe लफ़्ज़-लफ़्ज़ Yad hai.[span_22](end_span)",
-        [span_23](start_span)"Kahana To Nahin chahie per kasam se bahut Pareshan hun Kahin Kuchh kar lun to Maaf Karna.[span_23](end_span)",
-        [span_24](start_span)"क्यूँ महसूस नहीं हुई उन्हें हमारी तकलीफ जो कभी कहते थे ki हम तुम्हें तुमसे ज्यादा जानते हैं.[span_24](end_span)",
-        [span_25](start_span)"ना तुमने कभी समझ और ना समझना चाहा नहीं तो मैं पागल चाहता ही क्या था तुमसे तुम्हारे अलावा.[span_25](end_span)",
-        [span_26](start_span)"पहले स्त्रियाँ भले ही कमजोर थी लेकिन वफादार थी अब स्त्रियाँ मजबूत है लेकिन वफादार नहीं.[span_26](end_span)",
-        [span_27](start_span)"टूटे हम, धोखा हमे मिला, तमाशा हमारा बना, तन्हा हम हुए, तो फिर बर्बाद आप कैसे हुए.[span_27](end_span)",
-        [span_28](start_span)"हर बात भूल जाया करते थे हम, Pr tera Mujhe ek ek lafz Yaad Hai[span_28](end_span)",
-        [span_29](start_span)"किसी की feelings के साथ इतना भी मत खेलो की वह फिर कभी किसी पर भरोसा ही ना कर Paye[span_29](end_span)",
-        [span_30](start_span)"ढेर सारी मोहब्बत वार दी जिस पर हमने, मिट्टी बराबर भी कदर नहीं की उसने.[span_30](end_span)",
-        [span_31](start_span)"Time paas वाले नही है हम जिंदगी भर साथ निभा सको, तभी हाथ आगे बढ़ाना....[span_31](end_span)",
-        [span_32](start_span)"धरी की धरी रह गई सारी कसमें, वो मजबूरी का नाम देकर दूर हो गए हमसे...[span_32](end_span)",
-        [span_33](start_span)"ये जिस जगह लाकर तुमने छोड़ा है, तमाम उम्र निकल जायेगी यहाँ से निकलने में..[span_33](end_span)",
+        "बेशक तुम जा चुके हो, पर तुम्हारा नाम आज भी, मेरे दिल की धड़कने तेज कर देता है।",
+        "अरे aapko to इज़्ज़त krni chahiye thi is खामोशी ki..! Hm to iske phichhe aapki औकात छिपाये baithe the..!!",
+        "Mere pass Aana to Waqt nikal kar aana Kyunki mere pass baten bahut hain aur sunane wale koi nhi.",
+        "Kuchh लोगों Ne हमें Aise समय per धोखा Diya..! Jab हम Kisi Se Unki wafadari ki बातें kar रहे the..!!",
+        "Khatm kar diya unhone bhi is Sal Rishte jinhone Jindagi Bhar Sath nibhaane ke vade kiye the.",
+        "Bichhadne ki jaldi unhen Thi Aur Ilzaam Sara Ham per Lagaya Gaya.",
+        "Safar tumhare sath Chhota Raha lekin Jindagi Bhar Ke Liye Sabak ban gaya.",
+        "Shant chehron Ke Piche Aksar ghav Gehra Hote Hain.",
+        "Uski Khushi Ke Liye use to Chhod Diya Maine per Meri Khushiyan bhi Usi ke sath Chali gai.",
+        "Hamen to kab se Pata Tha Ki Tum Bewafa Ho Tumhen Chaha isliye ki Shayad Tumhari fitrat Badal Jaaye.",
+        "Jindagi Mein Ek Aisa Insan Jarur Hona chahie Jo HAL Puche To Sach bataya Ja sake.",
+        "Bewafa hi nahi berham bhi ho tum, Jindagi tabah Karke Kahate Ho ki jao ab khush raho tum.",
+        "Sach Sach batana Puri koshish kar rahe ho na use Bhulane ki.",
+        "ये जिस जगह लाकर तुमने छोड़ा है, तमाम उम्र निकल जायेगी यहाँ से निकलने में..",
         "Mohabbat mein jhukna koi buri baat nahi, suraj bhi dhalta hai chand ke liye.",
-        "Waqt ne sikhaya hai ki har koi apna nahi hota."
+        "Waqt ne sikhaya hai ki har koi apna nahi hota.",
+        "Tumhara naam hi kafi hai mere chehre par muskurahat lane ke liye."
     ];
 
     const feed = document.getElementById('feed');
+    
+    // Har shayari ko card mein dikhane ke liye loop
     allShayari.forEach(text => {
         const div = document.createElement('div');
         div.className = 'card';
         div.innerHTML = `
-            <p>${text}</p>
+            <div class="content">${text}</div>
             <div class="btn-area">
-                <button class="btn copy" onclick="copy('${text.replace(/'/g, "\\'")}')">Copy 📋</button>
+                <button class="btn copy" onclick="copyText('${text.replace(/'/g, "\\'")}')">Copy 📋</button>
                 <a href="https://api.whatsapp.com/send?text=${encodeURIComponent(text)}" class="btn wa" target="_blank">WhatsApp 📲</a>
             </div>
         `;
         feed.appendChild(div);
     });
 
-    function copy(t) {
-        navigator.clipboard.writeText(t);
-        alert("Shayari Copy ho gayi! ✅");
-    }
-</script>
-</body>
-</html>
+    function copyText(t) {
