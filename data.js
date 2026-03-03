@@ -1,6 +1,6 @@
 const allShayari = [
     // --- Nayi Shayari Sabse Upar Yahan Likhein ---
-    " "
+    " ", 
     
     // --- Aapka Purana Sara Data Niche Hai ---
     "बेशक तुम जा चुके हो, पर तुम्हारा नाम आज भी, मेरे दिल की धड़कने तेज कर देता है।",
