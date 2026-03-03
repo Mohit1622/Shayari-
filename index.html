@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohit Ki Shayari ✨</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #f0f2f5; font-family: 'Arial', sans-serif; color: #333; padding: 15px; }
+        header { text-align: center; padding: 40px 10px; background: #ffffff; margin-bottom: 25px; border-radius: 0 0 30px 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        h1 { color: #6366f1; font-size: 2rem; margin-bottom: 5px; }
+        .container { max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
+        .card { background: white; padding: 25px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-left: 5px solid #6366f1; position: relative; }
+        .content { font-size: 1.2rem; line-height: 1.7; margin-bottom: 20px; color: #1a1a1a; font-weight: 500; }
+        .footer { display: flex; justify-content: flex-end; gap: 10px; border-top: 1px solid #eee; padding-top: 15px; }
+        .btn { padding: 8px 18px; border-radius: 10px; font-size: 0.9rem; font-weight: bold; cursor: pointer; border: none; transition: 0.2s; text-decoration: none; }
+        .copy-btn { background: #eef2ff; color: #6366f1; }
+        .share-btn { background: #25d366; color: white; }
+        .toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: #333; color: white; padding: 12px 25px; border-radius: 50px; display: none; z-index: 1000; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Mohit Shayari World ✍️</h1>
+    <p style="color: #666;">Har ehsaas ke liye ek shayari</p>
+</header>
+
+<div class="container" id="feed"></div>
+<div id="toast" class="toast">Shayari Copy Ho Gayi! ✅</div>
+
+<script>
+    const allShayari = [
+        "Mohabbat mein jhukna koi buri baat nahi, suraj bhi dhalta hai chand ke liye.",
+        "Waqt ne sikhaya hai ki har koi apna nahi hota.",
+        "Dost wahi jo bheed mein bhi aapki khamoshi padh le.",
+        "Dil se roye magar honto se muskura baithe, hum yuhi kisi se wafa nibha baithe.",
+        "Zindagi mein dost milte hain, par sacche dost kismat se milte hain.",
+        "Tumhara naam hi kafi hai mere chehre par muskurahat lane ke liye.",
+        "Hazaaron khwaishein aisi ki har khwaish pe dam nikle.",
+        "Kaun kehta hai nafrat mein dard hai, kabhi mohabbat karke dekho ruh tak kaanp jayegi.",
+        "Ishq ne ghalib nikamma kar diya, warna hum bhi aadmi the kaam ke.",
+        "Woh bulati hai magar jaane ka nahi, yeh duniya hai udhar jaane ka nahi.",
+        "Dil bhar gaya hai logon se, ab akelapan hi accha lagta hai.",
+        "Khamoshi ka matlab inkar nahi hota, har kisi se humein pyar nahi hota.",
+        "Yaari ka naam hi bharosa hai, jo toot jaye wo yaar nahi hota.",
+        "Dushmano se dar nahi lagta, dosto ki khamoshi se lagta hai.",
+        "Bas ek baar dekh lo hamein, hum saari duniya bhool jayenge.",
+        "Mana ki hum yaar nahi, par tumse milne ko dil bekaraar hai.",
+        "Tu nahi toh teri yaad sahi, ye zindagi tere naam sahi.",
+        "Zindagi ka safar hai suhana, yahan kal kya ho kisne jaana.",
+        "Dil e nadan tujhe hua kya hai, aakhir is dard ki dawa kya hai.",
+        "Zindagi badi honi chahiye, lambi nahi.",
+        "Muskurana hi jeene ka asli salika hai.",
+        "Dil mein ummid rakho, manzil mil hi jayegi.",
+        "Hum bhi dariya hain humein apna hunar maloom hai.",
+        "Aaina dekh kar tasalli hui, humko is ghar mein jaanta hai koi.",
+        "Dard ki baarish mein hum akele hi the, jab barish ruki toh sab saath aa gaye.",
+        "Nafrat karna toh kabhi sikha hi nahi humne, bas log kabil nahi rahe.",
+        "Jeena hai toh aise jiyo ki zamana kahe, ki koi aaya tha jo dil jeet gaya.",
+        "Aaj fir teri yaad ne rula diya, waqt ne toh tujhe kabka bhula diya.",
+        "Mera dil todne se pehle ye toh soch lete, ki isi dil mein tum rehte the.",
+        "Abhi suraj nahi duba zara si shaam hone do, main khud hi laut jaunga mujhe nakam hone do."
+    ];
+
+    const feed = document.getElementById('feed');
+
+    allShayari.forEach(text => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        const waUrl = "https://api.whatsapp.com/send?text=" + encodeURIComponent(text);
+        
+        card.innerHTML = `
+            <div class="content">${text}</div>
+            <div class="footer">
+                <button class="btn copy-btn" onclick="copyText('${text.replace(/'/g, "\\'")}')">Copy 📋</button>
+                <a class="btn share-btn" href="${waUrl}" target="_blank">WhatsApp 📲</a>
+            </div>
+        `;
+        feed.appendChild(card);
+    });
+
+    function copyText(text) {
+        navigator.clipboard.writeText(text);
+        const toast = document.getElementById('toast');
+        toast.style.display = 'block';
+        setTimeout(() => { toast.style.display = 'none'; }, 2000);
+    }
+</script>
+
+</body>
+</html>
