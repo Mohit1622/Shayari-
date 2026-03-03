@@ -25,7 +25,6 @@
 <div id="feed"></div>
 
 <script>
-    // Isme purani aur PDF ki saari Hindi shayari mix hain
     const allShayari = [
         "बेशक तुम जा चुके हो, पर तुम्हारा नाम आज भी, मेरे दिल की धड़कने तेज कर देता है।",
         "अरे aapko to इज़्ज़त krni chahiye thi is खामोशी ki..! Hm to iske phichhe aapki औकात छिपाये baithe the..!!",
@@ -37,9 +36,11 @@
         "Shant chehron Ke Piche Aksar ghav Gehra Hote Hain.",
         "Uski Khushi Ke Liye use to Chhod Diya Maine per Meri Khushiyan bhi Usi ke sath Chali gai.",
         "Hamen to kab se Pata Tha Ki Tum Bewafa Ho Tumhen Chaha isliye ki Shayad Tumhari fitrat Badal Jaaye.",
+        "Unhen Mil Hi Jaate Hain Koi Na Koi jinhen acche kirdar Nahin sirf kiraedar chahie Hote Hain.",
+        "Ek din khatm ho hi Jaenge ya to Gam nhi to FIR ham.",
         "Jindagi Mein Ek Aisa Insan Jarur Hona chahie Jo HAL Puche To Sach bataya Ja sake.",
         "Bewafa hi nahi berham bhi ho tum, Jindagi tabah Karke Kahate Ho ki jao ab khush raho tum.",
-        "Sach Sach batana Puri koshish kar rahe ho na use Bhulane ki.",
+        "Sach Sach batana पूरी कोशिश कर रहे हो ना उसे भुलाने की।",
         "ये जिस जगह लाकर तुमने छोड़ा है, तमाम उम्र निकल जायेगी यहाँ से निकलने में..",
         "Mohabbat mein jhukna koi buri baat nahi, suraj bhi dhalta hai chand ke liye.",
         "Waqt ne sikhaya hai ki har koi apna nahi hota.",
@@ -48,7 +49,6 @@
 
     const feed = document.getElementById('feed');
     
-    // Har shayari ko card mein dikhane ke liye loop
     allShayari.forEach(text => {
         const div = document.createElement('div');
         div.className = 'card';
@@ -63,3 +63,9 @@
     });
 
     function copyText(t) {
+        navigator.clipboard.writeText(t);
+        alert("Shayari Copy ho gayi! ✅");
+    }
+</script>
+</body>
+</html>
