@@ -8,110 +8,57 @@
     <style>
         :root { --bg: #f8fafc; --card: #ffffff; --text: #334155; --primary: #6366f1; }
         .dark-mode { --bg: #0f172a; --card: #1e293b; --text: #f1f5f9; --primary: #818cf8; }
-        .holi-theme { --bg: #fef3c7; --card: #fff7ed; --primary: #db2777; --text: #431407; background-image: radial-gradient(#fbbf24 1px, transparent 1px); background-size: 20px 20px; }
+        /* Auto Themes */
+        .holi-theme { --bg: #fff1f2; --card: #ffffff; --primary: #e11d48; background-image: radial-gradient(#fda4af 1px, transparent 1px); background-size: 20px 20px; }
+        .diwali-theme { --bg: #1a1a1a; --card: #2d2d2d; --primary: #fbbf24; --text: #fff; }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; transition: background 0.3s, color 0.3s; }
-        body { background-color: var(--bg); font-family: 'Segoe UI', sans-serif; padding: 10px; color: var(--text); min-height: 100vh; }
-        
-        /* Font Styles */
-        .font-elegant { font-family: 'Georgia', serif !important; }
-        .font-stylish { font-family: 'cursive', sans-serif !important; }
-        .font-mono { font-family: 'monospace' !important; }
-
-        .sidebar { position: fixed; right: -280px; top: 0; width: 260px; height: 100%; background: var(--card); z-index: 2000; padding: 25px; box-shadow: -5px 0 15px rgba(0,0,0,0.1); }
-        .sidebar.active { right: 0; }
-        .sidebar-toggle { position: fixed; right: 20px; top: 20px; z-index: 2100; background: var(--primary); color: white; border: none; width: 45px; height: 45px; border-radius: 50%; cursor: pointer; }
-
-        header { text-align: center; padding: 40px 15px; background: var(--card); border-radius: 0 0 30px 30px; margin-bottom: 20px; }
-        #searchInput { padding: 12px; width: 90%; max-width: 400px; border-radius: 25px; border: 1px solid #ddd; outline: none; margin-top: 15px; background: var(--card); color: var(--text); }
-
-        .container { max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px; }
-        .card { background: var(--card); padding: 25px; border-radius: 20px; border-left: 6px solid var(--primary); box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
-        
-        .footer-btns { display: flex; justify-content: flex-end; gap: 10px; border-top: 1px solid #eee; padding-top: 10px; margin-top: 15px; }
-        .btn-action { padding: 6px 12px; border-radius: 8px; border: none; cursor: pointer; font-size: 0.8rem; background: #f1f5f9; }
-
-        footer { text-align: center; padding: 40px; margin-top: 20px; background: var(--card); border-radius: 20px; }
-        .social-icons { margin: 15px 0; font-size: 1.5rem; display: flex; justify-content: center; gap: 20px; }
-        .social-icons a { color: var(--primary); text-decoration: none; }
+        * { margin: 0; padding: 0; box-sizing: border-box; transition: 0.4s; }
+        body { background-color: var(--bg); color: var(--text); font-family: sans-serif; }
+        .container { max-width: 500px; margin: 0 auto; padding: 15px; }
+        .card { background: var(--card); padding: 25px; border-radius: 20px; margin-bottom: 15px; border-left: 6px solid var(--primary); box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        header { text-align: center; padding: 40px 20px; background: var(--card); border-radius: 0 0 30px 30px; }
     </style>
 </head>
-<body id="mainBody">
-
-<button class="sidebar-toggle" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
-
-<div class="sidebar" id="sidebar">
-    <h3 style="margin-bottom:20px;">Dashboard 🛠️</h3>
-    <div style="margin-bottom:20px;">
-        <label style="font-size:0.8rem; font-weight:bold;">THEME</label>
-        <select onchange="setTheme(this.value)" id="themeSelect" style="width:100%; padding:8px; margin-top:5px;">
-            <option value="auto">System Default</option>
-            <option value="light">Light Mode</option>
-            <option value="dark">Dark Mode</option>
-            <option value="holi">Holi Special 🎨</option>
-        </select>
-    </div>
-    <div style="margin-bottom:20px;">
-        <label style="font-size:0.8rem; font-weight:bold;">FONT STYLE</label>
-        <select onchange="setFontStyle(this.value)" id="fontSelect" style="width:100%; padding:8px; margin-top:5px;">
-            <option value="default">Default</option>
-            <option value="font-elegant">Elegant</option>
-            <option value="font-stylish">Stylish</option>
-            <option value="font-mono">Classic Mono</option>
-        </select>
-    </div>
-    <button onclick="toggleSidebar()" style="width:100%; padding:10px; background:#ff4444; color:white; border:none; border-radius:8px;">Close</button>
-</div>
+<body>
 
 <header>
-    <h1>Mohit Shayari World ✨</h1>
-    <input type="text" id="searchInput" onkeyup="search()" placeholder="Shayari dhundein...">
+    <h1 id="mainTitle">Mohit Shayari World ✨</h1>
+    <input type="text" id="searchInput" onkeyup="search()" style="width:90%; padding:12px; margin-top:20px; border-radius:25px; border:1px solid #ddd;" placeholder="Shayari dhundein...">
 </header>
 
 <div class="container" id="feed"></div>
 
-<footer>
-    <div class="social-icons">
-        <a href="https://instagram.com/yourid"><i class="fab fa-instagram"></i></a>
-        <a href="https://facebook.com/yourid"><i class="fab fa-facebook"></i></a>
-        <a href="https://wa.me/91XXXXXXXXXX"><i class="fab fa-whatsapp"></i></a>
-    </div>
+<footer style="text-align:center; padding:40px; background:var(--card); margin-top:20px; border-radius:30px 30px 0 0;">
+    <div id="socialLinks" style="font-size:1.5rem; margin-bottom:15px; display:flex; justify-content:center; gap:20px;"></div>
     <p>© 2026 Mohit Kumar</p>
-    <p style="font-size:0.8rem; color:var(--primary);">mchauhan1622@gmail.com</p>
+    <p id="ownerEmail" style="font-size:0.8rem; color:var(--primary); margin-top:5px;"></p>
 </footer>
 
+<script src="config.js"></script>
 <script src="data.js"></script>
-<script>
-    // Refresh par settings na badalne ke liye LocalStorage logic
-    function applySavedSettings() {
-        const savedTheme = localStorage.getItem('mohitTheme') || 'auto';
-        const savedFont = localStorage.getItem('mohitFont') || 'default';
-        setTheme(savedTheme);
-        setFontStyle(savedFont);
-        document.getElementById('themeSelect').value = savedTheme;
-        document.getElementById('fontSelect').value = savedFont;
-    }
 
-    function setTheme(mode) {
-        localStorage.setItem('mohitTheme', mode);
-        document.body.classList.remove('dark-mode', 'holi-theme');
-        if (mode === 'dark') document.body.classList.add('dark-mode');
-        else if (mode === 'holi') document.body.classList.add('holi-theme');
-        else if (mode === 'auto') {
-            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                document.body.classList.add('dark-mode');
-            }
+<script>
+    // AUTO EVENT DETECTOR
+    function checkEvents() {
+        const today = new Date();
+        const month = today.getMonth() + 1; // March = 3
+        const date = today.getDate();
+
+        // Holi Range: March 10 to March 20
+        if(month === 3 && date >= 10 && date <= 20) {
+            document.body.classList.add('holi-theme');
+            document.getElementById('mainTitle').innerHTML = "Holi Mubarak! 🎨";
+        }
+        // Diwali Range (Example): Oct 25 to Nov 5
+        if((month === 10 && date >= 25) || (month === 11 && date <= 5)) {
+            document.body.classList.add('diwali-theme');
+            document.getElementById('mainTitle').innerHTML = "Happy Diwali! 🪔";
+        }
+        // Auto Dark Mode
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.body.classList.add('dark-mode');
         }
     }
-
-    function setFontStyle(style) {
-        localStorage.setItem('mohitFont', style);
-        const body = document.getElementById('mainBody');
-        body.classList.remove('font-elegant', 'font-stylish', 'font-mono');
-        if (style !== 'default') body.classList.add(style);
-    }
-
-    function toggleSidebar() { document.getElementById('sidebar').classList.toggle('active'); }
 
     function render(data) {
         const feed = document.getElementById('feed');
@@ -119,11 +66,7 @@
         data.forEach(text => {
             const div = document.createElement('div');
             div.className = 'card';
-            div.innerHTML = `<div class="content">${text}</div>
-                <div class="footer-btns">
-                    <button class="btn-action" onclick="navigator.clipboard.writeText('${text.replace(/'/g, "\\'")}')">Copy</button>
-                    <a href="https://api.whatsapp.com/send?text=${encodeURIComponent(text)}" target="_blank" class="btn-action" style="text-decoration:none; background:#25d366; color:white;">WhatsApp</a>
-                </div>`;
+            div.innerHTML = `<div class="content">${text}</div>`;
             feed.appendChild(div);
         });
     }
@@ -133,8 +76,15 @@
         render(allShayari.filter(s => s.toLowerCase().includes(q)));
     }
 
-    applySavedSettings();
-    render(allShayari);
+    window.onload = () => {
+        checkEvents();
+        document.getElementById('ownerEmail').innerText = siteConfig.email;
+        document.getElementById('socialLinks').innerHTML = `
+            <a href="${siteConfig.insta}" style="color:var(--primary)"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/${siteConfig.wa}" style="color:var(--primary)"><i class="fab fa-whatsapp"></i></a>
+        `;
+        render(allShayari);
+    };
 </script>
 </body>
 </html>
