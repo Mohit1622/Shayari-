@@ -8,108 +8,124 @@
     <style>
         :root { --bg: #f8fafc; --card: #ffffff; --text: #334155; --primary: #6366f1; }
         .dark-mode { --bg: #0f172a; --card: #1e293b; --text: #f1f5f9; --primary: #818cf8; }
-        
-        * { margin: 0; padding: 0; box-sizing: border-box; transition: 0.3s; }
-        body { background-color: var(--bg); font-family: sans-serif; padding: 10px; color: var(--text); }
-        .font-serif { font-family: 'Georgia', serif !important; }
-        .font-cursive { font-family: 'cursive', sans-serif !important; }
+        .holi-theme { --bg: #fef3c7; --card: #fff7ed; --primary: #db2777; --text: #431407; background-image: radial-gradient(#fbbf24 1px, transparent 1px); background-size: 20px 20px; }
 
-        /* Floating Dashboard Sidebar */
-        .sidebar { position: fixed; right: -250px; top: 0; width: 250px; height: 100%; background: var(--card); z-index: 2000; padding: 20px; box-shadow: -5px 0 15px rgba(0,0,0,0.1); }
+        * { margin: 0; padding: 0; box-sizing: border-box; transition: background 0.3s, color 0.3s; }
+        body { background-color: var(--bg); font-family: 'Segoe UI', sans-serif; padding: 10px; color: var(--text); min-height: 100vh; }
+        
+        /* Font Styles */
+        .font-elegant { font-family: 'Georgia', serif !important; }
+        .font-stylish { font-family: 'cursive', sans-serif !important; }
+        .font-mono { font-family: 'monospace' !important; }
+
+        .sidebar { position: fixed; right: -280px; top: 0; width: 260px; height: 100%; background: var(--card); z-index: 2000; padding: 25px; box-shadow: -5px 0 15px rgba(0,0,0,0.1); }
         .sidebar.active { right: 0; }
-        .sidebar-toggle { position: fixed; right: 20px; top: 20px; z-index: 2100; background: var(--primary); color: white; border: none; padding: 12px; border-radius: 50%; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
-        
-        .sidebar h3 { margin-bottom: 20px; border-bottom: 1px solid #ddd; padding-bottom: 10px; }
-        .setting-item { margin-bottom: 25px; }
-        .setting-item label { display: block; margin-bottom: 10px; font-weight: bold; font-size: 0.9rem; }
-        .style-btn { padding: 5px 10px; margin-right: 5px; cursor: pointer; border: 1px solid var(--primary); background: none; color: var(--text); border-radius: 5px; }
+        .sidebar-toggle { position: fixed; right: 20px; top: 20px; z-index: 2100; background: var(--primary); color: white; border: none; width: 45px; height: 45px; border-radius: 50%; cursor: pointer; }
 
-        header { text-align: center; padding: 40px 15px; background: var(--card); margin-bottom: 20px; border-radius: 0 0 30px 30px; }
+        header { text-align: center; padding: 40px 15px; background: var(--card); border-radius: 0 0 30px 30px; margin-bottom: 20px; }
         #searchInput { padding: 12px; width: 90%; max-width: 400px; border-radius: 25px; border: 1px solid #ddd; outline: none; margin-top: 15px; background: var(--card); color: var(--text); }
-        
+
         .container { max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px; }
         .card { background: var(--card); padding: 25px; border-radius: 20px; border-left: 6px solid var(--primary); box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
-        .footer-btns { display: flex; justify-content: flex-end; gap: 10px; border-top: 1px solid #eee; padding-top: 10px; margin-top: 15px; }
-        .btn { padding: 8px 15px; border-radius: 10px; font-size: 0.8rem; cursor: pointer; border: none; font-weight: bold; }
-        .wa-btn { background: #25d366; color: white; text-decoration: none; }
         
-        footer { margin-top: 40px; text-align: center; padding: 25px; background: var(--card); border-radius: 20px; }
-        .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #333; color: white; padding: 10px 20px; border-radius: 50px; display: none; z-index: 1000; }
+        .footer-btns { display: flex; justify-content: flex-end; gap: 10px; border-top: 1px solid #eee; padding-top: 10px; margin-top: 15px; }
+        .btn-action { padding: 6px 12px; border-radius: 8px; border: none; cursor: pointer; font-size: 0.8rem; background: #f1f5f9; }
+
+        footer { text-align: center; padding: 40px; margin-top: 20px; background: var(--card); border-radius: 20px; }
+        .social-icons { margin: 15px 0; font-size: 1.5rem; display: flex; justify-content: center; gap: 20px; }
+        .social-icons a { color: var(--primary); text-decoration: none; }
     </style>
 </head>
 <body id="mainBody">
 
-<button class="sidebar-toggle" onclick="toggleSidebar()"><i class="fas fa-cog"></i></button>
+<button class="sidebar-toggle" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
 
 <div class="sidebar" id="sidebar">
-    <h3>Settings 🛠️</h3>
-    <div class="setting-item">
-        <label>Theme</label>
-        <button class="btn" onclick="toggleDark()" style="background:var(--primary); color:white; width:100%;">Dark/Light Mode</button>
+    <h3 style="margin-bottom:20px;">Dashboard 🛠️</h3>
+    <div style="margin-bottom:20px;">
+        <label style="font-size:0.8rem; font-weight:bold;">THEME</label>
+        <select onchange="setTheme(this.value)" id="themeSelect" style="width:100%; padding:8px; margin-top:5px;">
+            <option value="auto">System Default</option>
+            <option value="light">Light Mode</option>
+            <option value="dark">Dark Mode</option>
+            <option value="holi">Holi Special 🎨</option>
+        </select>
     </div>
-    <div class="setting-item">
-        <label>Font Size</label>
-        <button class="style-btn" onclick="changeFontSize(1.1)">Small</button>
-        <button class="style-btn" onclick="changeFontSize(1.4)">Medium</button>
-        <button class="style-btn" onclick="changeFontSize(1.7)">Large</button>
+    <div style="margin-bottom:20px;">
+        <label style="font-size:0.8rem; font-weight:bold;">FONT STYLE</label>
+        <select onchange="setFontStyle(this.value)" id="fontSelect" style="width:100%; padding:8px; margin-top:5px;">
+            <option value="default">Default</option>
+            <option value="font-elegant">Elegant</option>
+            <option value="font-stylish">Stylish</option>
+            <option value="font-mono">Classic Mono</option>
+        </select>
     </div>
-    <div class="setting-item">
-        <label>Font Style</label>
-        <button class="style-btn" onclick="setFontStyle('sans-serif')">Default</button>
-        <button class="style-btn" onclick="setFontStyle('serif')">Elegant</button>
-        <button class="style-btn" onclick="setFontStyle('cursive')">Stylish</button>
-    </div>
-    <p id="totalCount" style="font-size: 0.8rem; opacity: 0.7;"></p>
-    <button class="btn" onclick="toggleSidebar()" style="margin-top:20px; width:100%;">Close</button>
+    <button onclick="toggleSidebar()" style="width:100%; padding:10px; background:#ff4444; color:white; border:none; border-radius:8px;">Close</button>
 </div>
 
 <header>
     <h1>Mohit Shayari World ✨</h1>
-    <input type="text" id="searchInput" onkeyup="search()" placeholder="Yahan search karein...">
+    <input type="text" id="searchInput" onkeyup="search()" placeholder="Shayari dhundein...">
 </header>
 
 <div class="container" id="feed"></div>
 
 <footer>
-    <p><strong>© 2026 Mohit Kumar</strong></p>
-    <a href="mailto:mchauhan1622@gmail.com" style="color:var(--primary); text-decoration:none; font-size: 0.8rem; display: block; margin-top: 10px;">mchauhan1622@gmail.com 📧</a>
+    <div class="social-icons">
+        <a href="https://instagram.com/yourid"><i class="fab fa-instagram"></i></a>
+        <a href="https://facebook.com/yourid"><i class="fab fa-facebook"></i></a>
+        <a href="https://wa.me/91XXXXXXXXXX"><i class="fab fa-whatsapp"></i></a>
+    </div>
+    <p>© 2026 Mohit Kumar</p>
+    <p style="font-size:0.8rem; color:var(--primary);">mchauhan1622@gmail.com</p>
 </footer>
 
-<div id="toast" class="toast">Copy Ho Gaya! ✅</div>
-
 <script src="data.js"></script>
-
 <script>
-    let currentFontSize = 1.2;
+    // Refresh par settings na badalne ke liye LocalStorage logic
+    function applySavedSettings() {
+        const savedTheme = localStorage.getItem('mohitTheme') || 'auto';
+        const savedFont = localStorage.getItem('mohitFont') || 'default';
+        setTheme(savedTheme);
+        setFontStyle(savedFont);
+        document.getElementById('themeSelect').value = savedTheme;
+        document.getElementById('fontSelect').value = savedFont;
+    }
+
+    function setTheme(mode) {
+        localStorage.setItem('mohitTheme', mode);
+        document.body.classList.remove('dark-mode', 'holi-theme');
+        if (mode === 'dark') document.body.classList.add('dark-mode');
+        else if (mode === 'holi') document.body.classList.add('holi-theme');
+        else if (mode === 'auto') {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.body.classList.add('dark-mode');
+            }
+        }
+    }
+
+    function setFontStyle(style) {
+        localStorage.setItem('mohitFont', style);
+        const body = document.getElementById('mainBody');
+        body.classList.remove('font-elegant', 'font-stylish', 'font-mono');
+        if (style !== 'default') body.classList.add(style);
+    }
+
+    function toggleSidebar() { document.getElementById('sidebar').classList.toggle('active'); }
 
     function render(data) {
         const feed = document.getElementById('feed');
         feed.innerHTML = '';
-        document.getElementById('totalCount').innerText = `Total Shayari: ${allShayari.length}`;
-        
-        data.forEach((text, index) => {
+        data.forEach(text => {
             const div = document.createElement('div');
             div.className = 'card';
-            div.style.fontSize = currentFontSize + 'rem';
-            div.innerHTML = `
-                <div class="content">${text}</div>
+            div.innerHTML = `<div class="content">${text}</div>
                 <div class="footer-btns">
-                    <button class="btn" style="background:#f1f5f9; color:#475569;" onclick="copyText('${text.replace(/'/g, "\\'")}')">Copy</button>
-                    <a class="btn wa-btn" href="https://api.whatsapp.com/send?text=${encodeURIComponent(text)}" target="_blank">WhatsApp</a>
+                    <button class="btn-action" onclick="navigator.clipboard.writeText('${text.replace(/'/g, "\\'")}')">Copy</button>
+                    <a href="https://api.whatsapp.com/send?text=${encodeURIComponent(text)}" target="_blank" class="btn-action" style="text-decoration:none; background:#25d366; color:white;">WhatsApp</a>
                 </div>`;
             feed.appendChild(div);
         });
-    }
-
-    function toggleSidebar() { document.getElementById('sidebar').classList.toggle('active'); }
-    function toggleDark() { document.body.classList.toggle('dark-mode'); }
-    function changeFontSize(size) { currentFontSize = size; render(allShayari); }
-    
-    function setFontStyle(style) {
-        const body = document.getElementById('mainBody');
-        body.classList.remove('font-serif', 'font-cursive');
-        if(style === 'serif') body.classList.add('font-serif');
-        if(style === 'cursive') body.classList.add('font-cursive');
     }
 
     function search() {
@@ -117,13 +133,7 @@
         render(allShayari.filter(s => s.toLowerCase().includes(q)));
     }
 
-    function copyText(t) {
-        navigator.clipboard.writeText(t);
-        const toast = document.getElementById('toast');
-        toast.style.display = 'block';
-        setTimeout(() => toast.style.display = 'none', 2000);
-    }
-
+    applySavedSettings();
     render(allShayari);
 </script>
 </body>
