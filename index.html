@@ -4,64 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>The Shayari Hub | Best Hindi Shayari & Images</title>
-    <meta name="description" content="The Shayari Hub - Best Love, Sad, and Romantic Shayari in Hindi. Download high-quality shayari images for WhatsApp.">
-    <meta name="keywords" content="The Shayari Hub, shyari-world, Love Shayari, Sad Shayari, Romantic Shayari, Hindi Status, Shayari Image Download">
+    <title>The Shayari Hub | shyari-world</title>
+    <meta name="description" content="Best Love, Sad, and Romantic Shayari by Mohit. Download Images.">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     
     <style>
-        :root { --bg: #f0f2f5; --card: #ffffff; --text: #1c1e21; --primary: #6366f1; }
+        :root { --bg: #f8fafc; --card: #ffffff; --text: #334155; --primary: #6366f1; }
         .dark-mode { --bg: #0f172a; --card: #1e293b; --text: #f1f5f9; --primary: #818cf8; }
         
         * { margin: 0; padding: 0; box-sizing: border-box; transition: 0.3s; }
-        body { background-color: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; }
+        body { background-color: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; padding-bottom: 50px; }
 
-        /* Header & Brand */
-        header { text-align: center; padding: 30px 15px; background: var(--card); border-radius: 0 0 30px 30px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-        .brand-name { font-size: 2rem; font-weight: 800; color: var(--primary); letter-spacing: -1px; }
-        .username-tag { font-size: 0.8rem; background: #e0e7ff; color: #4338ca; padding: 3px 10px; border-radius: 20px; font-weight: bold; }
+        header { text-align: center; padding: 40px 15px; background: var(--card); border-radius: 0 0 30px 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .brand-name { font-size: 2.2rem; font-weight: 800; color: var(--primary); }
+        .username-tag { font-size: 0.85rem; background: var(--primary); color: white; padding: 4px 12px; border-radius: 20px; font-weight: bold; }
 
-        /* Category Boxes */
-        .category-container { display: flex; justify-content: center; gap: 10px; margin: 20px 0; overflow-x: auto; padding: 10px; }
-        .cat-box { padding: 12px 20px; border-radius: 15px; color: white; font-weight: bold; cursor: pointer; min-width: 100px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        .cat-love { background: linear-gradient(45deg, #ff4e50, #f9d423); }
-        .cat-sad { background: linear-gradient(45deg, #2193b0, #6dd5ed); }
-        .cat-romantic { background: linear-gradient(45deg, #ee0979, #ff6a00); }
+        /* Categories Section */
+        .category-container { display: flex; justify-content: center; gap: 10px; margin: 25px 0; overflow-x: auto; padding: 5px; }
+        .cat-box { padding: 10px 18px; border-radius: 12px; color: white; font-weight: bold; cursor: pointer; font-size: 0.9rem; flex-shrink: 0; }
+        .cat-love { background: #ff4e50; }
+        .cat-sad { background: #2193b0; }
+        .cat-romantic { background: #ee0979; }
         .cat-all { background: #64748b; }
 
         #searchInput { width: 90%; max-width: 450px; padding: 12px 20px; border-radius: 30px; border: 1px solid #ddd; outline: none; margin-top: 15px; background: var(--card); color: var(--text); }
 
-        /* Feed & Cards */
-        .container { max-width: 600px; margin: 0 auto; padding: 15px; }
-        .card { background: var(--card); padding: 25px; border-radius: 25px; margin-bottom: 20px; position: relative; border-left: 8px solid var(--primary); box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
-        .content { font-size: 1.25rem; line-height: 1.6; font-weight: 500; margin-bottom: 20px; }
+        .container { max-width: 600px; margin: 20px auto; padding: 0 15px; }
+        .card { background: var(--card); padding: 25px; border-radius: 25px; margin-bottom: 20px; border-left: 8px solid var(--primary); box-shadow: 0 5px 15px rgba(0,0,0,0.03); }
+        .content { font-size: 1.2rem; line-height: 1.6; margin-bottom: 15px; }
 
-        /* Buttons */
-        .card-footer { display: flex; justify-content: flex-end; gap: 8px; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 15px; }
-        .btn { padding: 8px 15px; border-radius: 12px; font-size: 0.8rem; font-weight: 700; border: none; cursor: pointer; display: flex; align-items: center; gap: 5px; }
+        .card-footer { display: flex; justify-content: flex-end; gap: 8px; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 12px; }
+        .btn { padding: 7px 14px; border-radius: 10px; font-size: 0.8rem; border: none; cursor: pointer; font-weight: bold; display: flex; align-items: center; gap: 5px; }
         .img-btn { background: var(--primary); color: white; }
         .copy-btn { background: #f1f5f9; color: #475569; }
         .wa-btn { background: #25d366; color: white; text-decoration: none; }
 
-        /* Sidebar Settings */
-        .sidebar { position: fixed; right: -300px; top: 0; width: 280px; height: 100%; background: var(--card); z-index: 2000; padding: 30px; box-shadow: -10px 0 30px rgba(0,0,0,0.1); }
+        /* Dashboard Fix */
+        .sidebar { position: fixed; right: -280px; top: 0; width: 260px; height: 100%; background: var(--card); z-index: 2000; padding: 30px; box-shadow: -10px 0 20px rgba(0,0,0,0.1); }
         .sidebar.active { right: 0; }
-        .sidebar-toggle { position: fixed; right: 20px; top: 20px; z-index: 2100; background: var(--primary); color: white; border: none; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; font-size: 1.2rem; }
+        .sidebar-toggle { position: fixed; right: 20px; top: 20px; z-index: 2100; background: var(--primary); color: white; border: none; width: 45px; height: 45px; border-radius: 50%; cursor: pointer; }
+
+        /* Footer Fix */
+        footer { text-align: center; padding: 40px 20px; background: var(--card); margin-top: 30px; border-top: 1px solid #eee; }
+        .social-icons { display: flex; justify-content: center; gap: 20px; font-size: 1.6rem; margin-bottom: 15px; }
+        .social-icons a { color: var(--primary); transition: 0.3s; }
+        .copyright { font-size: 0.9rem; font-weight: bold; margin-bottom: 5px; }
+        .made-with { font-size: 0.8rem; color: #64748b; }
     </style>
 </head>
 <body id="mainBody">
 
-<button class="sidebar-toggle" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+<button class="sidebar-toggle" onclick="toggleSidebar()"><i class="fas fa-cog"></i></button>
 
 <div class="sidebar" id="sidebar">
-    <h3>Brand Settings 🛠️</h3>
-    <div style="margin-top:20px;">
-        <label>Theme</label>
-        <button onclick="setTheme('dark')" class="btn" style="width:100%; margin-top:10px; background:#333; color:white;">Dark Mode</button>
-        <button onclick="setTheme('light')" class="btn" style="width:100%; margin-top:10px; background:#eee; color:#333;">Light Mode</button>
-    </div>
+    <h3 style="margin-bottom:20px;">Settings 🛠️</h3>
+    <button onclick="setTheme('dark')" class="btn" style="width:100%; margin-top:10px; background:#333; color:white;">Dark Mode</button>
+    <button onclick="setTheme('light')" class="btn" style="width:100%; margin-top:10px; background:#eee; color:#333;">Light Mode</button>
     <button onclick="toggleSidebar()" class="btn" style="width:100%; margin-top:40px; background:#ff4444; color:white;">Close</button>
 </div>
 
@@ -76,14 +76,19 @@
         <div class="cat-box cat-romantic" onclick="filterCat('romantic')">Romantic</div>
     </div>
 
-    <input type="text" id="searchInput" onkeyup="search()" placeholder="Search your feelings...">
+    <input type="text" id="searchInput" onkeyup="search()" placeholder="Dil ki baat search karein...">
 </header>
 
 <div class="container" id="feed"></div>
 
-<footer style="text-align:center; padding:50px; background:var(--card); margin-top:40px; border-radius:40px 40px 0 0;">
-    <p><strong>The Shayari Hub</strong></p>
-    <p style="font-size:0.8rem; opacity:0.7; margin-top:5px;">Made with ❤️ by Mohit Kumar</p>
+<footer>
+    <div class="social-icons">
+        <a href="https://instagram.com/mohit"><i class="fab fa-instagram"></i></a>
+        <a href="https://facebook.com/mohit"><i class="fab fa-facebook"></i></a>
+        <a href="https://wa.me/91XXXXXXXXXX"><i class="fab fa-whatsapp"></i></a>
+    </div>
+    <p class="copyright">© 2026 The Shayari Hub</p>
+    <p class="made-with">Made with ❤️ Mohit</p>
 </footer>
 
 <script src="data.js"></script>
@@ -100,6 +105,10 @@
     function render(data) {
         const feed = document.getElementById('feed');
         feed.innerHTML = '';
+        if(!data || data.length === 0) {
+            feed.innerHTML = '<p style="text-align:center; padding:20px;">Koi Shayari nahi mili.</p>';
+            return;
+        }
         data.forEach((text, index) => {
             const div = document.createElement('div');
             div.className = 'card';
@@ -131,7 +140,7 @@
 
     function copyText(t) {
         navigator.clipboard.writeText(t);
-        alert("Copied! ✅");
+        alert("Copy Ho Gaya! ✅");
     }
 
     function filterCat(cat) {
@@ -141,4 +150,20 @@
 
     function search() {
         const q = document.getElementById('searchInput').value.toLowerCase();
-        render(allShayari.filter(s => s
+        if(typeof allShayari !== 'undefined') {
+            render(allShayari.filter(s => s.toLowerCase().includes(q)));
+        }
+    }
+
+    window.onload = () => {
+        const savedTheme = localStorage.getItem('hubTheme') || 'light';
+        setTheme(savedTheme);
+        if(typeof allShayari !== 'undefined') {
+            render(allShayari);
+        } else {
+            document.getElementById('feed').innerHTML = '<p style="text-align:center; color:red;">Galti: data.js file nahi mili!</p>';
+        }
+    };
+</script>
+</body>
+</html>
