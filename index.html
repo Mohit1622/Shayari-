@@ -5,110 +5,121 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mohit Shayari World ✨</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
         :root { --bg: #f8fafc; --card: #ffffff; --text: #334155; --primary: #6366f1; }
         .dark-mode { --bg: #0f172a; --card: #1e293b; --text: #f1f5f9; --primary: #818cf8; }
-        .holi-theme { --bg: #fff1f2; --card: #ffffff; --primary: #e11d48; background-image: radial-gradient(#fda4af 1px, transparent 1px); background-size: 20px 20px; }
         * { margin: 0; padding: 0; box-sizing: border-box; transition: 0.3s; }
-        body { background-color: var(--bg); color: var(--text); font-family: sans-serif; padding: 10px; min-height: 100vh; }
-        .font-elegant { font-family: 'Georgia', serif !important; }
-        .font-stylish { font-family: 'cursive', sans-serif !important; }
+        body { background-color: var(--bg); color: var(--text); font-family: sans-serif; padding: 10px; }
+        
+        .grid-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        header { text-align: center; padding: 40px 15px; background: var(--card); border-radius: 0 0 30px 30px; margin-bottom: 20px; }
+        .container { max-width: 600px; margin: 0 auto; }
+        
+        /* Shayari Card Design */
+        .card { background: var(--card); padding: 25px; border-radius: 20px; border-left: 6px solid var(--primary); box-shadow: 0 4px 12px rgba(0,0,0,0.05); margin-bottom: 20px; position: relative; }
+        .content { font-size: 1.2rem; line-height: 1.6; margin-bottom: 15px; }
+        
+        /* Buttons Container */
+        .card-footer { display: flex; justify-content: flex-end; gap: 8px; margin-top: 15px; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 12px; }
+        .btn { padding: 7px 14px; border-radius: 10px; font-size: 0.8rem; font-weight: bold; border: none; cursor: pointer; text-decoration: none; display: flex; align-items: center; gap: 5px; }
+        .copy-btn { background: #f1f5f9; color: #475569; }
+        .wa-btn { background: #25d366; color: white; }
+        .img-btn { background: var(--primary); color: white; }
+
+        /* Sidebar Dashboard */
         .sidebar { position: fixed; right: -280px; top: 0; width: 260px; height: 100%; background: var(--card); z-index: 2000; padding: 25px; box-shadow: -5px 0 15px rgba(0,0,0,0.1); }
         .sidebar.active { right: 0; }
-        .sidebar-btn { position: fixed; right: 20px; top: 20px; z-index: 2100; background: var(--primary); color: white; border: none; width: 45px; height: 45px; border-radius: 50%; cursor: pointer; }
-        header { text-align: center; padding: 40px 15px; background: var(--card); border-radius: 0 0 30px 30px; margin-bottom: 20px; }
-        .container { max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px; }
-        .card { background: var(--card); padding: 25px; border-radius: 20px; border-left: 6px solid var(--primary); box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
-        .btn-opt { padding: 8px; border: 1px solid var(--primary); border-radius: 8px; background: none; color: var(--text); cursor: pointer; width: 100%; margin-top: 5px; font-size: 0.75rem; }
-        footer { text-align: center; padding: 40px; margin-top: 20px; background: var(--card); border-radius: 20px; }
-        .social-icons { margin: 15px 0; font-size: 1.5rem; display: flex; justify-content: center; gap: 20px; }
+        .sidebar-toggle { position: fixed; right: 20px; top: 20px; z-index: 2100; background: var(--primary); color: white; border: none; width: 45px; height: 45px; border-radius: 50%; cursor: pointer; }
     </style>
 </head>
-<body id="mainBody">
+<body>
 
-<button class="sidebar-btn" onclick="toggleSidebar()"><i class="fas fa-cog"></i></button>
+<button class="sidebar-toggle" onclick="toggleSidebar()"><i class="fas fa-sliders-h"></i></button>
 
 <div class="sidebar" id="sidebar">
     <h3>Dashboard 🛠️</h3>
     <div style="margin-top:20px;">
-        <label style="font-size:0.8rem; font-weight:bold;">THEME</label>
-        <button class="btn-opt" onclick="setTheme('dark')">Dark Mode</button>
-        <button class="btn-opt" onclick="setTheme('light')">Light Mode</button>
-        <button class="btn-opt" onclick="setTheme('holi')">Holi Special 🎨</button>
+        <label>LAYOUT</label>
+        <button onclick="setLayout('list')" class="btn" style="width:100%; margin-top:5px; border:1px solid #ddd; color:var(--text)">List View</button>
+        <button onclick="setLayout('grid')" class="btn" style="width:100%; margin-top:5px; border:1px solid #ddd; color:var(--text)">Grid View</button>
     </div>
     <div style="margin-top:20px;">
-        <label style="font-size:0.8rem; font-weight:bold;">FONT STYLE</label>
-        <button class="btn-opt" onclick="setFont('default')">Normal</button>
-        <button class="btn-opt" onclick="setFont('font-elegant')">Elegant</button>
-        <button class="btn-opt" onclick="setFont('font-stylish')">Stylish</button>
+        <label>THEME</label>
+        <button onclick="setTheme('dark')" class="btn" style="width:100%; margin-top:5px; background:#333; color:white;">Dark Mode</button>
+        <button onclick="setTheme('light')" class="btn" style="width:100%; margin-top:5px; background:#eee; color:#333;">Light Mode</button>
     </div>
-    <button class="btn-opt" onclick="toggleSidebar()" style="background:#ff4444; color:white; border:none; margin-top:30px;">Close</button>
+    <button onclick="toggleSidebar()" class="btn" style="width:100%; margin-top:40px; background:#ff4444; color:white;">Close</button>
 </div>
 
 <header>
     <h1>Mohit Shayari World ✨</h1>
-    <input type="text" id="searchInput" onkeyup="search()" style="width:90%; padding:10px; margin-top:15px; border-radius:20px; border:1px solid #ddd;" placeholder="Search...">
+    <input type="text" id="searchInput" onkeyup="search()" style="width:90%; padding:12px; margin-top:15px; border-radius:25px; border:1px solid #ddd; outline:none;" placeholder="Apni shayari dhundein...">
 </header>
 
 <div class="container" id="feed"></div>
 
-<footer>
-    <div class="social-icons" id="socialIcons"></div>
-    <p><strong>© 2026 Mohit Kumar</strong></p>
-    <p id="footerEmail" style="font-size:0.8rem; color:var(--primary); margin-top:5px;"></p>
+<footer style="text-align:center; padding:40px; background:var(--card); margin-top:30px;">
+    <p>© 2026 Mohit Kumar</p>
+    <p style="font-size:0.8rem; color:var(--primary);">mchauhan1622@gmail.com</p>
 </footer>
 
 <script src="config.js"></script>
 <script src="data.js"></script>
 
 <script>
-    function applyAll() {
-        // Apply Config
-        document.getElementById('footerEmail').innerText = siteConfig.email;
-        document.getElementById('socialIcons').innerHTML = `
-            <a href="${siteConfig.instagram}" style="color:var(--primary)"><i class="fab fa-instagram"></i></a>
-            <a href="${siteConfig.facebook}" style="color:var(--primary)"><i class="fab fa-facebook"></i></a>
-            <a href="https://wa.me/${siteConfig.whatsapp}" style="color:var(--primary)"><i class="fab fa-whatsapp"></i></a>
-        `;
-
-        // Apply Saved Settings
-        const theme = localStorage.getItem('theme') || siteConfig.defaultTheme || 'light';
-        const font = localStorage.getItem('font') || 'default';
-        setTheme(theme);
-        setFont(font);
-
-        // Auto Event Check
-        if(siteConfig.autoEvents) {
-            const d = new Date();
-            if(d.getMonth() === 2 && d.getDate() >= 10 && d.getDate() <= 20) setTheme('holi');
-        }
-    }
-
-    function setTheme(m) {
-        localStorage.setItem('theme', m);
-        document.body.classList.remove('dark-mode', 'holi-theme');
-        if(m === 'dark') document.body.classList.add('dark-mode');
-        if(m === 'holi') document.body.classList.add('holi-theme');
-    }
-
-    function setFont(s) {
-        localStorage.setItem('font', s);
-        const b = document.getElementById('mainBody');
-        b.classList.remove('font-elegant', 'font-stylish');
-        if(s !== 'default') b.classList.add(s);
-    }
-
     function toggleSidebar() { document.getElementById('sidebar').classList.toggle('active'); }
+    
+    function setTheme(m) {
+        document.body.classList.remove('dark-mode');
+        if(m === 'dark') document.body.classList.add('dark-mode');
+        localStorage.setItem('mohitTheme', m);
+    }
+
+    function setLayout(l) {
+        const feed = document.getElementById('feed');
+        feed.classList.remove('grid-layout');
+        if(l === 'grid') feed.classList.add('grid-layout');
+        localStorage.setItem('mohitLayout', l);
+    }
 
     function render(data) {
         const feed = document.getElementById('feed');
         feed.innerHTML = '';
-        data.forEach(text => {
+        data.forEach((text, index) => {
             const div = document.createElement('div');
             div.className = 'card';
-            div.innerHTML = `<div class="content">${text}</div>`;
+            div.id = `card-${index}`;
+            div.innerHTML = `
+                <div class="content">${text}</div>
+                <div class="card-footer">
+                    <button class="btn img-btn" onclick="downloadImg('card-${index}')"><i class="fas fa-image"></i> Photo</button>
+                    <button class="btn copy-btn" onclick="copyText('${text.replace(/'/g, "\\'")}')"><i class="fas fa-copy"></i> Copy</button>
+                    <a href="https://api.whatsapp.com/send?text=${encodeURIComponent(text)}" target="_blank" class="btn wa-btn"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                </div>`;
             feed.appendChild(div);
         });
+    }
+
+    // Naya Photo Download Function
+    function downloadImg(cardId) {
+        const card = document.getElementById(cardId);
+        // Buttons ko chhupana taaki photo mein na aayein
+        const footer = card.querySelector('.card-footer');
+        footer.style.display = 'none';
+
+        html2canvas(card, { backgroundColor: null, scale: 2 }).then(canvas => {
+            const link = document.createElement('a');
+            link.download = 'mohit-shayari.png';
+            link.href = canvas.toDataURL();
+            link.click();
+            footer.style.display = 'flex'; // Buttons wapas dikhayein
+        });
+    }
+
+    function copyText(t) {
+        navigator.clipboard.writeText(t);
+        alert("Shayari Copy Ho Gayi! ✅");
     }
 
     function search() {
@@ -116,7 +127,13 @@
         render(allShayari.filter(s => s.toLowerCase().includes(q)));
     }
 
-    window.onload = () => { applyAll(); render(allShayari); };
+    window.onload = () => {
+        const savedTheme = localStorage.getItem('mohitTheme') || 'light';
+        const savedLayout = localStorage.getItem('mohitLayout') || 'list';
+        setTheme(savedTheme);
+        setLayout(savedLayout);
+        render(allShayari);
+    };
 </script>
 </body>
 </html>
