@@ -3,66 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Shayari Hub | shayari-world</title>
-    
+    <title>The Shayari Hub | @shayari-world</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-
     <style>
-        :root { --bg: #f8fafc; --card: #ffffff; --text: #334155; --primary: #6366f1; --font-size: 1.2rem; }
-        .dark-mode { --bg: #0f172a; --card: #1e293b; --text: #f1f5f9; --primary: #818cf8; }
-        * { margin: 0; padding: 0; box-sizing: border-box; transition: 0.3s; }
-        body { background-color: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; overflow-x: hidden; }
-        .font-elegant { font-family: 'Georgia', serif !important; }
-        .font-stylish { font-family: 'Cursive', sans-serif !important; }
-        header { text-align: center; padding: 40px 15px; background: var(--card); border-radius: 0 0 30px 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        :root { --bg: #0f172a; --card: #1e293b; --text: #f1f5f9; --primary: #818cf8; --font-size: 1.2rem; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; padding-bottom: 50px; }
+        header { text-align: center; padding: 40px 15px; background: var(--card); border-radius: 0 0 30px 30px; margin-bottom: 20px; }
         .brand-name { font-size: 2.2rem; font-weight: 800; color: var(--primary); }
         .username-tag { font-size: 0.85rem; background: var(--primary); color: white; padding: 4px 12px; border-radius: 20px; }
-        .category-container { display: flex; justify-content: center; gap: 10px; margin: 25px 0; overflow-x: auto; padding: 10px; }
-        .cat-box { padding: 12px 20px; border-radius: 12px; color: white; font-weight: bold; cursor: pointer; font-size: 0.9rem; border: none; }
+        .category-container { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; overflow-x: auto; padding: 10px; }
+        .cat-box { padding: 10px 18px; border-radius: 12px; color: white; cursor: pointer; border: none; font-weight: bold; }
         .cat-love { background: linear-gradient(45deg, #ff4e50, #f9d423); }
         .cat-sad { background: linear-gradient(45deg, #2193b0, #6dd5ed); }
-        .cat-romantic { background: linear-gradient(45deg, #ee0979, #ff6a00); }
         .cat-all { background: #64748b; }
-        #searchInput { width: 90%; max-width: 450px; display: block; margin: 0 auto 20px auto; padding: 12px 20px; border-radius: 30px; border: 1px solid #ddd; outline: none; }
-        .container { max-width: 600px; margin: 20px auto; padding: 0 15px; }
-        .card { background: var(--card); border-radius: 20px; padding: 25px; margin-bottom: 20px; border-left: 8px solid var(--primary); box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-        .content { font-size: var(--font-size); line-height: 1.6; margin-bottom: 20px; font-weight: 500; }
-        .card-footer { display: flex; justify-content: flex-end; gap: 8px; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 15px; }
-        .btn { padding: 8px 16px; border-radius: 12px; font-size: 0.85rem; border: none; cursor: pointer; font-weight: bold; display: flex; align-items: center; gap: 5px; text-decoration: none; }
-        .img-btn { background: var(--primary); color: white; }
-        .copy-btn { background: #f1f5f9; color: #475569; }
-        .wa-btn { background: #25d366; color: white; }
-        .sidebar { position: fixed; right: -320px; top: 0; width: 300px; height: 100%; background: var(--card); z-index: 2000; padding: 30px; box-shadow: -5px 0 15px rgba(0,0,0,0.1); }
-        .sidebar.active { right: 0; }
-        .sidebar-toggle { position: fixed; right: 20px; top: 20px; z-index: 2100; background: var(--primary); color: white; border: none; width: 45px; height: 45px; border-radius: 50%; cursor: pointer; }
-        .side-section { margin-bottom: 25px; }
-        .option-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
-        .opt-btn { padding: 10px; border: 1px solid #ddd; background: transparent; border-radius: 10px; color: var(--text); cursor: pointer; }
-        .opt-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+        #searchInput { width: 90%; max-width: 450px; display: block; margin: 0 auto 20px; padding: 12px 20px; border-radius: 30px; border: none; outline: none; }
+        .container { max-width: 600px; margin: 0 auto; padding: 0 15px; }
+        .card { background: var(--card); border-radius: 20px; padding: 25px; margin-bottom: 20px; border-left: 6px solid var(--primary); }
+        .content { font-size: var(--font-size); line-height: 1.6; margin-bottom: 15px; }
+        .card-footer { display: flex; justify-content: flex-end; gap: 10px; border-top: 1px solid #334155; padding-top: 15px; }
+        .btn { padding: 8px 15px; border-radius: 10px; border: none; cursor: pointer; color: white; background: var(--primary); font-size: 0.8rem; }
     </style>
 </head>
-<body id="mainBody">
-
-    <button class="sidebar-toggle" onclick="toggleSidebar()"><i class="fas fa-magic"></i></button>
-
-    <div class="sidebar" id="sidebar">
-        <h2 style="margin-bottom:25px;">Customize Hub ✨</h2>
-        <div class="side-section">
-            <label>Theme Mode</label>
-            <div class="option-grid">
-                <button class="opt-btn" onclick="setTheme('light')">Light</button>
-                <button class="opt-btn" onclick="setTheme('dark')">Dark</button>
-            </div>
-        </div>
-        <div class="side-section">
-            <label>Font Style</label>
-            <div class="option-grid">
-                <button class="opt-btn" onclick="setFont('default')">Modern</button>
-                <button class="opt-btn" onclick="setFont('font-elegant')">Elegant</button>
-            </div>
-        </div>
-    </div>
+<body>
 
     <header>
         <div class="brand-name">The Shayari Hub</div>
@@ -73,73 +37,47 @@
         <button class="cat-box cat-all" onclick="filterCat('')">All</button>
         <button class="cat-box cat-love" onclick="filterCat('#love')">Love ❤️</button>
         <button class="cat-box cat-sad" onclick="filterCat('#sad')">Sad 💔</button>
-        <button class="cat-box cat-romantic" onclick="filterCat('#romantic')">Romantic 🌹</button>
     </div>
 
     <input type="text" id="searchInput" placeholder="Search shayari..." oninput="search()">
 
-    <div class="container" id="feed">
-        </div>
-
-    <script src="./data.js"></script>
+    <div class="container" id="feed"></div>
 
     <script>
-        function toggleSidebar() { document.getElementById('sidebar').classList.toggle('active'); }
-
-        function setTheme(m) {
-            if(m === 'dark') document.body.classList.add('dark-mode');
-            else document.body.classList.remove('dark-mode');
-            localStorage.setItem('hubTheme', m);
-        }
-
-        function setFont(s) {
-            const b = document.getElementById('mainBody');
-            b.classList.remove('font-elegant', 'font-stylish');
-            if(s !== 'default') b.classList.add(s);
-            localStorage.setItem('hubFont', s);
-        }
+        // AB DATA DIRECT YAHIN HAI, FILE KI ZAROORAT NAHI
+        const allShayari = [
+            "Teri khamoshi mein bhi ek sukoon sa milta hai, ye dil ab bas tere hi khayalon mein khilta hai.",
+            "Zindagi ki har raah par tera saath chahiye mujhe bas teri baahon ka mehakta sa hath chahiye.",
+            "Mohabbat ka rang kuch aise chadha hai tum par ab har dua mein bas tera hi naam rehta hai lab par.",
+            "Tunhe sochna hi ek ibadat si ban gayi hai ab toh bas tumhe chahna hi meri aadat si ban gayi hai.",
+            "Beshak tum ja chuke ho, par tumhara naam aaj bhi, mere dil ki dhadkan tez kar deta hai.#sad",
+            "Are aapko to izzat karni chahiye thi is khamoshi ki..! Hm to iske phichhe aapki aukat chipaye baithe the..!!#sad",
+            "Safar tumhare sath Chhota Raha lekin Jindagi Bhar Ke Liye Sabak ban gaya.#sad#love",
+            "Uski Khushi Ke Liye use to Chhod Diya Maine per meri Khushiyan bhi Usi ke sath Chali gai.#sad#love",
+            "Rewafa hi nahi berham bhi ho tum Jindagi tabah Karke Kahate Ho ki jao ab khush raho tum.#sad#love",
+            "Bahut khush rahte hain wo apne dil ka, dard nahi lana hai, unhe kya pata hai baat gehri hai fir se wahi...."
+        ]; //
 
         function render(data) {
             const feed = document.getElementById('feed');
             feed.innerHTML = '';
-            if(!data || data.length === 0) {
-                feed.innerHTML = '<div class="card text-center">Dost, is category mein abhi shayari nahi mili.</div>';
-                return;
-            }
             data.forEach((text, index) => {
                 const div = document.createElement('div');
                 div.className = 'card';
-                div.id = `card-${index}`;
                 div.innerHTML = `
                     <div class="content">${text}</div>
                     <div class="card-footer">
-                        <button class="btn img-btn" onclick="downloadImg('card-${index}')"><i class="fas fa-camera"></i> Photo</button>
-                        <button class="btn copy-btn" onclick="copyText(this)"><i class="fas fa-copy"></i> Copy</button>
-                        <a href="https://api.whatsapp.com/send?text=${encodeURIComponent(text)}" target="_blank" class="btn wa-btn"><i class="fab fa-whatsapp"></i> Share</a>
+                        <button class="btn" onclick="copyText('${text.replace(/'/g, "\\'")}')">Copy</button>
+                        <a href="https://api.whatsapp.com/send?text=${encodeURIComponent(text)}" target="_blank" class="btn" style="background:#25d366; text-decoration:none;">WhatsApp</a>
                     </div>
                 `;
                 feed.appendChild(div);
             });
         }
 
-        function copyText(btn) {
-            const text = btn.parentElement.parentElement.querySelector('.content').innerText;
+        function copyText(text) {
             navigator.clipboard.writeText(text);
-            btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
-            setTimeout(() => { btn.innerHTML = '<i class="fas fa-copy"></i> Copy'; }, 2000);
-        }
-
-        function downloadImg(id) {
-            const card = document.getElementById(id);
-            const footer = card.querySelector('.card-footer');
-            footer.style.display = 'none';
-            html2canvas(card, { backgroundColor: null, scale: 2 }).then(canvas => {
-                const link = document.createElement('a');
-                link.download = 'ShayariHub.png';
-                link.href = canvas.toDataURL();
-                link.click();
-                footer.style.display = 'flex';
-            });
+            alert("Copied!");
         }
 
         function filterCat(cat) {
@@ -149,21 +87,12 @@
 
         function search() {
             const q = document.getElementById('searchInput').value.toLowerCase();
-            if(typeof allShayari !== 'undefined') {
-                const filtered = allShayari.filter(s => s.toLowerCase().includes(q));
-                render(filtered);
-            }
+            const filtered = allShayari.filter(s => s.toLowerCase().includes(q));
+            render(filtered);
         }
 
-        window.onload = () => {
-            setTheme(localStorage.getItem('hubTheme') || 'light');
-            setFont(localStorage.getItem('hubFont') || 'default');
-            if (typeof allShayari !== 'undefined') {
-                render(allShayari);
-            } else {
-                document.getElementById('feed').innerHTML = '<div style="color:red; text-align:center;">data.js file nahi mil rahi!</div>';
-            }
-        };
+        // Page load hote hi shayari dikhao
+        window.onload = () => { render(allShayari); };
     </script>
 </body>
 </html>
