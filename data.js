@@ -6,4 +6,3 @@ const allShayari = [
     "Test Shayari 1",
     "Test Shayari 2"
 ];
-
