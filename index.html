@@ -4,29 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Shayari Hub | @shayari-world</title>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
     <style>
-        :root { --bg: #0f172a; --card: #1e293b; --text: #f1f5f9; --primary: #818cf8; --font-size: 1.2rem; }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background-color: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; padding-bottom: 50px; }
-        header { text-align: center; padding: 40px 15px; background: var(--card); border-radius: 0 0 30px 30px; margin-bottom: 20px; }
+        :root { --bg: #f8fafc; --card: #ffffff; --text: #334155; --primary: #6366f1; --font-size: 1.2rem; }
+        .dark-mode { --bg: #0f172a; --card: #1e293b; --text: #f1f5f9; --primary: #818cf8; }
+        * { margin: 0; padding: 0; box-sizing: border-box; transition: 0.3s; }
+        body { background-color: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; overflow-x: hidden; }
+        
+        header { text-align: center; padding: 40px 15px; background: var(--card); border-radius: 0 0 30px 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
         .brand-name { font-size: 2.2rem; font-weight: 800; color: var(--primary); }
         .username-tag { font-size: 0.85rem; background: var(--primary); color: white; padding: 4px 12px; border-radius: 20px; }
-        .category-container { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; overflow-x: auto; padding: 10px; }
-        .cat-box { padding: 10px 18px; border-radius: 12px; color: white; cursor: pointer; border: none; font-weight: bold; }
+        
+        .category-container { display: flex; justify-content: center; gap: 10px; margin: 25px 0; overflow-x: auto; padding: 10px; }
+        .cat-box { padding: 12px 20px; border-radius: 12px; color: white; font-weight: bold; cursor: pointer; font-size: 0.9rem; border: none; }
         .cat-love { background: linear-gradient(45deg, #ff4e50, #f9d423); }
         .cat-sad { background: linear-gradient(45deg, #2193b0, #6dd5ed); }
+        .cat-romantic { background: linear-gradient(45deg, #ee0979, #ff6a00); }
         .cat-all { background: #64748b; }
-        #searchInput { width: 90%; max-width: 450px; display: block; margin: 0 auto 20px; padding: 12px 20px; border-radius: 30px; border: none; outline: none; }
-        .container { max-width: 600px; margin: 0 auto; padding: 0 15px; }
-        .card { background: var(--card); border-radius: 20px; padding: 25px; margin-bottom: 20px; border-left: 6px solid var(--primary); }
-        .content { font-size: var(--font-size); line-height: 1.6; margin-bottom: 15px; }
-        .card-footer { display: flex; justify-content: flex-end; gap: 10px; border-top: 1px solid #334155; padding-top: 15px; }
-        .btn { padding: 8px 15px; border-radius: 10px; border: none; cursor: pointer; color: white; background: var(--primary); font-size: 0.8rem; }
+
+        #searchInput { width: 90%; max-width: 450px; display: block; margin: 0 auto 20px auto; padding: 12px 20px; border-radius: 30px; border: 1px solid #ddd; outline: none; }
+        
+        .container { max-width: 600px; margin: 20px auto; padding: 0 15px; }
+        .card { background: var(--card); border-radius: 20px; padding: 25px; margin-bottom: 20px; border-left: 8px solid var(--primary); box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .content { font-size: var(--font-size); line-height: 1.6; margin-bottom: 20px; font-weight: 500; }
+        
+        .card-footer { display: flex; justify-content: flex-end; gap: 10px; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 15px; }
+        .btn { padding: 8px 16px; border-radius: 12px; font-size: 0.85rem; border: none; cursor: pointer; font-weight: bold; color: white; background: var(--primary); text-decoration: none; }
+        
+        footer { text-align: center; padding: 40px 20px; background: var(--card); margin-top: 40px; }
+        .social-icons { display: flex; justify-content: center; gap: 20px; font-size: 1.5rem; margin-bottom: 15px; }
+        .social-icons a { color: var(--primary); }
     </style>
 </head>
-<body>
+<body id="mainBody">
 
     <header>
         <div class="brand-name">The Shayari Hub</div>
@@ -37,47 +50,55 @@
         <button class="cat-box cat-all" onclick="filterCat('')">All</button>
         <button class="cat-box cat-love" onclick="filterCat('#love')">Love ❤️</button>
         <button class="cat-box cat-sad" onclick="filterCat('#sad')">Sad 💔</button>
+        <button class="cat-box cat-romantic" onclick="filterCat('#romantic')">Romantic 🌹</button>
     </div>
 
-    <input type="text" id="searchInput" placeholder="Search shayari..." oninput="search()">
+    <input type="text" id="searchInput" placeholder="Search shayari (e.g. Love, Bewafa)..." oninput="search()">
 
-    <div class="container" id="feed"></div>
+    <div class="container" id="feed">
+        </div>
+
+    <footer>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        <p>&copy; 2026 The Shayari Hub</p>
+        <p style="font-size: 0.8rem; margin-top: 5px;">Made with ❤️ Mohit</p>
+    </footer>
+
+    <script src="data.js"></script>
 
     <script>
-        // AB DATA DIRECT YAHIN HAI, FILE KI ZAROORAT NAHI
-        const allShayari = [
-            "Teri khamoshi mein bhi ek sukoon sa milta hai, ye dil ab bas tere hi khayalon mein khilta hai.",
-            "Zindagi ki har raah par tera saath chahiye mujhe bas teri baahon ka mehakta sa hath chahiye.",
-            "Mohabbat ka rang kuch aise chadha hai tum par ab har dua mein bas tera hi naam rehta hai lab par.",
-            "Tunhe sochna hi ek ibadat si ban gayi hai ab toh bas tumhe chahna hi meri aadat si ban gayi hai.",
-            "Beshak tum ja chuke ho, par tumhara naam aaj bhi, mere dil ki dhadkan tez kar deta hai.#sad",
-            "Are aapko to izzat karni chahiye thi is khamoshi ki..! Hm to iske phichhe aapki aukat chipaye baithe the..!!#sad",
-            "Safar tumhare sath Chhota Raha lekin Jindagi Bhar Ke Liye Sabak ban gaya.#sad#love",
-            "Uski Khushi Ke Liye use to Chhod Diya Maine per meri Khushiyan bhi Usi ke sath Chali gai.#sad#love",
-            "Rewafa hi nahi berham bhi ho tum Jindagi tabah Karke Kahate Ho ki jao ab khush raho tum.#sad#love",
-            "Bahut khush rahte hain wo apne dil ka, dard nahi lana hai, unhe kya pata hai baat gehri hai fir se wahi...."
-        ]; //
-
         function render(data) {
             const feed = document.getElementById('feed');
             feed.innerHTML = '';
+            
+            if(!data || data.length === 0) {
+                feed.innerHTML = '<div class="card text-center">Dost, koi shayari nahi mili!</div>';
+                return;
+            }
+
             data.forEach((text, index) => {
                 const div = document.createElement('div');
                 div.className = 'card';
                 div.innerHTML = `
                     <div class="content">${text}</div>
                     <div class="card-footer">
-                        <button class="btn" onclick="copyText('${text.replace(/'/g, "\\'")}')">Copy</button>
-                        <a href="https://api.whatsapp.com/send?text=${encodeURIComponent(text)}" target="_blank" class="btn" style="background:#25d366; text-decoration:none;">WhatsApp</a>
+                        <button class="btn" onclick="copyText(this, \`${text.replace(/`/g, '\\`').replace(/\${/g, '\\${')}\`)">Copy</button>
+                        <a href="https://api.whatsapp.com/send?text=${encodeURIComponent(text)}" target="_blank" class="btn" style="background:#25d366;">WhatsApp</a>
                     </div>
                 `;
                 feed.appendChild(div);
             });
         }
 
-        function copyText(text) {
+        function copyText(btn, text) {
             navigator.clipboard.writeText(text);
-            alert("Copied!");
+            const originalText = btn.innerText;
+            btn.innerText = "Copied! ✅";
+            setTimeout(() => { btn.innerText = originalText; }, 2000);
         }
 
         function filterCat(cat) {
@@ -87,12 +108,20 @@
 
         function search() {
             const q = document.getElementById('searchInput').value.toLowerCase();
-            const filtered = allShayari.filter(s => s.toLowerCase().includes(q));
-            render(filtered);
+            if(typeof allShayari !== 'undefined') {
+                const filtered = allShayari.filter(s => s.toLowerCase().includes(q));
+                render(filtered);
+            }
         }
 
-        // Page load hote hi shayari dikhao
-        window.onload = () => { render(allShayari); };
+        // Page load hone par ye chalega
+        window.onload = () => {
+            if (typeof allShayari !== 'undefined') {
+                render(allShayari);
+            } else {
+                document.getElementById('feed').innerHTML = '<div class="card" style="color:red; text-align:center;">data.js file nahi mil rahi! GitHub par check karein file ka naam small letters mein hai ya nahi.</div>';
+            }
+        };
     </script>
 </body>
 </html>
