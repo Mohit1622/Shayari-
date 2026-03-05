@@ -29,7 +29,7 @@ const allShayari = [
     "Kuchh pal ke liye Laga tha ki Hamari Kahani bhi shaadi Tak pahunchegi Pal Bhar Mein Sab tabah Kar Diya Usne Kisi Aur Ka haath Tham kar.#sad#love#bewafa",
     "Pal Bhar Ke Liye chahie tha unhen Sath aur Hamen Laga Jindagi Bhar Ke Liye Humsafar Mil Gaya.#sad#love",
     "Kahana To Nahin chahie per kasam se bahut Pareshan hun Kahin Kuchh kar lun to Maaf Karna.",
-    "क्यूँ महसूस नहीं हुई उन्हें हमारी तकलीफ जो कभी कहते थे ki हम तुम्हें तुमसे ज्यादा जानते हैं.",
+    "क्यूँ महसूस नहीं हुई उन्हें हमारी तकलीफ जो कभी कहते थे ki हम तुम्हें तुमसे ज्यादा जानते हैं.#sad#lobe",
     "Unhen Chahat hi nahin Thi Kabhi Hamari unhen to Hamari sirf jarurat thi.",
     "Pahli bar Kisi Se Pyar hua tha aur vahi Bewafa nikal gai.",
     "Hans kar Bhul Jaate Hain sari baten iska matlab yah Nahin ki baten Hain Dil per Nahin Lagti.",
