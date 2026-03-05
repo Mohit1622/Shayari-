@@ -4,7 +4,7 @@ const allShayari = [
 
     // --- Aapka Purana Sara Data Niche Hai ---
     "बेशक तुम जा चुके हो, पर तुम्हारा नाम आज भी, मेरे दिल की धड़कने तेज कर देता है।#sad",
-    "अरे aapko to इज़्ज़त krni chahiye thi is खामोशी ki..! Hm to iske phichhe aapki औकात छिपाये baithe the..!!#sad",
+    "अरे aapko to इज़्ज़त krni chahiye thi is खामोशी ki..! Hm to iske phichhe aapki औकात छिपाये baithe the..!!#sad", 
     "Mere pass Aana to Waqt nikal kar aana Kyunki mere pass baten bahut hain aur sunane wale koi nhi.#sad",
     "Kuchh लोगों Ne हमें Aise समय per धोखा Diya..! Jab हम Kisi Se Unki wafadari ki बातें kar रहे the..!!#sad",
     "Khatm kar diya unhone bhi is Sal Rishte jinhone Jindagi Bhar Sath nibhaane ke vade kiye the.#sad",
