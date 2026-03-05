@@ -11,7 +11,7 @@
     <style>
         :root { --bg: #f8fafc; --card: #ffffff; --text: #334155; --primary: #6366f1; --font-size: 1.2rem; }
         .dark-mode { --bg: #0f172a; --card: #1e293b; --text: #f1f5f9; --primary: #818cf8; }
-        * { margin: 0; padding: 0; box-sizing: border-box; transition: 0.3s; }
+        * { margin: 0; padding: 0; box-sizing: border-box; transition: 0.35s; }
         body { background-color: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; overflow-x: hidden; }
         
         header { text-align: center; padding: 40px 15px; background: var(--card); border-radius: 0 0 30px 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
@@ -19,7 +19,7 @@
         .username-tag { font-size: 0.85rem; background: var(--primary); color: white; padding: 4px 12px; border-radius: 20px; }
         
         .category-container { display: flex; justify-content: center; gap: 10px; margin: 25px 0; overflow-x: auto; padding: 10px; }
-        .cat-box { padding: 12px 20px; border-radius: 12px; color: white; font-weight: bold; cursor: pointer; font-size: 0.9rem; border: none; }
+        .cat-box { padding: 12px 20px; border-radius: 12px; color: white; font-weight: bold; cursor: pointer; font-size: 0.9rem; border: none; min-width: 100px; }
         .cat-love { background: linear-gradient(45deg, #ff4e50, #f9d423); }
         .cat-sad { background: linear-gradient(45deg, #2193b0, #6dd5ed); }
         .cat-romantic { background: linear-gradient(45deg, #ee0979, #ff6a00); }
@@ -28,18 +28,30 @@
         #searchInput { width: 90%; max-width: 450px; display: block; margin: 0 auto 20px auto; padding: 12px 20px; border-radius: 30px; border: 1px solid #ddd; outline: none; }
         
         .container { max-width: 600px; margin: 20px auto; padding: 0 15px; }
-        .card { background: var(--card); border-radius: 20px; padding: 25px; margin-bottom: 20px; border-left: 8px solid var(--primary); box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .card { background: var(--card); border-radius: 20px; padding: 25px; margin-bottom: 20px; border-left: 8px solid var(--primary); box-shadow: 0 4px 10px rgba(0,0,0,0.05); position: relative; }
         .content { font-size: var(--font-size); line-height: 1.6; margin-bottom: 20px; font-weight: 500; }
         
-        .card-footer { display: flex; justify-content: flex-end; gap: 10px; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 15px; }
-        .btn { padding: 8px 16px; border-radius: 12px; font-size: 0.85rem; border: none; cursor: pointer; font-weight: bold; color: white; background: var(--primary); text-decoration: none; }
+        .card-footer { display: flex; justify-content: flex-end; gap: 8px; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 15px; }
+        .btn { padding: 8px 16px; border-radius: 12px; font-size: 0.85rem; border: none; cursor: pointer; font-weight: bold; color: white; background: var(--primary); display: flex; align-items: center; gap: 5px; text-decoration: none; }
         
+        .sidebar-toggle { position: fixed; right: 20px; top: 20px; z-index: 2100; background: var(--primary); color: white; border: none; width: 45px; height: 45px; border-radius: 50%; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+        .sidebar { position: fixed; right: -320px; top: 0; width: 300px; height: 100%; background: var(--card); z-index: 2000; padding: 30px; box-shadow: -5px 0 15px rgba(0,0,0,0.1); }
+        .sidebar.active { right: 0; }
+
         footer { text-align: center; padding: 40px 20px; background: var(--card); margin-top: 40px; }
         .social-icons { display: flex; justify-content: center; gap: 20px; font-size: 1.5rem; margin-bottom: 15px; }
         .social-icons a { color: var(--primary); }
     </style>
 </head>
 <body id="mainBody">
+
+    <button class="sidebar-toggle" onclick="toggleSidebar()"><i class="fas fa-magic"></i></button>
+
+    <div class="sidebar" id="sidebar">
+        <h2 style="margin-bottom:25px;">Settings ✨</h2>
+        <button class="btn" style="width:100%; margin-bottom:10px;" onclick="setTheme('light')">Light Mode</button>
+        <button class="btn" style="width:100%; background:#0f172a;" onclick="setTheme('dark')">Dark Mode</button>
+    </div>
 
     <header>
         <div class="brand-name">The Shayari Hub</div>
@@ -53,10 +65,9 @@
         <button class="cat-box cat-romantic" onclick="filterCat('#romantic')">Romantic 🌹</button>
     </div>
 
-    <input type="text" id="searchInput" placeholder="Search shayari (e.g. Love, Bewafa)..." oninput="search()">
+    <input type="text" id="searchInput" placeholder="Search shayari..." oninput="search()">
 
-    <div class="container" id="feed">
-        </div>
+    <div class="container" id="feed"></div>
 
     <footer>
         <div class="social-icons">
@@ -65,29 +76,101 @@
             <a href="#"><i class="fab fa-whatsapp"></i></a>
         </div>
         <p>&copy; 2026 The Shayari Hub</p>
-        <p style="font-size: 0.8rem; margin-top: 5px;">Made with ❤️ Mohit</p>
+        <p style="font-size: 0.8rem;">Made with ❤️ Mohit</p>
     </footer>
 
-    <script src="data.js"></script>
-
     <script>
+        // AAPKA SAARA DATA AB ISI FILE MEIN HAI
+        const allShayari = [
+            "Teri khamoshi mein bhi ek sukoon sa milta hai, ye dil ab bas tere hi khayalon mein khilta hai.",
+            "Zindagi ki har raah par tera saath chahiye mujhe bas teri baahon ka mehakta sa hath chahiye.",
+            "Mohabbat ka rang kuch aise chadha hai tum par ab har dua mein bas tera hi naam rehta hai lab par.",
+            "Tunhe sochna hi ek ibadat si ban gayi hai ab toh bas tumhe chahna hi meri aadat si ban gayi hai.",
+            "Kuch khas nahi bas itni si tamanna hai ki tere dil ke kone mein mera ek chota sa thikano hai.",
+            "Humne toh dil lagaya tha sukoon ki talash mein par dard hi naseeb hua teri har yaad ke libas mein.",
+            "Toot kar bikhar gaye hain kuch is tarah se hum ki ab khud ko sametne ka hausla bhi nahi raha.",
+            "Unhone toh keh diya ki bhool jao humein par unhe kya pata ki unki yaadon se hi hum zinda hain.",
+            "Khamosh chehre par hazar pehre hote hain ye duniya nahi samajhti ki zakham kitne gehre hote hain.",
+            "Mo jo kehte the ki kabhi na chhodenge sath tera aaj unke hi shehar mein hum ajnabi ban gaye.",
+            "Dosti wo nahi jo sirf khushi mein sath de dosti toh wo hai jo har mushkil mein hath de.",
+            "Duniya ki bheed mein khud ko akela na samajhna tera yaar hai tere sath, kabhi mujhse door na rehna.",
+            "Suna hai dosti ka rishta sabse bada hota hai isliye toh ye dil tere liye har waqt khada hota hai.",
+            "Log kehte hain ki dosti mein dard milta hai hum toh kehte hain dosti mein hi jeene ka mard milta hai.",
+            "Lakho dost mil jayenge is jahan mein par teri jaisi dosti ki baat hi kuch aur hai.",
+            "Hum wo nahi jo waqt ke sath badal jayein hum toh wo hain jo waqt ko hi badal dete hain.",
+            "Meri fitrat mein nahi unke piche chalna jinhe aadat hai sirf dusron ke dan par uchhalna.",
+            "Log jalte hain meri kamyabi se dekh kar par unhe kya pata ki humne kante chune hain raaste par.",
+            "Sher apni taqat se raja banta hai aur hum apni mehnat se apni pehchan banate hain.",
+            "Raaste mushkil hain manzil par nazar hai meri himmat hi mera sabse bada humsafar hai.",
+            "Beshak tum ja chuke ho, par tumhara naam aaj bhi, mere dil ki dhadkan tez kar deta hai.#sad",
+            "Are aapko to izzat karni chahiye thi is khamoshi ki..! Hm to iske phichhe aapki aukat chipaye baithe the..!!#sad",
+            "Mere pass Aana to Waqt nikal kar aane Kyunki mere pass baten bahut hain aur sunane wale koi nhi.#sad",
+            "Kuchh logon Ne Hamen Aise samay per chhoda Diya..! Jab Ham Kisi Se Unki wafadari ki baten kar rahe the..!!#sad",
+            "Khatm kar diya unhone bhi Is Rishte jinhone Jindagi Bhar Sath nibhaane ke vade kiye the.#sad",
+            "Bichhadne ki jaldi unhen thi Aur Ilzam Sara Ham per Lagaya Gaya.#bewafa#sad",
+            "Safar tumhare sath Chhota Raha lekin Jindagi Bhar Ke Liye Sabak ban gaya.#sad#love",
+            "Shant chehron Ke Piche Aksar ghav Gehra Hote Hain.#sad",
+            "Uski Khushi Ke Liye use to Chhod Diya Maine per meri Khushiyan bhi Usi ke sath Chali gai.#sad#love",
+            "Yah bhul gaye Hamen Kisi Ki Khatir To Kya Hua Ham bhi to Unki Khatir Jamana bhulaye Baithe the.#love#sad",
+            "Jao Maaf Kiya Tumhen Aane Wale Waqt Mein Khuda Tumhare bete Ko Tumhare Jaisi Ladki Se Bachaye.#sad#love",
+            "Hamen to kab se Pata Tha Ki Tum Bewafa Ho Tumhen Chaha isliye ki Shayad Tumhari fitrat Badal Jaaye.#love#sad#bewafa",
+            "Unhen Mil Hi Jaate Hain Koi Na Koi jinhen achhe kirdar nahin sirf kiraedar chahiye hote Hain.#sad",
+            "Kabhi Maaf nahin kar Paunga usko Jisne bewajah meri Jindagi ko nahn-nahan karke rakh Diya.#sad#love",
+            "Ek din khatm ho hi Jaenge ya to Gam nhi to FIR ham.#sad",
+            "Jindagi Mein Ek Aisa Insan Jarur Hona chahiye Jo HAL Puche To Sach bataya Ja sake.#sad#love",
+            "Ek Din tumhare Karam Tumse milane aayenge Meri Jaan Rus use Din Tumhara Mat Hona.#sad#love",
+            "Rewafa hi nahi berham bhi ho tum Jindagi tabah Karke Kahate Ho ki jao ab khush raho tum.#sad#love",
+            "Tum apna Charitra Kitna bhi saaf Rakh Lo lekin chhodane wala Koi Na Koi Galti nikal hi dega.#sad",
+            "Kya fayda ab nishaniyan Dekhkar Rone se Jab Sath the tab Kadar Ki Na Gai.#sad",
+            "Yah Mujhse Ek Ladki Nahin Bulai Jari aur log pata nahin Kaise Kah Dete Hain Ki 36 aaenge 36 Jaenge.#sad#love",
+            "Sach Sach batana Puri koshish kar rahe ho na use Bhulane ki.#sad#love",
+            "Wain Shayad ab Tumhari Soch Mein Bhi Nahin Aahun Aur Tu Mujhe lamha-lamha Yad hai.#sad#love",
+            "Kuchh pal ke liye Laga tha ki Hamari Kahani bhi Shaadi Tak pahunchegi Pal Bhar Mein Sab tabah Kar Diya Usne Kisi Aur Ke liye.#sad#love",
+            "Pal Bhar Ke liye Chaha tha unhen Sath aur Hamen Laga Jindagi Bhar Ke Liye Humsafar Mil Gaya.#sad#love",
+            "Kahana To Nahin chahiye per kasam se bahut Pareshan hun Kahin Kuchh kar na lun To Maaf Karna.",
+            "Main mahsus nahin hui unhen hamari takleef jo kabhi kahte the ki ham tumhen tumse jyada jante hain.#sad#love",
+            "Unhen Chahat hi nahin Thi Kabhi Hamari unhen to hamari sirf jarurat thi.",
+            "Pahli bar kisi Se Pyar hua tha aur vahi Bewafa nikal gai.",
+            "Hans kar Bhul Jaate Hain sari baten iska matlab yah Nahin ki baten Hamare Dil per Nahin Lagti.",
+            "Tere Jaane ka itna Dukh Nahin Dukh to sirf is baat ka hai Ki Itna Pyar karne ke bad Bhi To Bewafa nikal gai.",
+            "Tum Nahin Laga paoge andaza Meri tabahi ka Tunne Sham Hone ke bad Mujhe Dekha hi kahan hai.",
+            "Na tumne kabhi samjha aur na samjhaya gaya vahi to main pagal chahta hi kya tha tumse tumhare alava.",
+            "Pahle sirf darr tha ki kahin kho na dun tumhe ab sirf gila hai ki kyun mile tum",
+            "Bas itni si dua hai ki jise tum chaho wo tumhein kabhi na chhode",
+            "Dard dene se pehle ek baar soch to liya hota... ki fir dard dene ke liye hum hi bache hain ya nahi",
+            "Tute hain, socha nahi tha, itna samay laga sab thik hone mein, ab fir se sab bikhar gaya.",
+            "Jo log sachai se mohabbat karte hain unhe aksar mohabbat sachi nahi milti.",
+            "Har baar bhul jata hoon use, par tera mujhe ek ek lafz yaad hai.",
+            "Pata nahi kya tha tum mein, mera sab kuch hi to tumhara tha.",
+            "Kisi ke feelings ke sath itna bhi mat khelo ki wo fir kabhi kisi par bharosa hi na kar paye",
+            "Mahadev, pls help me. Before, I do something wrong to myself.",
+            "Zindagi mein sab kuch mil jayega... lekin wo insan nahi jo tumhein khone se darta ho.",
+            "Mere sare mohabbat ke har ek panna par tumhara hi naam hai",
+            "Kitna paas wale nahi hain hum kisi par yaaro sabhi apne apne raste hain",
+            "Meri khamoshi tumhen nazar nahi aati, hum to rote hain to tum muskurane lagte ho.",
+            "Bahut khush rahte hain wo apne dil ka, dard nahi lana hai, unhe kya pata hai baat gehri hai fir se wahi...."
+        ];
+
+        function toggleSidebar() { document.getElementById('sidebar').classList.toggle('active'); }
+
+        function setTheme(m) {
+            if(m === 'dark') document.body.classList.add('dark-mode');
+            else document.body.classList.remove('dark-mode');
+        }
+
         function render(data) {
             const feed = document.getElementById('feed');
             feed.innerHTML = '';
-            
-            if(!data || data.length === 0) {
-                feed.innerHTML = '<div class="card text-center">Dost, koi shayari nahi mili!</div>';
-                return;
-            }
-
             data.forEach((text, index) => {
                 const div = document.createElement('div');
                 div.className = 'card';
+                div.id = `card-${index}`;
                 div.innerHTML = `
                     <div class="content">${text}</div>
                     <div class="card-footer">
-                        <button class="btn" onclick="copyText(this, \`${text.replace(/`/g, '\\`').replace(/\${/g, '\\${')}\`)">Copy</button>
-                        <a href="https://api.whatsapp.com/send?text=${encodeURIComponent(text)}" target="_blank" class="btn" style="background:#25d366;">WhatsApp</a>
+                        <button class="btn" style="background:#6366f1" onclick="downloadImg('card-${index}')"><i class="fas fa-camera"></i> Photo</button>
+                        <button class="btn" style="background:#64748b" onclick="copyText(this, \`${text.replace(/`/g, '\\`')}\`)">Copy</button>
+                        <a href="https://api.whatsapp.com/send?text=${encodeURIComponent(text)}" target="_blank" class="btn" style="background:#25d366;"><i class="fab fa-whatsapp"></i> WhatsApp</a>
                     </div>
                 `;
                 feed.appendChild(div);
@@ -96,9 +179,21 @@
 
         function copyText(btn, text) {
             navigator.clipboard.writeText(text);
-            const originalText = btn.innerText;
-            btn.innerText = "Copied! ✅";
-            setTimeout(() => { btn.innerText = originalText; }, 2000);
+            btn.innerText = "Copied!";
+            setTimeout(() => { btn.innerText = "Copy"; }, 2000);
+        }
+
+        function downloadImg(id) {
+            const card = document.getElementById(id);
+            const footer = card.querySelector('.card-footer');
+            footer.style.visibility = 'hidden';
+            html2canvas(card, { backgroundColor: '#ffffff', scale: 2 }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = 'ShayariHub.png';
+                link.href = canvas.toDataURL();
+                link.click();
+                footer.style.visibility = 'visible';
+            });
         }
 
         function filterCat(cat) {
@@ -108,20 +203,12 @@
 
         function search() {
             const q = document.getElementById('searchInput').value.toLowerCase();
-            if(typeof allShayari !== 'undefined') {
-                const filtered = allShayari.filter(s => s.toLowerCase().includes(q));
-                render(filtered);
-            }
+            const filtered = allShayari.filter(s => s.toLowerCase().includes(q));
+            render(filtered);
         }
 
-        // Page load hone par ye chalega
-        window.onload = () => {
-            if (typeof allShayari !== 'undefined') {
-                render(allShayari);
-            } else {
-                document.getElementById('feed').innerHTML = '<div class="card" style="color:red; text-align:center;">data.js file nahi mil rahi! GitHub par check karein file ka naam small letters mein hai ya nahi.</div>';
-            }
-        };
+        window.onload = () => { render(allShayari); };
     </script>
 </body>
 </html>
+
