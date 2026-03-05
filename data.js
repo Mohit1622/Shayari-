@@ -19,7 +19,7 @@ const allShayari = [
     "​Meri fitrat mein nahi unke piche chalna jinhe aadat hai sirf dusron ke dam par uchhalna.", 
     "​Log jalte hain meri kamyabi se dekh kar par unhe kya pata ki humne kante chune hain raaste par.", 
     "​Sher apni taqat se raja banta hai aur hum apni mehnat se apni pehchan banate hain.", 
-    "​Raaste mushkil hain par manzil par nazar hai meri himmat hi mera sabse bada hamsafar hai.", 
+    "​Raaste mushkil hain par manzil par nazar hai meri himmat hi mera sabse bada hamsafar hai.",
     
     // --- Aapka Purana Sara Data Niche Hai ---
     "बेशक तुम जा चुके हो, पर तुम्हारा नाम आज भी, मेरे दिल की धड़कने तेज कर देता है।#sad",
