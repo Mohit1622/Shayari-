@@ -6,132 +6,117 @@
     <title>Mohit Shayari World ✨</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* CSS Variables for Themes */
-        :root { --bg: #f8fafc; --card: #ffffff; --text: #334155; --primary: #6366f1; --accent: #818cf8; }
-        
-        /* Dark Mode Theme */
-        .dark-mode { --bg: #0f172a; --card: #1e293b; --text: #f1f5f9; --primary: #818cf8; --accent: #6366f1; }
-        
-        /* Auto Event: Holi Theme (10-20 March) */
-        .holi-theme { --bg: #fff1f2; --card: #ffffff; --primary: #e11d48; --text: #431407; background-image: radial-gradient(#fda4af 1px, transparent 1px); background-size: 25px 25px; }
-        
-        /* Auto Event: Diwali Theme (Oct/Nov) */
-        .diwali-theme { --bg: #1a1a1a; --card: #2d2d2d; --primary: #fbbf24; --text: #fff; }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; transition: 0.4s ease; }
-        body { background-color: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; padding: 10px; line-height: 1.6; }
-        
-        header { text-align: center; padding: 40px 20px; background: var(--card); border-radius: 0 0 30px 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 25px; }
-        h1 { font-size: 1.8rem; color: var(--primary); margin-bottom: 15px; }
-        
-        #searchInput { width: 90%; max-width: 450px; padding: 12px 20px; border-radius: 25px; border: 1px solid #ddd; outline: none; background: var(--card); color: var(--text); box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
-
-        .container { max-width: 550px; margin: 0 auto; display: flex; flex-direction: column; gap: 18px; }
-        .card { background: var(--card); padding: 25px; border-radius: 20px; border-left: 6px solid var(--primary); box-shadow: 0 5px 15px rgba(0,0,0,0.04); position: relative; overflow: hidden; }
-        
-        .footer-btns { display: flex; justify-content: flex-end; gap: 12px; margin-top: 15px; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 12px; }
-        .btn { padding: 8px 16px; border-radius: 10px; font-size: 0.85rem; border: none; cursor: pointer; font-weight: bold; text-decoration: none; }
-        .copy { background: #f1f5f9; color: #475569; }
-        .wa { background: #25d366; color: white; }
-
-        footer { text-align: center; padding: 50px 20px; margin-top: 30px; background: var(--card); border-radius: 30px 30px 0 0; }
-        .social-icons { display: flex; justify-content: center; gap: 25px; font-size: 1.8rem; margin-bottom: 20px; }
-        .social-icons a { color: var(--primary); transition: 0.3s; }
-        .social-icons a:hover { transform: translateY(-5px); }
-        
-        .toast { position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%); background: #333; color: white; padding: 12px 25px; border-radius: 50px; display: none; z-index: 1000; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        :root { --bg: #f8fafc; --card: #ffffff; --text: #334155; --primary: #6366f1; }
+        .dark-mode { --bg: #0f172a; --card: #1e293b; --text: #f1f5f9; --primary: #818cf8; }
+        .holi-theme { --bg: #fff1f2; --card: #ffffff; --primary: #e11d48; background-image: radial-gradient(#fda4af 1px, transparent 1px); background-size: 20px 20px; }
+        * { margin: 0; padding: 0; box-sizing: border-box; transition: 0.3s; }
+        body { background-color: var(--bg); color: var(--text); font-family: sans-serif; padding: 10px; min-height: 100vh; }
+        .font-elegant { font-family: 'Georgia', serif !important; }
+        .font-stylish { font-family: 'cursive', sans-serif !important; }
+        .sidebar { position: fixed; right: -280px; top: 0; width: 260px; height: 100%; background: var(--card); z-index: 2000; padding: 25px; box-shadow: -5px 0 15px rgba(0,0,0,0.1); }
+        .sidebar.active { right: 0; }
+        .sidebar-btn { position: fixed; right: 20px; top: 20px; z-index: 2100; background: var(--primary); color: white; border: none; width: 45px; height: 45px; border-radius: 50%; cursor: pointer; }
+        header { text-align: center; padding: 40px 15px; background: var(--card); border-radius: 0 0 30px 30px; margin-bottom: 20px; }
+        .container { max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px; }
+        .card { background: var(--card); padding: 25px; border-radius: 20px; border-left: 6px solid var(--primary); box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
+        .btn-opt { padding: 8px; border: 1px solid var(--primary); border-radius: 8px; background: none; color: var(--text); cursor: pointer; width: 100%; margin-top: 5px; font-size: 0.75rem; }
+        footer { text-align: center; padding: 40px; margin-top: 20px; background: var(--card); border-radius: 20px; }
+        .social-icons { margin: 15px 0; font-size: 1.5rem; display: flex; justify-content: center; gap: 20px; }
     </style>
 </head>
-<body>
+<body id="mainBody">
+
+<button class="sidebar-btn" onclick="toggleSidebar()"><i class="fas fa-cog"></i></button>
+
+<div class="sidebar" id="sidebar">
+    <h3>Dashboard 🛠️</h3>
+    <div style="margin-top:20px;">
+        <label style="font-size:0.8rem; font-weight:bold;">THEME</label>
+        <button class="btn-opt" onclick="setTheme('dark')">Dark Mode</button>
+        <button class="btn-opt" onclick="setTheme('light')">Light Mode</button>
+        <button class="btn-opt" onclick="setTheme('holi')">Holi Special 🎨</button>
+    </div>
+    <div style="margin-top:20px;">
+        <label style="font-size:0.8rem; font-weight:bold;">FONT STYLE</label>
+        <button class="btn-opt" onclick="setFont('default')">Normal</button>
+        <button class="btn-opt" onclick="setFont('font-elegant')">Elegant</button>
+        <button class="btn-opt" onclick="setFont('font-stylish')">Stylish</button>
+    </div>
+    <button class="btn-opt" onclick="toggleSidebar()" style="background:#ff4444; color:white; border:none; margin-top:30px;">Close</button>
+</div>
 
 <header>
-    <h1 id="siteHeading">Mohit Shayari World ✨</h1>
-    <input type="text" id="searchInput" onkeyup="search()" placeholder="Har jazbaat yahan dhundein...">
+    <h1>Mohit Shayari World ✨</h1>
+    <input type="text" id="searchInput" onkeyup="search()" style="width:90%; padding:10px; margin-top:15px; border-radius:20px; border:1px solid #ddd;" placeholder="Search...">
 </header>
 
 <div class="container" id="feed"></div>
 
 <footer>
-    <div class="social-icons">
-        <a href="https://instagram.com/your_id"><i class="fab fa-instagram"></i></a>
-        <a href="https://facebook.com/your_id"><i class="fab fa-facebook"></i></a>
-        <a href="https://wa.me/91XXXXXXXXXX"><i class="fab fa-whatsapp"></i></a>
-    </div>
+    <div class="social-icons" id="socialIcons"></div>
     <p><strong>© 2026 Mohit Kumar</strong></p>
-    <p style="font-size: 0.85rem; color: var(--primary); margin-top: 8px;">mchauhan1622@gmail.com 📧</p>
+    <p id="footerEmail" style="font-size:0.8rem; color:var(--primary); margin-top:5px;"></p>
 </footer>
 
-<div id="toast" class="toast">Shayari Copy Ho Gayi! ✅</div>
-
+<script src="config.js"></script>
 <script src="data.js"></script>
 
 <script>
-    // 1. Auto Event & Theme Detector
-    function applyAutoUpdates() {
-        const now = new Date();
-        const month = now.getMonth() + 1;
-        const date = now.getDate();
-        const body = document.body;
-        const heading = document.getElementById('siteHeading');
+    function applyAll() {
+        // Apply Config
+        document.getElementById('footerEmail').innerText = siteConfig.email;
+        document.getElementById('socialIcons').innerHTML = `
+            <a href="${siteConfig.instagram}" style="color:var(--primary)"><i class="fab fa-instagram"></i></a>
+            <a href="${siteConfig.facebook}" style="color:var(--primary)"><i class="fab fa-facebook"></i></a>
+            <a href="https://wa.me/${siteConfig.whatsapp}" style="color:var(--primary)"><i class="fab fa-whatsapp"></i></a>
+        `;
 
-        // Auto Holi Theme (March 10-20)
-        if (month === 3 && date >= 10 && date <= 20) {
-            body.classList.add('holi-theme');
-            heading.innerHTML = "Holi Special Shayari 🎨";
-        }
-        
-        // Auto Dark Mode (Based on System Settings)
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            body.classList.add('dark-mode');
+        // Apply Saved Settings
+        const theme = localStorage.getItem('theme') || siteConfig.defaultTheme || 'light';
+        const font = localStorage.getItem('font') || 'default';
+        setTheme(theme);
+        setFont(font);
+
+        // Auto Event Check
+        if(siteConfig.autoEvents) {
+            const d = new Date();
+            if(d.getMonth() === 2 && d.getDate() >= 10 && d.getDate() <= 20) setTheme('holi');
         }
     }
 
-    // 2. Shayari Render Function
+    function setTheme(m) {
+        localStorage.setItem('theme', m);
+        document.body.classList.remove('dark-mode', 'holi-theme');
+        if(m === 'dark') document.body.classList.add('dark-mode');
+        if(m === 'holi') document.body.classList.add('holi-theme');
+    }
+
+    function setFont(s) {
+        localStorage.setItem('font', s);
+        const b = document.getElementById('mainBody');
+        b.classList.remove('font-elegant', 'font-stylish');
+        if(s !== 'default') b.classList.add(s);
+    }
+
+    function toggleSidebar() { document.getElementById('sidebar').classList.toggle('active'); }
+
     function render(data) {
         const feed = document.getElementById('feed');
         feed.innerHTML = '';
-        
-        // Agar data.js nahi hai toh backup dikhaye
-        const shayariList = (typeof allShayari !== 'undefined') ? data : ["Data Load Nahi Hua. data.js Check Karein."];
-
-        shayariList.forEach(text => {
+        data.forEach(text => {
             const div = document.createElement('div');
             div.className = 'card';
-            div.innerHTML = `
-                <div class="content">${text}</div>
-                <div class="footer-btns">
-                    <button class="btn copy" onclick="copyText('${text.replace(/'/g, "\\'")}')">Copy</button>
-                    <a href="https://api.whatsapp.com/send?text=${encodeURIComponent(text)}" target="_blank" class="btn wa">WhatsApp</a>
-                </div>
-            `;
+            div.innerHTML = `<div class="content">${text}</div>`;
             feed.appendChild(div);
         });
     }
 
-    // 3. Search Logic
     function search() {
-        const query = document.getElementById('searchInput').value.toLowerCase();
-        const filtered = allShayari.filter(s => s.toLowerCase().includes(query));
-        render(filtered);
+        const q = document.getElementById('searchInput').value.toLowerCase();
+        render(allShayari.filter(s => s.toLowerCase().includes(q)));
     }
 
-    // 4. Copy Logic
-    function copyText(t) {
-        navigator.clipboard.writeText(t);
-        const toast = document.getElementById('toast');
-        toast.style.display = 'block';
-        setTimeout(() => toast.style.display = 'none', 2000);
-    }
-
-    // Start Site
-    window.onload = () => {
-        applyAutoUpdates();
-        if (typeof allShayari !== 'undefined') {
-            render(allShayari);
-        } else {
-            console.error("data.js file missing!");
-        }
-    };
+    window.onload = () => { applyAll(); render(allShayari); };
 </script>
 </body>
 </html>
