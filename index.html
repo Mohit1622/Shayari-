@@ -3,8 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Shayari Hub | Professional</title>
     
+    <title>The Shayari Hub | Best Love, Sad & Romantic Shayari 2026</title>
+    <meta name="description" content="The Shayari Hub par paayein behtareen Love, Sad aur Romantic shayari. Mohit Kumar ki likhi hui dil ko chhu lene wali shayariyaan.">
+    <meta name="keywords" content="Shayari, Love Shayari, Sad Shayari, The Shayari Hub, Romantic Shayari, Hindi Shayari">
+    <meta name="author" content="The Shayari Hub">
+    
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/3241/3241285.png">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@400;700&display=swap" rel="stylesheet">
 
@@ -13,106 +19,75 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Noto Serif Devanagari', serif; }
         body { background: var(--bg); color: var(--text); overflow-x: hidden; }
 
-        /* Header & Dashboard */
-        header { border-bottom: 1px solid var(--border); padding: 15px 20px; display: flex; align-items: center; background: white; sticky; top: 0; z-index: 1000; }
-        .menu-icon { font-size: 22px; cursor: pointer; margin-right: 20px; }
+        header { border-bottom: 1px solid var(--border); padding: 15px 20px; display: flex; align-items: center; background: white; position: sticky; top: 0; z-index: 1000; }
         .logo { font-size: 24px; font-weight: bold; flex: 1; text-align: center; color: var(--text); text-decoration: none; }
         .btn-donate-header { background: var(--primary); color: white; padding: 8px 15px; border-radius: 5px; border: none; font-weight: bold; cursor: pointer; }
 
-        /* Sidebar Dashboard */
+        /* Dashboard/Sidebar */
         .sidebar { position: fixed; left: -100%; top: 0; width: 300px; height: 100%; background: var(--sidebar); z-index: 2000; transition: 0.4s; padding: 25px; color: white; }
         .sidebar.active { left: 0; }
         .sidebar-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; padding-bottom: 15px; margin-bottom: 20px; }
-        .sidebar ul { list-style: none; }
-        .sidebar ul li { padding: 15px 0; border-bottom: 1px solid #222; cursor: pointer; display: flex; align-items: center; gap: 15px; }
-        .sidebar ul li:hover { color: var(--primary); }
+        .sidebar ul li { padding: 15px 0; border-bottom: 1px solid #222; cursor: pointer; display: flex; align-items: center; gap: 15px; list-style: none; }
 
-        /* Hero Banner */
-        .hero { position: relative; padding: 60px 20px; text-align: center; color: white; background: url('https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=1200&q=80') center/cover; }
+        /* Hero & Banner Photo */
+        .hero { position: relative; padding: 80px 20px; text-align: center; color: white; background: url('https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?auto=format&fit=crop&w=1200&q=80') center/cover; }
         .hero::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); }
         .hero-content { position: relative; z-index: 2; }
+
+        /* Inter-Shayari Image (Attraction) */
+        .mid-image { width: 100%; max-width: 600px; margin: 20px auto; border-radius: 10px; display: block; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
 
         /* Search & Mic */
         .search-area { padding: 20px; max-width: 600px; margin: -30px auto 20px; position: relative; z-index: 10; }
         .search-wrap { display: flex; align-items: center; background: white; border-radius: 30px; padding: 5px 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid var(--border); }
         .search-box { flex: 1; border: none; padding: 12px; outline: none; font-size: 16px; }
-        .mic-active { color: var(--primary); animation: pulse 1s infinite; }
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
 
-        /* Categories */
-        .cats { display: flex; justify-content: center; gap: 10px; margin-top: 15px; flex-wrap: wrap; }
-        .cat-tag { background: #eee; padding: 6px 15px; border-radius: 20px; font-size: 13px; cursor: pointer; }
-
-        /* Shayari Feed */
+        /* Shayari Layout */
         .container { max-width: 700px; margin: 0 auto; padding: 20px; }
         .card { border-bottom: 1px solid var(--border); padding: 40px 10px; text-align: center; }
         .s-text { font-size: 24px; margin-bottom: 20px; color: #111; }
         
-        /* Actions */
         .actions { display: flex; justify-content: center; gap: 30px; color: #777; font-size: 12px; }
-        .act-btn { cursor: pointer; text-align: center; display: flex; flex-direction: column; gap: 5px; }
-        .act-btn i { font-size: 20px; }
-        .act-btn:hover { color: var(--primary); }
+        .act-btn { cursor: pointer; text-align: center; display: flex; flex-direction: column; gap: 5px; text-decoration: none; color: inherit; }
 
-        /* Modals (Common) */
+        /* Modal/Popup */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 3000; justify-content: center; align-items: center; padding: 20px; }
-        .m-content { background: white; border-radius: 12px; width: 100%; max-width: 450px; overflow: hidden; }
-        .m-head { background: var(--primary); color: white; padding: 20px; text-align: center; font-weight: bold; }
-        .m-body { padding: 25px; }
+        .m-content { background: white; border-radius: 12px; width: 100%; max-width: 450px; overflow: hidden; padding: 25px; }
 
-        /* Payment Buttons */
-        .pay-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; }
-        .pay-opt { border: 1px solid #ddd; padding: 12px; border-radius: 8px; text-align: center; cursor: pointer; }
-        .pay-opt:hover, .pay-opt.active { border-color: var(--primary); color: var(--primary); background: #fff1f5; }
-
-        /* Sujhaav Form */
-        textarea { width: 100%; height: 100px; border: 1px solid #ddd; border-radius: 8px; padding: 10px; margin-top: 10px; outline: none; }
-
-        /* Footer */
+        /* Footer & Disclaimer */
         footer { background: #1a1a1a; color: #999; padding: 50px 20px; margin-top: 50px; }
-        .f-grid { max-width: 800px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
-        .f-bottom { text-align: center; border-top: 1px solid #333; margin-top: 30px; padding-top: 20px; }
-        .f-social i { font-size: 22px; margin: 0 15px; color: #666; cursor: pointer; }
+        .disclaimer { font-size: 11px; margin-top: 20px; border-top: 1px solid #333; padding-top: 15px; color: #666; }
     </style>
 </head>
 <body>
 
     <div class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <h3>Menu</h3>
-            <i class="fas fa-times" onclick="toggleSidebar()" style="cursor:pointer"></i>
-        </div>
+        <div class="sidebar-header"><h3>Dashboard</h3><i class="fas fa-times" onclick="toggleSidebar()"></i></div>
         <ul>
             <li onclick="location.reload()"><i class="fas fa-home"></i> Home</li>
-            <li onclick="alert('Poets list coming soon!')"><i class="fas fa-pen-nib"></i> Poets</li>
-            <li onclick="openDonate()"><i class="fas fa-hand-holding-heart"></i> Donate Support</li>
-            <li onclick="openSujhaav()"><i class="fas fa-comment-alt"></i> Send Feedback</li>
+            <li onclick="openModal('contactModal')"><i class="fas fa-envelope"></i> Contact Us</li>
+            <li onclick="openModal('sujhaavModal')"><i class="fas fa-comment-alt"></i> Send Suggestion</li>
+            <li onclick="openModal('donateModal')"><i class="fas fa-heart"></i> Support Site</li>
         </ul>
     </div>
 
     <header>
-        <i class="fas fa-bars menu-icon" onclick="toggleSidebar()"></i>
+        <i class="fas fa-bars" onclick="toggleSidebar()" style="cursor:pointer"></i>
         <a href="#" class="logo">The Shayari Hub</a>
-        <button class="btn-donate-header" onclick="openDonate()">Donate</button>
+        <button class="btn-donate-header" onclick="openModal('donateModal')">Donate</button>
     </header>
 
     <div class="hero">
         <div class="hero-content">
-            <h1>रोमांटिक शायरी</h1>
-            <p>लफ़्ज़ों में पिरोया हुआ प्यार</p>
+            <h1>अल्फ़ाज़ों का घर</h1>
+            <p>जहाँ शायरी दिल से निकलकर रूह तक जाती है</p>
         </div>
     </div>
 
     <div class="search-area">
         <div class="search-wrap">
-            <i class="fas fa-search" style="color:#999"></i>
-            <input type="text" id="searchInput" class="search-box" placeholder="तलाश कीजिए..." oninput="search()">
-            <i class="fas fa-microphone" id="micBtn" onclick="startVoiceSearch()" style="cursor:pointer"></i>
-        </div>
-        <div class="cats">
-            <span class="cat-tag" onclick="setSearch('Love')">Love ❤️</span>
-            <span class="cat-tag" onclick="setSearch('Sad')">Sad 💔</span>
-            <span class="cat-tag" onclick="setSearch('Bewafa')">Bewafa 🥀</span>
+            <input type="text" id="searchInput" class="search-box" placeholder="शायरी तलाशें..." oninput="search()">
+            <i class="fas fa-microphone" id="micBtn" onclick="startVoiceSearch()" style="cursor:pointer; color:var(--primary)"></i>
         </div>
     </div>
 
@@ -120,146 +95,86 @@
 
     <div class="modal" id="sujhaavModal">
         <div class="m-content">
-            <div class="m-head">अपना सुझाव दें</div>
-            <div class="m-body">
-                <p style="font-size:14px; color:#666">हमें खुशी होगी आपकी राय जानकर।</p>
-                <textarea id="sujhaavText" placeholder="यहाँ अपना सुझाव लिखें..."></textarea>
-                <button class="btn-donate-header" style="width:100%; padding:12px; margin-top:15px;" onclick="submitSujhaav()">Submit Feedback</button>
-                <p onclick="closeModal('sujhaavModal')" style="text-align:center; margin-top:10px; font-size:12px; cursor:pointer">Cancel</p>
-            </div>
+            <h3 style="margin-bottom:10px">सुझाव (Suggestion)</h3>
+            <textarea id="sujhaavText" style="width:100%; height:100px; padding:10px;" placeholder="अपना सुझाव लिखें..."></textarea>
+            <button class="btn-donate-header" style="width:100%; margin-top:15px; padding:10px" onclick="sendToWhatsApp()">WhatsApp पर भेजें</button>
         </div>
     </div>
 
-    <div class="modal" id="donateModal">
+    <div class="modal" id="contactModal">
         <div class="m-content">
-            <div class="m-head">Support Us</div>
-            <div class="m-body">
-                <div class="pay-grid" id="amounts">
-                    <div class="pay-opt" onclick="select(this, 'amt')">₹100</div>
-                    <div class="pay-opt active" onclick="select(this, 'amt')">₹250</div>
-                    <div class="pay-opt" onclick="select(this, 'amt')">₹500</div>
-                </div>
-                <h4 style="margin:20px 0 10px; font-size:14px;">Select Payment Method</h4>
-                <div class="pay-grid">
-                    <div class="pay-opt" onclick="select(this, 'pay')"><i class="fab fa-google-pay"></i> G-Pay</div>
-                    <div class="pay-opt" onclick="select(this, 'pay')"><i class="fas fa-mobile-alt"></i> PhonePe</div>
-                    <div class="pay-opt" onclick="select(this, 'pay')"><i class="fas fa-university"></i> UPI</div>
-                </div>
-                <button class="btn-donate-header" style="width:100%; padding:15px; margin-top:20px;" onclick="processPay()">Pay via UPI</button>
-                <p onclick="closeModal('donateModal')" style="text-align:center; margin-top:10px; font-size:12px; cursor:pointer">Maybe Later</p>
-            </div>
+            <h3>Contact Us</h3>
+            <p style="margin-top:10px">Email: contact@theshayarihub.com</p>
+            <p>WhatsApp: +91 XXXXXXXXXX</p>
+            <button class="btn-donate-header" style="width:100%; margin-top:15px; padding:10px" onclick="closeModal('contactModal')">Close</button>
         </div>
     </div>
 
     <footer>
-        <div class="f-grid">
-            <div>
-                <h4 style="color:#fff; margin-bottom:15px;">Resources</h4>
-                <p>Site Info</p>
-                <p>Career</p>
-                <p>FAQ</p>
+        <div style="text-align:center">
+            <h4 style="color:white">The Shayari Hub</h4>
+            <div style="margin:20px 0">
+                <i class="fab fa-facebook" style="margin:0 10px"></i>
+                <i class="fab fa-instagram" style="margin:0 10px"></i>
+                <i class="fab fa-whatsapp" style="margin:0 10px"></i>
             </div>
-            <div>
-                <h4 style="color:#fff; margin-bottom:15px;">Support</h4>
-                <p onclick="openDonate()">Donate</p>
-                <p onclick="openSujhaav()">Feedback</p>
-                <p>Contact Us</p>
-            </div>
-        </div>
-        <div class="f-bottom">
-            <div class="f-social" id="socialLinks">
-                <i class="fab fa-facebook"></i>
-                <i class="fab fa-instagram"></i>
-                <i class="fab fa-whatsapp"></i>
-            </div>
-            <p style="margin-top:20px; font-size:12px;">© 2026 The Shayari Hub. All rights reserved.</p>
+            <p class="disclaimer">
+                <strong>Disclaimer:</strong> Is site par di gayi shayari मनोरंजन के लिए है। Copyright content ka upyog nahi kiya gaya hai. Content reuse ke liye permission zaroori hai.
+            </p>
+            <p style="font-size:12px; margin-top:10px">© 2026 The Shayari Hub. All rights reserved.</p>
         </div>
     </footer>
 
     <script src="config.js"></script>
     <script src="data.js"></script>
     <script>
-        // Dashboard Toggle
         function toggleSidebar() { document.getElementById('sidebar').classList.toggle('active'); }
+        function openModal(id) { document.getElementById(id).style.display = 'flex'; }
+        function closeModal(id) { document.getElementById(id).style.display = 'none'; }
 
-        // Render Shayari
+        // WhatsApp direct send (Instant)
+        function sendToWhatsApp() {
+            const msg = document.getElementById('sujhaavText').value;
+            if(!msg) return alert("Kuch toh likhiye!");
+            const url = `https://wa.me/${SiteConfig.whatsappNumber}?text=New Suggestion: ${encodeURIComponent(msg)}`;
+            window.location.href = url; // Seedha Redirect
+        }
+
         function render(data) {
             const feed = document.getElementById('feed');
             feed.innerHTML = '';
             data.forEach((text, index) => {
-                const mainText = text.split('#')[0];
                 const card = document.createElement('div');
                 card.className = 'card';
                 card.innerHTML = `
-                    <div class="s-text">${mainText}</div>
-                    <p style="color:#999; font-size:14px; margin-bottom:15px;">- मोहित कुमार</p>
+                    <div class="s-text">${text.split('#')[0]}</div>
                     <div class="actions">
-                        <div class="act-btn" onclick="like(this)"><i class="far fa-heart"></i><span>Like</span></div>
-                        <div class="act-btn" onclick="copyShayari('${mainText.replace(/\n/g, ' ')}')"><i class="far fa-copy"></i><span>Copy</span></div>
-                        <div class="act-btn" onclick="openSujhaav()"><i class="far fa-comment-dots"></i><span>सुझाव</span></div>
-                        <div class="act-btn" onclick="shareWa('${mainText.replace(/\n/g, ' ')}')"><i class="fas fa-share-alt"></i><span>Share</span></div>
+                        <div class="act-btn" onclick="this.querySelector('i').className='fas fa-heart'; this.style.color='#e91e63'"><i class="far fa-heart"></i><span>Like</span></div>
+                        <div class="act-btn" onclick="copyText('${text}')"><i class="far fa-copy"></i><span>Copy</span></div>
+                        <div class="act-btn" onclick="openModal('sujhaavModal')"><i class="far fa-comment-dots"></i><span>सुझाव</span></div>
                     </div>
                 `;
                 feed.appendChild(card);
+                
+                // Add Image after every 5th shayari for attractiveness
+                if((index + 1) % 5 === 0) {
+                    const img = document.createElement('img');
+                    img.className = 'mid-image';
+                    img.src = `https://picsum.photos/seed/${index}/600/300`;
+                    feed.appendChild(img);
+                }
             });
         }
 
-        // Voice Search (Mic)
-        function startVoiceSearch() {
-            const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-            const micBtn = document.getElementById('micBtn');
-            recognition.onstart = () => { micBtn.classList.add('mic-active'); };
-            recognition.onresult = (event) => {
-                const transcript = event.results[0][0].transcript;
-                document.getElementById('searchInput').value = transcript;
-                search();
-                micBtn.classList.remove('mic-active');
-            };
-            recognition.onerror = () => { micBtn.classList.remove('mic-active'); alert("Mic working failed!"); };
-            recognition.start();
-        }
+        function copyText(t) { navigator.clipboard.writeText(t); alert("Shayari Copy ho gayi!"); }
 
-        // Payment Processing
-        function processPay() {
-            const upi = SiteConfig.upiId;
-            const amt = document.querySelector('.pay-opt.active').innerText.replace('₹', '');
-            window.location.href = `upi://pay?pa=${upi}&pn=${SiteConfig.siteName}&am=${amt}&cu=INR`;
-        }
-
-        // Feedback Submission
-        function submitSujhaav() {
-            const text = document.getElementById('sujhaavText').value;
-            if(!text) return alert("Please write something!");
-            window.open(`https://wa.me/${SiteConfig.whatsappNumber}?text=Suggestion: ${encodeURIComponent(text)}`);
-            closeModal('sujhaavModal');
-        }
-
-        // Helpers
-        function copyShayari(t) { navigator.clipboard.writeText(t); alert("Copied! ✅"); }
-        function shareWa(t) { window.open(`https://wa.me/?text=${encodeURIComponent(t)}`); }
-        function like(btn) { btn.querySelector('i').classList.toggle('fas'); btn.querySelector('i').style.color = '#e91e63'; }
-        function setSearch(v) { document.getElementById('searchInput').value = v; search(); }
         function search() {
             const q = document.getElementById('searchInput').value.toLowerCase();
             const filtered = allShayari.filter(s => s.toLowerCase().includes(q));
             render(filtered);
         }
-        function openDonate() { document.getElementById('donateModal').style.display = 'flex'; }
-        function openSujhaav() { document.getElementById('sujhaavModal').style.display = 'flex'; }
-        function closeModal(id) { document.getElementById(id).style.display = 'none'; }
-        function select(btn, type) {
-            btn.parentElement.querySelectorAll('.pay-opt').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-        }
 
-        // Connect Social IDs
-        window.onload = () => {
-            if(typeof allShayari !== 'undefined') render(allShayari);
-            const s = document.getElementById('socialLinks').children;
-            s[0].onclick = () => window.open(SiteConfig.facebook);
-            s[1].onclick = () => window.open(SiteConfig.instagram);
-            s[2].onclick = () => window.open(`https://wa.me/${SiteConfig.whatsappNumber}`);
-        };
+        window.onload = () => { if(typeof allShayari !== 'undefined') render(allShayari); };
     </script>
 </body>
 </html>
