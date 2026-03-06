@@ -1,6 +1,6 @@
 const allShayari = [
     // --- Nayi Shayari Sabse Upar Yahan Likhein ---
-    
+   
 
     // --- Aapka Purana Sara Data Niche Hai ---
 "Teri khamoshi mein bhi ek sukoon sa milta hai, ye dil ab bas tere hi khayalon mein khilta hai.",
