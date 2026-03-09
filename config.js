@@ -5,5 +5,7 @@ const SiteConfig = {
     upiId: "mchauhan1622@oksbi", // Apna sahi UPI ID yahan daalein
     email: " mchauhan1622@gmail.com", 
     address: "Hamirpur, Himachal Pradesh",
+    adminPass: "Mohit@1622", 
+    adminPhoto: "https://photos.app.goo.gl/LnTkom9WG9L8ET5f7", 
     siteName: "The Shayari Hub"
 };
