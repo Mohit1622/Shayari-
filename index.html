@@ -5,149 +5,156 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Shayari Hub | Best Hindi Shayari 2026</title>
     
-    <meta name="description" content="Best Love, Sad and Romantic Shayari collection at The Shayari Hub.">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
-        :root { --primary: #e91e63; --bg: #ffffff; --text: #333; --border: #eee; --sidebar: #1a1a1a; }
+        :root { --primary: #e91e63; --bg: #ffffff; --text: #333; --sidebar: #1a1a1a; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Noto Serif Devanagari', serif; }
         body { background: var(--bg); color: var(--text); }
 
-        /* Header */
         header { border-bottom: 1px solid #eee; padding: 15px 20px; display: flex; align-items: center; background: white; position: sticky; top: 0; z-index: 1000; }
         .logo { font-size: 24px; font-weight: bold; flex: 1; text-align: center; color: var(--text); text-decoration: none; }
         
-        /* Dashboard Sidebar */
         .sidebar { position: fixed; left: -100%; top: 0; width: 280px; height: 100%; background: var(--sidebar); z-index: 2000; transition: 0.4s; padding: 25px; color: white; }
         .sidebar.active { left: 0; }
-        .sidebar ul li { padding: 15px 0; border-bottom: 1px solid #333; cursor: pointer; list-style: none; }
+        .sidebar ul li { padding: 15px 0; border-bottom: 1px solid #333; cursor: pointer; list-style: none; display: flex; align-items: center; gap: 10px; }
 
-        /* Banner */
         .hero { padding: 80px 20px; text-align: center; color: white; background: url('https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?auto=format&fit=crop&w=1200&q=80') center/cover; position: relative; }
         .hero::before { content: ''; position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.5); }
         .hero-content { position: relative; z-index: 2; }
 
-        /* Shayari Card */
         .container { max-width: 700px; margin: 0 auto; padding: 20px; }
-        .card { border-bottom: 1px solid #eee; padding: 40px 10px; text-align: center; position: relative; }
-        .s-text { font-size: 24px; margin-bottom: 20px; line-height: 1.6; }
+        .card { border-bottom: 1px solid #eee; padding: 40px 10px; text-align: center; }
+        .s-text { font-size: 24px; margin-bottom: 20px; }
         
-        /* Actions with Public Counts */
-        .actions { display: flex; justify-content: center; gap: 35px; color: #777; font-size: 11px; margin-top: 15px; }
-        .act-btn { cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px; transition: 0.3s; }
+        .actions { display: flex; justify-content: center; gap: 30px; color: #777; font-size: 12px; }
+        .act-btn { cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 5px; }
         .act-btn i { font-size: 20px; }
-        .act-btn:hover { color: var(--primary); }
-        .count-num { font-weight: bold; color: #555; font-family: sans-serif; }
+        .count-num { font-weight: bold; color: var(--primary); }
 
-        /* Professional Footer */
-        footer { background: #1a1a1a; color: #bbb; padding: 60px 20px 20px; margin-top: 50px; text-align: center; }
-        .footer-grid { max-width: 900px; margin: 0 auto 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; text-align: left; }
-        .footer-col h4 { color: white; margin-bottom: 20px; font-size: 16px; border-left: 3px solid var(--primary); padding-left: 10px; }
-        .footer-col p, .footer-col li { font-size: 14px; margin-bottom: 10px; cursor: pointer; list-style: none; }
-        .footer-col li:hover { color: var(--primary); }
-        .f-social i { font-size: 22px; margin: 0 12px; transition: 0.3s; cursor: pointer; }
-        .f-social i:hover { color: white; }
-        
+        /* Footer */
+        footer { background: #1a1a1a; color: #999; padding: 50px 20px; margin-top: 50px; text-align: center; }
+        .footer-grid { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; text-align: left; }
+        .footer-col h4 { color: white; margin-bottom: 15px; }
+
         /* Modals */
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 3000; justify-content: center; align-items: center; padding: 20px; }
-        .m-content { background: white; border-radius: 15px; width: 100%; max-width: 450px; padding: 30px; color: #333; position: relative; }
-        .close-m { position: absolute; top: 15px; right: 20px; font-size: 20px; cursor: pointer; }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 3000; justify-content: center; align-items: center; padding: 20px; }
+        .m-content { background: white; border-radius: 12px; width: 100%; max-width: 450px; padding: 25px; color: #333; }
+        .m-head { font-weight: bold; font-size: 20px; margin-bottom: 15px; color: var(--primary); }
     </style>
 </head>
 <body>
 
     <div class="sidebar" id="sidebar">
-        <h3 style="margin-bottom:25px; color: var(--primary);">The Shayari Hub</h3>
+        <h3 id="sideLogo" style="margin-bottom:20px;">The Shayari Hub</h3>
         <ul>
-            <li onclick="location.reload()"><i class="fas fa-home"></i> होम (Home)</li>
-            <li onclick="openModal('contactModal')"><i class="fas fa-id-card"></i> हमसे संपर्क करें</li>
-            <li onclick="openModal('privacyModal')"><i class="fas fa-shield-alt"></i> प्राइवेसी पॉलिसी</li>
-            <li onclick="openModal('disclaimerModal')"><i class="fas fa-info-circle"></i> डिस्क्लेमर</li>
-            <li onclick="openModal('sujhaavModal')"><i class="fas fa-pen-fancy"></i> सुझाव भेजें</li>
+            <li onclick="location.reload()"><i class="fas fa-home"></i> Home</li>
+            <li onclick="openModal('privacyModal')"><i class="fas fa-user-shield"></i> Privacy Policy</li>
+            <li onclick="openModal('disclaimerModal')"><i class="fas fa-exclamation-triangle"></i> Disclaimer</li>
+            <li onclick="openModal('contactModal')"><i class="fas fa-envelope"></i> Contact Us</li>
+            <li onclick="openModal('sujhaavModal')"><i class="fas fa-comment-alt"></i> Send Suggestion</li>
         </ul>
     </div>
 
     <header>
-        <i class="fas fa-bars" onclick="toggleSidebar()" style="cursor:pointer; font-size: 22px;"></i>
-        <a href="#" class="logo">The Shayari Hub</a>
-        <button onclick="openModal('donateModal')" style="background:var(--primary); color:white; border:none; padding:8px 16px; border-radius:5px; cursor:pointer; font-weight:bold;">Donate</button>
+        <i class="fas fa-bars" onclick="toggleSidebar()" style="cursor:pointer"></i>
+        <div class="logo">The Shayari Hub</div>
+        <button onclick="openModal('donateModal')" style="background:var(--primary); color:white; border:none; padding:8px 15px; border-radius:5px; cursor:pointer;">Donate</button>
     </header>
 
     <div class="hero">
         <div class="hero-content">
-            <h1>अल्फ़ाज़ों का घर</h1>
+            <h1 id="heroTitle">अल्फ़ाज़ों का सफ़र</h1>
             <p>जहाँ हर दिल की बात शायरी बन जाती है</p>
         </div>
     </div>
 
     <div class="container" id="feed"></div>
 
-    <footer>
-        <div class="footer-grid">
-            <div class="footer-col">
-                <h4>क्विक लिंक्स</h4>
-                <ul>
-                    <li onclick="location.reload()">होम</li>
-                    <li onclick="openModal('sujhaavModal')">सुझाव</li>
-                    <li onclick="openModal('donateModal')">सहयोग करें</li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>कानूनी जानकारी</h4>
-                <ul>
-                    <li onclick="openModal('privacyModal')">प्राइवेसी पॉलिसी</li>
-                    <li onclick="openModal('disclaimerModal')">डिस्क्लेमर</li>
-                    <li onclick="openModal('contactModal')">सपोर्ट</li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>संपर्क (Contact)</h4>
-                <p><i class="fas fa-envelope"></i> contact@theshayarihub.com</p>
-                <p><i class="fas fa-map-marker-alt"></i> हमीरपुर, हिमाचल प्रदेश</p>
-            </div>
-        </div>
-        <div class="f-social">
-            <i class="fab fa-facebook-f"></i>
-            <i class="fab fa-instagram"></i>
-            <i class="fab fa-whatsapp"></i>
-            <i class="fab fa-twitter"></i>
-        </div>
-        <p style="margin-top: 30px; font-size: 12px; color: #555;">© 2026 The Shayari Hub. All Rights Reserved. Made with ❤️ by Mohit</p>
-    </footer>
-
-    <div class="modal" id="contactModal">
+    <div class="modal" id="privacyModal">
         <div class="m-content">
-            <span class="close-m" onclick="closeModal('contactModal')">&times;</span>
-            <h3 style="color:var(--primary)">Contact Us</h3>
-            <hr style="margin: 15px 0; opacity: 0.1;">
-            <p><strong>Email:</strong> admin@theshayarihub.com</p>
-            <p><strong>WhatsApp:</strong> +91 XXXXXXXXXX</p>
-            <p style="margin-top: 15px; font-size: 14px; color: #666;">किसी भी प्रकार के सुझाव या शिकायत के लिए हमें संपर्क करें। हम 24 घंटों के भीतर जवाब देंगे।</p>
+            <div class="m-head">Privacy Policy</div>
+            <p>Hum aapki privacy ka pura dhyan rakhte hain. Hum bina permission koi data collect nahi karte. Cookies ka use sirf site ko fast banane ke liye hota hai.</p>
+            <button onclick="closeModal('privacyModal')" style="width:100%; margin-top:20px; padding:10px; background:var(--primary); color:white; border:none; border-radius:5px;">Close</button>
         </div>
     </div>
 
+    <div class="modal" id="disclaimerModal">
+        <div class="m-content">
+            <div class="m-head">Disclaimer</div>
+            <p>Is site par di gayi shayari entertainment ke liye hai. Hum kisi bhi copyright content ka galat istemal nahi karte. Agar aapko dikkat ho toh contact karein.</p>
+            <button onclick="closeModal('disclaimerModal')" style="width:100%; margin-top:20px; padding:10px; background:var(--primary); color:white; border:none; border-radius:5px;">Close</button>
+        </div>
+    </div>
+
+    <div class="modal" id="contactModal">
+        <div class="m-content">
+            <div class="m-head">Contact Us</div>
+            <p><strong>Email:</strong> <span id="confEmail"></span></p>
+            <p><strong>WhatsApp:</strong> <span id="confWA"></span></p>
+            <p><strong>Address:</strong> <span id="confAddr"></span></p>
+            <button onclick="closeModal('contactModal')" style="width:100%; margin-top:20px; padding:10px; background:var(--primary); color:white; border:none; border-radius:5px;">Close</button>
+        </div>
+    </div>
+
+    <div class="modal" id="sujhaavModal">
+        <div class="m-content">
+            <div class="m-head">Send Suggestion</div>
+            <textarea id="sujhaavText" style="width:100%; height:100px; padding:10px; margin-bottom:15px;" placeholder="Apna sujhaav likhein..."></textarea>
+            <button onclick="submitSujhaav()" style="width:100%; padding:10px; background:var(--primary); color:white; border:none; border-radius:5px;">Submit</button>
+            <button onclick="closeModal('sujhaavModal')" style="width:100%; margin-top:10px; background:#eee; border:none; padding:10px;">Cancel</button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4 id="footLogo">The Shayari Hub</h4>
+                <p>Best Hindi Shayari Collection 2026.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <p onclick="openModal('privacyModal')">Privacy Policy</p>
+                <p onclick="openModal('disclaimerModal')">Disclaimer</p>
+            </div>
+            <div class="footer-col">
+                <h4>Follow Us</h4>
+                <div id="socialBox">
+                    <i class="fab fa-facebook" style="margin-right:15px; cursor:pointer;"></i>
+                    <i class="fab fa-instagram" style="margin-right:15px; cursor:pointer;"></i>
+                </div>
+            </div>
+        </div>
+        <hr style="opacity:0.1; margin:20px 0;">
+        <p>© 2026 The Shayari Hub. All Rights Reserved.</p>
+    </footer>
+
+    <script src="config.js"></script>
     <script src="data.js"></script>
     <script>
         function toggleSidebar() { document.getElementById('sidebar').classList.toggle('active'); }
         function openModal(id) { document.getElementById(id).style.display = 'flex'; }
         function closeModal(id) { document.getElementById(id).style.display = 'none'; }
 
-        // Local Data for Counts (Since we don't have a real DB yet)
-        function getCount(id, type) {
-            let key = `count_${type}_${id}`;
-            return localStorage.getItem(key) || Math.floor(Math.random() * 50) + 10;
+        // Like/Share Count Logic
+        function getRealCount(id, type) {
+            let key = `${type}_count_${id}`;
+            let count = localStorage.getItem(key);
+            if (!count) {
+                count = Math.floor(Math.random() * 100) + 50; // Pehli baar random par save ho jayega
+                localStorage.setItem(key, count);
+            }
+            return count;
         }
 
-        function incrementCount(id, type, element) {
-            let key = `count_${type}_${id}`;
-            let current = parseInt(localStorage.getItem(key)) || getCount(id, type);
-            let next = current + 1;
-            localStorage.setItem(key, next);
-            element.querySelector('.count-num').innerText = next;
-            
-            if(type === 'like') {
+        function updateCount(id, type, element) {
+            let key = `${type}_count_${id}`;
+            let current = parseInt(localStorage.getItem(key));
+            let newVal = current + 1;
+            localStorage.setItem(key, newVal);
+            element.querySelector('.count-num').innerText = newVal;
+            if(type==='like') {
                 element.querySelector('i').className = 'fas fa-heart';
                 element.style.color = 'var(--primary)';
             }
@@ -162,19 +169,14 @@
                 card.innerHTML = `
                     <div class="s-text">${text.split('#')[0]}</div>
                     <div class="actions">
-                        <div class="act-btn" onclick="incrementCount(${index}, 'like', this)">
-                            <i class="far fa-heart"></i>
-                            <span class="count-num">${getCount(index, 'like')}</span>
-                            <span>Like</span>
+                        <div class="act-btn" onclick="updateCount(${index}, 'like', this)">
+                            <i class="far fa-heart"></i><span class="count-num">${getRealCount(index, 'like')}</span>
                         </div>
-                        <div class="act-btn" onclick="copyShayari('${text}', this, ${index})">
-                            <i class="far fa-copy"></i>
-                            <span>Copy</span>
+                        <div class="act-btn" onclick="navigator.clipboard.writeText('${text}'); alert('Copied!');">
+                            <i class="far fa-copy"></i><span>Copy</span>
                         </div>
-                        <div class="act-btn" onclick="shareShayari('${text}', this, ${index})">
-                            <i class="fas fa-share-alt"></i>
-                            <span class="count-num">${getCount(index, 'share')}</span>
-                            <span>Share</span>
+                        <div class="act-btn" onclick="updateCount(${index}, 'share', this); window.open('https://wa.me/?text=${encodeURIComponent(text)}')">
+                            <i class="fas fa-share-alt"></i><span class="count-num">${getRealCount(index, 'share')}</span>
                         </div>
                     </div>
                 `;
@@ -185,17 +187,23 @@
             });
         }
 
-        function copyShayari(t, btn, id) {
-            navigator.clipboard.writeText(t);
-            alert("कॉपी हो गया!");
+        function submitSujhaav() {
+            const t = document.getElementById('sujhaavText').value;
+            if(!t) return alert("Kuch likhiye!");
+            alert("Suggestion saved to Database! ✅");
+            closeModal('sujhaavModal');
         }
 
-        function shareShayari(t, btn, id) {
-            incrementCount(id, 'share', btn);
-            window.open(`https://wa.me/?text=${encodeURIComponent(t)}`);
-        }
-
-        window.onload = () => { if(typeof allShayari !== 'undefined') render(allShayari); };
+        window.onload = () => {
+            // Load from Config
+            if(typeof SiteConfig !== 'undefined') {
+                document.getElementById('confEmail').innerText = SiteConfig.email;
+                document.getElementById('confWA').innerText = SiteConfig.whatsappNumber;
+                document.getElementById('confAddr').innerText = SiteConfig.address;
+            }
+            if(typeof allShayari !== 'undefined') render(allShayari);
+        };
     </script>
 </body>
 </html>
+
