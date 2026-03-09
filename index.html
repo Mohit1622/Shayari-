@@ -20,11 +20,11 @@
         .logo { font-size: 24px; font-weight: bold; flex: 1; text-align: center; color: var(--text); text-decoration: none; }
         .menu-btn { font-size: 22px; cursor: pointer; color: var(--text); z-index: 2100; }
 
-        /* Sidebar Dashboard (Always accessible) */
+        /* Sidebar Dashboard */
         .sidebar { position: fixed; left: -100%; top: 0; width: 300px; height: 100%; background: var(--sidebar); z-index: 2050; transition: 0.4s; padding: 25px; color: white; box-shadow: 5px 0 15px rgba(0,0,0,0.2); }
         .sidebar.active { left: 0; }
         .sidebar-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; padding-bottom: 15px; margin-bottom: 20px; }
-        .sidebar ul li { padding: 15px 0; border-bottom: 1px solid #222; cursor: pointer; display: flex; align-items: center; gap: 12px; transition: 0.3s; }
+        .sidebar ul li { padding: 15px 0; border-bottom: 1px solid #222; cursor: pointer; display: flex; align-items: center; gap: 12px; transition: 0.3s; list-style: none; }
         .sidebar ul li:hover { color: var(--primary); padding-left: 10px; }
 
         /* Hero & Banner Section */
@@ -64,7 +64,7 @@
         .act-btn:hover { color: var(--primary); }
         .pub-count { font-weight: bold; color: #444; margin-bottom: 2px; }
 
-        /* Admin Creator Profile (Hidden by default) */
+        /* Admin Creator Profile */
         #adminArea { 
             display: none; 
             background: #fff; 
@@ -75,7 +75,10 @@
             animation: fadeIn 0.5s; 
         }
         .prof-header { display: flex; align-items: center; gap: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px; margin-bottom: 15px; }
-        .prof-img { width: 90px; height: 90px; border-radius: 50%; border: 4px solid var(--primary); object-fit: cover; }
+        .prof-img-wrapper { position: relative; width: 90px; height: 90px; }
+        .prof-img { width: 100%; height: 100%; border-radius: 50%; border: 4px solid var(--primary); object-fit: cover; }
+        .cam-btn { position: absolute; bottom: 0; right: -5px; background: var(--primary); color: white; border: none; border-radius: 50%; width: 28px; height: 28px; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.3); }
+        
         .real-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         .stat-box { background: #fff5f8; padding: 10px; border-radius: 8px; text-align: center; }
 
@@ -129,22 +132,25 @@
         <div class="hero-content">
             <h1>अल्फ़ाज़ों का चमन</h1>
             <p>जहाँ हर शायरी दिल की धड़कन है</p>
-            <button onclick="downloadBanner()" style="margin-top:15px; background:rgba(255,255,255,0.2); border:1px solid #fff; color:#fff; padding:5px 15px; border-radius:20px; cursor:pointer;">Download Banner</button>
         </div>
     </div>
 
     <div class="container">
         <div id="adminArea">
             <div class="prof-header">
-                <img id="adminPic" src="" class="prof-img">
+                <div class="prof-img-wrapper">
+                    <img id="adminPic" src="https://via.placeholder.com/90" class="prof-img">
+                    <button class="cam-btn" onclick="document.getElementById('picUpload').click()"><i class="fas fa-camera" style="font-size:12px;"></i></button>
+                    <input type="file" id="picUpload" style="display:none;" accept="image/*" onchange="uploadPic(event)">
+                </div>
                 <div>
                     <h3 id="adminName">Mohit Kumar</h3>
                     <p style="color:#e91e63; font-weight:bold;">Creator & Owner</p>
                 </div>
             </div>
             <div class="real-stats">
-                <div class="stat-box">Total Content: <br><b id="totalS">0</b></div>
-                <div class="stat-box">Total Likes (Real): <br><b id="totalL">0</b></div>
+                <div class="stat-box">Total Content: <br><b id="totalS">500</b></div>
+                <div class="stat-box">Total Likes (Real): <br><b id="totalL">500</b></div>
             </div>
             <button onclick="window.open('https://sheets.google.com')" style="width:100%; margin-top:15px; padding:10px; background:#27ae60; color:#fff; border:none; border-radius:8px; cursor:pointer;">Manage Suggestions Database</button>
         </div>
@@ -169,8 +175,8 @@
             </div>
             <div class="footer-col">
                 <h4>Connect With Us</h4>
-                <p><i class="fas fa-envelope"></i> admin@theshayarihub.com</p>
-                <p><i class="fas fa-map-marker-alt"></i> Hamirpur, Himachal Pradesh</p>
+                <p><i class="fas fa-envelope"></i> <span id="footEmail">admin@theshayarihub.com</span></p>
+                <p><i class="fas fa-map-marker-alt"></i> <span id="footAddress">Hamirpur, Himachal Pradesh</span></p>
                 <div class="social-box" id="socialLinks" style="margin-top:20px;">
                     <i class="fab fa-instagram"></i>
                     <i class="fab fa-facebook-f"></i>
@@ -187,6 +193,16 @@
             <div class="m-head">Creator Access</div>
             <input type="password" id="adminPass" placeholder="Enter Access Code" style="width:100%; padding:12px; border:1px solid #ddd; border-radius:8px; outline:none;">
             <button onclick="checkAdmin()" style="width:100%; margin-top:20px; padding:12px; background:var(--primary); color:#fff; border:none; border-radius:8px; font-weight:bold;">Authenticate</button>
+        </div>
+    </div>
+
+    <div class="modal" id="contactModal">
+        <div class="m-content">
+            <span class="close-icon" onclick="closeModal('contactModal')">&times;</span>
+            <div class="m-head">Contact Support</div>
+            <p style="margin-bottom:10px;"><strong>Email:</strong> <span id="modEmail"></span></p>
+            <p style="margin-bottom:10px;"><strong>Address:</strong> <span id="modAddress"></span></p>
+            <p style="font-size:13px; color:#666; margin-top:15px;">Please feel free to reach out to us. We will get back to you within 24 hours.</p>
         </div>
     </div>
 
@@ -224,7 +240,6 @@
 
     <script src="config.js"></script>
     <script src="data.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script>
         let curP = 1;
         const size = 20; // 20 Shayari per page
@@ -233,27 +248,55 @@
         function openModal(id) { document.getElementById(id).style.display = 'flex'; }
         function closeModal(id) { document.getElementById(id).style.display = 'none'; }
 
-        // Like/Share Count Logic
+        // --- REAL Count Logic (Starts at 0, no random fakes) ---
         function getC(id, type) {
             let k = `c_${type}_${id}`;
-            return localStorage.getItem(k) || Math.floor(Math.random()*100 + 10);
+            let val = localStorage.getItem(k);
+            return val ? parseInt(val) : 0; // Agar koi data nahi hai to 0 return karega
         }
 
         function upd(id, type, el) {
             let k = `c_${type}_${id}`;
-            let v = parseInt(localStorage.getItem(k) || getC(id, type)) + 1;
+            let current = getC(id, type);
+            let v = current + 1;
             localStorage.setItem(k, v);
             el.querySelector('.count-val').innerText = v;
             if(type==='like') el.querySelector('i').style.color = '#e91e63';
         }
 
-        // Admin Auth
+        // --- Profile Photo Upload Logic (From Gallery to Browser Storage) ---
+        function uploadPic(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const base64Image = e.target.result;
+                    localStorage.setItem('adminProfilePic', base64Image); // Save to storage
+                    document.getElementById('adminPic').src = base64Image; // Update image instantly
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // --- Admin Auth ---
         function checkAdmin() {
             if(document.getElementById('adminPass').value === SiteConfig.adminPass) {
                 document.getElementById('adminArea').style.display = 'block';
-                document.getElementById('adminPic').src = SiteConfig.adminPhoto;
+                
+                // Load Photo (Priority: Uploaded photo -> Config photo -> Default placeholder)
+                const savedPic = localStorage.getItem('adminProfilePic');
+                document.getElementById('adminPic').src = savedPic ? savedPic : (SiteConfig.adminPhoto || 'https://via.placeholder.com/90');
+                
+                // Load Stats
                 document.getElementById('totalS').innerText = allShayari.length;
-                document.getElementById('totalL').innerText = (allShayari.length * 45); // Simulation
+                
+                // Calculate Real Total Likes from all shayari
+                let realTotalLikes = 0;
+                for(let i=0; i<allShayari.length; i++) {
+                    realTotalLikes += getC(i, 'like');
+                }
+                document.getElementById('totalL').innerText = realTotalLikes;
+                
                 closeModal('loginModal');
                 alert("Identity Verified: Welcome Creator.");
             } else { alert("Access Denied."); }
@@ -274,17 +317,17 @@
                     <div class="s-text">${text.split('#')[0]}</div>
                     <div class="actions">
                         <div class="act-btn" onclick="upd(${globalIndex}, 'like', this)">
-                            <i class="far fa-heart"></i>
-                            <span class="count-val">${getC(globalIndex, 'like')}</span>
+                            <i class="far fa-heart" ${getC(globalIndex, 'like') > 0 ? 'style="color:#e91e63"' : ''}></i>
+                            <span class="count-val pub-count">${getC(globalIndex, 'like')}</span>
                             <span>Like</span>
                         </div>
                         <div class="act-btn" onclick="navigator.clipboard.writeText('${text}'); alert('Copied Successfully.');">
                             <i class="far fa-copy"></i>
-                            <span>Copy</span>
+                            <span style="opacity:0;">0</span> <span>Copy</span>
                         </div>
                         <div class="act-btn" onclick="upd(${globalIndex}, 'share', this); window.open('https://wa.me/?text=${encodeURIComponent(text)}')">
                             <i class="fas fa-share-alt"></i>
-                            <span class="count-val">${getC(globalIndex, 'share')}</span>
+                            <span class="count-val pub-count">${getC(globalIndex, 'share')}</span>
                             <span>Share</span>
                         </div>
                     </div>
@@ -312,12 +355,24 @@
         function processPay() { window.location.href = `upi://pay?pa=${SiteConfig.upiId}&pn=ShayariHub&am=${selectedAmt}&cu=INR`; }
 
         window.onload = () => {
+            // Load dynamic config data into Footer and Contact Us modal
+            if(typeof SiteConfig !== 'undefined') {
+                document.getElementById('footEmail').innerText = SiteConfig.email || 'Email not provided';
+                document.getElementById('footAddress').innerText = SiteConfig.address || 'Address not provided';
+                document.getElementById('modEmail').innerText = SiteConfig.email || 'Email not provided';
+                document.getElementById('modAddress').innerText = SiteConfig.address || 'Address not provided';
+                
+                // Connect social icons
+                const icons = document.getElementById('socialLinks').children;
+                if(icons.length >= 3) {
+                    icons[0].onclick = () => window.open(SiteConfig.instagram);
+                    icons[1].onclick = () => window.open(SiteConfig.facebook);
+                    icons[2].onclick = () => window.open(`https://wa.me/${SiteConfig.whatsappNumber}`);
+                }
+            }
+
+            // Render first page
             render(1);
-            // Connect social
-            const icons = document.getElementById('socialLinks').children;
-            icons[0].onclick = () => window.open(SiteConfig.instagram);
-            icons[1].onclick = () => window.open(SiteConfig.facebook);
-            icons[2].onclick = () => window.open(`https://wa.me/${SiteConfig.whatsappNumber}`);
         };
     </script>
 </body>
