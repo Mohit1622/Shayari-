@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Shayari Hub | Best Hindi Shayari 2026</title>
+    <title>The Shayari Hub | Best Hindi Shayari</title>
+    <meta name="description" content="Best Love, Sad, and Romantic Shayari by Mohit Kumar.">
     
-    <meta name="description" content="Experience the best Love, Sad, and Romantic Shayari at The Shayari Hub. Professional collection by Mohit Kumar.">
+    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?auto=format&fit=crop&w=600&q=60">
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
@@ -18,68 +17,62 @@
         body { background: var(--bg); color: var(--text); overflow-x: hidden; }
 
         header { border-bottom: 1px solid var(--border); padding: 15px 20px; display: flex; align-items: center; background: white; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-        .logo { font-size: 24px; font-weight: bold; flex: 1; text-align: center; color: var(--text); text-decoration: none; }
+        .logo { font-size: 22px; font-weight: bold; flex: 1; text-align: center; color: var(--text); text-decoration: none; }
         .menu-btn { font-size: 22px; cursor: pointer; color: var(--text); z-index: 2100; }
 
-        .sidebar { position: fixed; left: -100%; top: 0; width: 300px; height: 100%; background: var(--sidebar); z-index: 2050; transition: 0.4s; padding: 25px; color: white; box-shadow: 5px 0 15px rgba(0,0,0,0.2); }
+        .sidebar { position: fixed; left: -100%; top: 0; width: 300px; height: 100%; background: var(--sidebar); z-index: 2050; transition: 0.3s; padding: 25px; color: white; box-shadow: 5px 0 15px rgba(0,0,0,0.2); }
         .sidebar.active { left: 0; }
         .sidebar-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; padding-bottom: 15px; margin-bottom: 20px; }
-        .sidebar ul li { padding: 15px 0; border-bottom: 1px solid #222; cursor: pointer; display: flex; align-items: center; gap: 12px; transition: 0.3s; list-style: none; }
-        .sidebar ul li:hover { color: var(--primary); padding-left: 10px; }
+        .sidebar ul li { padding: 15px 0; border-bottom: 1px solid #222; cursor: pointer; display: flex; align-items: center; gap: 12px; list-style: none; }
 
-        /* Compressed Hero Banner for Speed */
-        .hero { padding: 80px 20px; text-align: center; color: white; background: url('https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?auto=format&fit=crop&w=800&q=60') center/cover; position: relative;}
+        .hero { padding: 60px 20px; text-align: center; color: white; background: url('https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?auto=format&fit=crop&w=600&q=60') center/cover; position: relative;}
         .hero::before { content: ''; position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.6); }
         .hero-content { position: relative; z-index: 2; }
 
-        .container { max-width: 750px; margin: 0 auto; padding: 20px; }
-        
-        /* Removed heavy external texture, kept only CSS for speed */
+        .container { max-width: 750px; margin: 0 auto; padding: 15px; }
         .card { 
             background: #fff; 
             border: 2px solid #fef0f5; 
-            border-radius: 15px; 
-            padding: 45px 20px; 
+            border-radius: 12px; 
+            padding: 40px 15px; 
             text-align: center; 
-            margin-bottom: 30px; 
+            margin-bottom: 25px; 
             position: relative; 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.04);
         }
-        .card::before, .card::after { content: '✿'; position: absolute; color: var(--primary); font-size: 24px; opacity: 0.3; }
-        .card::before { top: 10px; left: 10px; }
-        .card::after { bottom: 10px; right: 10px; }
-        .s-text { font-size: 26px; line-height: 1.6; margin-bottom: 20px; color: #111;}
+        .card::before, .card::after { content: '✿'; position: absolute; color: var(--primary); font-size: 22px; opacity: 0.3; }
+        .card::before { top: 8px; left: 10px; }
+        .card::after { bottom: 8px; right: 10px; }
+        .s-text { font-size: 22px; line-height: 1.5; margin-bottom: 15px; color: #111; font-weight: bold; }
 
-        .actions { display: flex; justify-content: center; gap: 30px; color: #666; font-size: 12px; margin-top: 20px; }
-        .act-btn { cursor: pointer; display: flex; flex-direction: column; align-items: center; transition: 0.3s; }
-        .act-btn i { font-size: 20px; margin-bottom: 4px; }
-        .act-btn:hover { color: var(--primary); }
+        .actions { display: flex; justify-content: center; gap: 25px; color: #666; font-size: 11px; margin-top: 15px; }
+        .act-btn { cursor: pointer; display: flex; flex-direction: column; align-items: center; }
+        .act-btn i { font-size: 18px; margin-bottom: 4px; }
         .pub-count { font-weight: bold; color: #444; margin-bottom: 2px; }
 
-        #adminArea { display: none; background: #fff; border: 2px dashed var(--primary); padding: 25px; border-radius: 15px; margin-bottom: 30px; }
-        .prof-header { display: flex; align-items: center; gap: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px; margin-bottom: 15px; }
-        .prof-img-wrapper { position: relative; width: 90px; height: 90px; }
-        .prof-img { width: 100%; height: 100%; border-radius: 50%; border: 4px solid var(--primary); object-fit: cover; }
-        .cam-btn { position: absolute; bottom: 0; right: -5px; background: var(--primary); color: white; border: none; border-radius: 50%; width: 28px; height: 28px; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.3); }
-        .real-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .stat-box { background: #fff5f8; padding: 10px; border-radius: 8px; text-align: center; }
+        /* Admin Area */
+        #adminArea { display: none; background: #fff; border: 2px dashed var(--primary); padding: 20px; border-radius: 15px; margin-bottom: 25px; }
+        .prof-header { display: flex; align-items: center; gap: 15px; border-bottom: 1px solid #eee; padding-bottom: 15px; margin-bottom: 15px; }
+        .prof-img-wrapper { position: relative; width: 80px; height: 80px; }
+        .prof-img { width: 100%; height: 100%; border-radius: 50%; border: 3px solid var(--primary); object-fit: cover; }
+        .cam-btn { position: absolute; bottom: 0; right: -5px; background: var(--primary); color: white; border: none; border-radius: 50%; width: 25px; height: 25px; cursor: pointer; }
+        .real-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .stat-box { background: #fff5f8; padding: 10px; border-radius: 8px; text-align: center; font-size: 13px; }
 
-        .pagination { display: flex; justify-content: center; gap: 10px; margin: 40px 0; flex-wrap: wrap; }
-        .page-btn { width: 40px; height: 40px; border: 1px solid var(--primary); background: white; color: var(--primary); border-radius: 50%; cursor: pointer; transition: 0.3s; }
+        .pagination { display: flex; justify-content: center; gap: 8px; margin: 30px 0; flex-wrap: wrap; }
+        .page-btn { width: 35px; height: 35px; border: 1px solid var(--primary); background: white; color: var(--primary); border-radius: 50%; cursor: pointer; font-weight: bold; }
         .page-btn.active { background: var(--primary); color: white; }
 
-        footer { background: var(--sidebar); color: #888; padding: 60px 20px 20px; margin-top: 60px; text-align: center; }
-        .footer-grid { max-width: 1000px; margin: 0 auto 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; text-align: left; }
-        .footer-col h4 { color: white; margin-bottom: 25px; font-size: 16px; border-left: 4px solid var(--primary); padding-left: 12px; }
-        .footer-col ul li { padding: 8px 0; cursor: pointer; list-style: none; transition: 0.2s; }
-        .footer-col ul li:hover { color: white; }
-        .social-box i { font-size: 24px; margin: 0 15px; cursor: pointer; transition: 0.3s; }
-        .social-box i:hover { color: var(--primary); transform: translateY(-5px); }
+        footer { background: var(--sidebar); color: #888; padding: 40px 20px 20px; margin-top: 40px; text-align: center; }
+        .footer-grid { max-width: 1000px; margin: 0 auto 30px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; text-align: left; }
+        .footer-col h4 { color: white; margin-bottom: 15px; font-size: 15px; border-left: 3px solid var(--primary); padding-left: 10px; }
+        .footer-col ul li { padding: 6px 0; cursor: pointer; list-style: none; font-size: 13px;}
+        .social-box i { font-size: 20px; margin: 0 12px; cursor: pointer; }
 
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 3000; justify-content: center; align-items: center; padding: 20px; }
-        .m-content { background: white; border-radius: 15px; width: 100%; max-width: 450px; padding: 35px; color: #333; position: relative; }
-        .m-head { font-size: 22px; font-weight: bold; margin-bottom: 20px; color: var(--primary); border-bottom: 1px solid #eee; padding-bottom: 10px; }
-        .close-icon { position: absolute; top: 15px; right: 20px; font-size: 24px; cursor: pointer; color: #999; }
+        .m-content { background: white; border-radius: 12px; width: 100%; max-width: 400px; padding: 25px; color: #333; position: relative; }
+        .m-head { font-size: 20px; font-weight: bold; margin-bottom: 15px; color: var(--primary); border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        .close-icon { position: absolute; top: 10px; right: 15px; font-size: 22px; cursor: pointer; color: #999; }
     </style>
 </head>
 <body>
@@ -102,13 +95,13 @@
     <header>
         <i class="fas fa-bars menu-btn" onclick="toggleSidebar()"></i>
         <a href="#" class="logo">The Shayari Hub</a>
-        <button onclick="openModal('donateModal')" style="background:var(--primary); color:white; border:none; padding:8px 18px; border-radius:5px; cursor:pointer; font-weight:bold;">Donate</button>
+        <button onclick="openModal('donateModal')" style="background:var(--primary); color:white; border:none; padding:6px 14px; border-radius:5px; cursor:pointer; font-weight:bold; font-size:14px;">Donate</button>
     </header>
 
     <div class="hero">
         <div class="hero-content">
             <h1>अल्फ़ाज़ों का चमन</h1>
-            <p>जहाँ हर शायरी दिल की धड़कन है</p>
+            <p style="font-size: 14px; margin-top:5px;">जहाँ हर शायरी दिल की धड़कन है</p>
         </div>
     </div>
 
@@ -116,20 +109,20 @@
         <div id="adminArea">
             <div class="prof-header">
                 <div class="prof-img-wrapper">
-                    <img id="adminPic" src="https://via.placeholder.com/90" class="prof-img">
-                    <button class="cam-btn" onclick="document.getElementById('picUpload').click()"><i class="fas fa-camera" style="font-size:12px;"></i></button>
+                    <img id="adminPic" src="https://via.placeholder.com/80" class="prof-img">
+                    <button class="cam-btn" onclick="document.getElementById('picUpload').click()"><i class="fas fa-camera" style="font-size:11px;"></i></button>
                     <input type="file" id="picUpload" style="display:none;" accept="image/*" onchange="uploadPic(event)">
                 </div>
                 <div>
                     <h3 id="adminName">Mohit Kumar</h3>
-                    <p style="color:#e91e63; font-weight:bold;">Creator & Owner</p>
+                    <p style="color:#e91e63; font-weight:bold; font-size:13px;">Creator & Owner</p>
                 </div>
             </div>
             <div class="real-stats">
                 <div class="stat-box">Total Content: <br><b id="totalS">0</b></div>
                 <div class="stat-box">Total Likes (Real): <br><b id="totalL">0</b></div>
             </div>
-            <button onclick="window.open('https://sheets.google.com')" style="width:100%; margin-top:15px; padding:10px; background:#27ae60; color:#fff; border:none; border-radius:8px; cursor:pointer;">Manage Database</button>
+            <button onclick="window.open('https://sheets.google.com')" style="width:100%; margin-top:15px; padding:10px; background:#27ae60; color:#fff; border:none; border-radius:8px; cursor:pointer; font-weight:bold;">Manage Database</button>
         </div>
 
         <div id="feed"></div>
@@ -140,7 +133,7 @@
         <div class="footer-grid">
             <div class="footer-col">
                 <h4 style="color:white;">About The Hub</h4>
-                <p>The Shayari Hub is a premium platform for Hindi and Urdu poetry lovers.</p>
+                <p style="font-size:13px;">Premium platform for Hindi and Urdu poetry lovers.</p>
             </div>
             <div class="footer-col">
                 <h4>Legal Resources</h4>
@@ -152,24 +145,24 @@
             </div>
             <div class="footer-col">
                 <h4>Connect With Us</h4>
-                <p><i class="fas fa-envelope"></i> <span id="footEmail">admin@theshayarihub.com</span></p>
-                <p><i class="fas fa-map-marker-alt"></i> <span id="footAddress">Hamirpur, Himachal Pradesh</span></p>
-                <div class="social-box" id="socialLinks" style="margin-top:20px;">
+                <p style="font-size:13px;"><i class="fas fa-envelope"></i> <span id="footEmail">admin@theshayarihub.com</span></p>
+                <p style="font-size:13px;"><i class="fas fa-map-marker-alt"></i> <span id="footAddress">Hamirpur, Himachal Pradesh</span></p>
+                <div class="social-box" id="socialLinks" style="margin-top:15px;">
                     <i class="fab fa-instagram"></i>
                     <i class="fab fa-facebook-f"></i>
                     <i class="fab fa-whatsapp"></i>
                 </div>
             </div>
         </div>
-        <p style="border-top: 1px solid #333; padding-top:20px; font-size:12px;">© 2026 The Shayari Hub. All rights reserved.</p>
+        <p style="border-top: 1px solid #333; padding-top:15px; font-size:11px;">© 2026 The Shayari Hub. All rights reserved.</p>
     </footer>
 
     <div class="modal" id="loginModal">
         <div class="m-content">
             <span class="close-icon" onclick="closeModal('loginModal')">&times;</span>
             <div class="m-head">Creator Access</div>
-            <input type="password" id="adminPass" placeholder="Enter Password" style="width:100%; padding:12px; border:1px solid #ddd; border-radius:8px; outline:none;">
-            <button onclick="checkAdmin()" style="width:100%; margin-top:20px; padding:12px; background:var(--primary); color:#fff; border:none; border-radius:8px; font-weight:bold;">Login</button>
+            <input type="password" id="adminPass" placeholder="Enter Password" style="width:100%; padding:10px; border:1px solid #ddd; border-radius:8px; outline:none;">
+            <button onclick="checkAdmin()" style="width:100%; margin-top:15px; padding:10px; background:var(--primary); color:#fff; border:none; border-radius:8px; font-weight:bold;">Login</button>
         </div>
     </div>
 
@@ -177,9 +170,8 @@
         <div class="m-content">
             <span class="close-icon" onclick="closeModal('contactModal')">&times;</span>
             <div class="m-head">Contact Support</div>
-            <p style="margin-bottom:10px;"><strong>Email:</strong> <span id="modEmail"></span></p>
-            <p style="margin-bottom:10px;"><strong>Address:</strong> <span id="modAddress"></span></p>
-            <p style="font-size:13px; color:#666; margin-top:15px;">Please feel free to reach out to us.</p>
+            <p style="margin-bottom:10px; font-size:14px;"><strong>Email:</strong> <span id="modEmail"></span></p>
+            <p style="margin-bottom:10px; font-size:14px;"><strong>Address:</strong> <span id="modAddress"></span></p>
         </div>
     </div>
 
@@ -187,8 +179,8 @@
         <div class="m-content">
             <span class="close-icon" onclick="closeModal('privacyModal')">&times;</span>
             <div class="m-head">Privacy Policy</div>
-            <div style="font-size:14px; color:#555; text-align:justify;">
-                Your privacy is paramount at The Shayari Hub. We do not collect personal data without explicit consent. Feedback and suggestions submitted are stored securely.
+            <div style="font-size:13px; color:#555; text-align:justify;">
+                Your privacy is paramount at The Shayari Hub. We do not collect personal data without explicit consent.
             </div>
         </div>
     </div>
@@ -197,7 +189,7 @@
         <div class="m-content">
             <span class="close-icon" onclick="closeModal('disclaimerModal')">&times;</span>
             <div class="m-head">Legal Disclaimer</div>
-            <div style="font-size:14px; color:#555; text-align:justify;">
+            <div style="font-size:13px; color:#555; text-align:justify;">
                 Content provided on this website is for entertainment purposes only. Reproduction of content without prior permission is prohibited.
             </div>
         </div>
@@ -207,11 +199,11 @@
         <div class="m-content">
             <span class="close-icon" onclick="closeModal('donateModal')">&times;</span>
             <div class="m-head">Support Us</div>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:20px;">
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:15px;">
                 <button class="page-btn" style="width:100%; border-radius:5px;" onclick="setAmt(100)">₹100</button>
                 <button class="page-btn" style="width:100%; border-radius:5px;" onclick="setAmt(500)">₹500</button>
             </div>
-            <button onclick="processPay()" id="payBtn" style="width:100%; padding:15px; background:var(--primary); color:#fff; border:none; border-radius:8px; font-weight:bold;">Proceed with UPI Payment</button>
+            <button onclick="processPay()" id="payBtn" style="width:100%; padding:12px; background:var(--primary); color:#fff; border:none; border-radius:8px; font-weight:bold;">Proceed with UPI Payment</button>
         </div>
     </div>
 
@@ -264,13 +256,13 @@
                 document.getElementById('totalL').innerText = realTotalLikes;
                 
                 closeModal('loginModal');
-            } else { alert("Galat Password ya config file load nahi hui!"); }
+            } else { alert("Galat Password ya config file nahi mili!"); }
         }
 
         // --- FAST RENDERING LOGIC ---
         function render(p) {
             if(typeof allShayari === 'undefined') {
-                document.getElementById('feed').innerHTML = '<h3 style="color:red; text-align:center;">data.js link nahi ho rahi hai!</h3>';
+                document.getElementById('feed').innerHTML = '<h4 style="color:red; text-align:center;">data.js link nahi ho rahi hai!</h4>';
                 return;
             }
             
@@ -278,7 +270,7 @@
             const start = (p - 1) * size;
             const data = allShayari.slice(start, start + size);
             
-            let htmlStr = ''; // String banane se DOM jaldi load hota hai
+            let htmlStr = ''; 
             data.forEach((text, i) => {
                 const gIdx = start + i;
                 const likes = getC(gIdx, 'like');
@@ -303,8 +295,8 @@
                     </div>
                 `;
                 if((i+1) % 5 === 0) {
-                    // Added loading="lazy" to fix speed issue
-                    htmlStr += `<img src="https://picsum.photos/seed/${gIdx}/750/350" loading="lazy" style="width:100%; border-radius:12px; margin:20px 0; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">`;
+                    // loading="lazy" and decoding="async" ensures images don't block the site from loading
+                    htmlStr += `<img src="https://picsum.photos/seed/${gIdx}/600/300" loading="lazy" decoding="async" style="width:100%; border-radius:10px; margin:15px 0; background:#f5f5f5; min-height:150px;">`;
                 }
             });
             feed.innerHTML = htmlStr;
@@ -329,7 +321,8 @@
             }
         }
 
-        window.onload = () => {
+        // THE MAIN FIX: Run immediately when HTML is ready, don't wait for heavy images
+        document.addEventListener("DOMContentLoaded", () => {
             if(typeof SiteConfig !== 'undefined') {
                 document.getElementById('footEmail').innerText = SiteConfig.email || 'Admin Email';
                 document.getElementById('footAddress').innerText = SiteConfig.address || 'Address';
@@ -342,11 +335,10 @@
                     icons[1].onclick = () => window.open(SiteConfig.facebook);
                     icons[2].onclick = () => window.open(`https://wa.me/${SiteConfig.whatsappNumber}`);
                 }
-            } else {
-                console.warn("config.js load nahi hui hai.");
             }
+            // Load shayari text immediately
             render(1);
-        };
+        });
     </script>
 </body>
 </html>
