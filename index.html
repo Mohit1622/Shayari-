@@ -8,6 +8,8 @@
     <meta name="description" content="Experience the best Love, Sad, and Romantic Shayari at The Shayari Hub. Professional collection by Mohit Kumar.">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
@@ -25,11 +27,14 @@
         .sidebar ul li { padding: 15px 0; border-bottom: 1px solid #222; cursor: pointer; display: flex; align-items: center; gap: 12px; transition: 0.3s; list-style: none; }
         .sidebar ul li:hover { color: var(--primary); padding-left: 10px; }
 
-        .hero { padding: 80px 20px; text-align: center; color: white; background: url('https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?auto=format&fit=crop&w=1200&q=80') center/cover; position: relative;}
+        /* Compressed Hero Banner for Speed */
+        .hero { padding: 80px 20px; text-align: center; color: white; background: url('https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?auto=format&fit=crop&w=800&q=60') center/cover; position: relative;}
         .hero::before { content: ''; position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.6); }
         .hero-content { position: relative; z-index: 2; }
 
         .container { max-width: 750px; margin: 0 auto; padding: 20px; }
+        
+        /* Removed heavy external texture, kept only CSS for speed */
         .card { 
             background: #fff; 
             border: 2px solid #fef0f5; 
@@ -39,7 +44,6 @@
             margin-bottom: 30px; 
             position: relative; 
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            background-image: url('https://www.transparenttextures.com/patterns/floral-paper.png');
         }
         .card::before, .card::after { content: '✿'; position: absolute; color: var(--primary); font-size: 24px; opacity: 0.3; }
         .card::before { top: 10px; left: 10px; }
@@ -52,7 +56,7 @@
         .act-btn:hover { color: var(--primary); }
         .pub-count { font-weight: bold; color: #444; margin-bottom: 2px; }
 
-        #adminArea { display: none; background: #fff; border: 2px dashed var(--primary); padding: 25px; border-radius: 15px; margin-bottom: 30px; animation: fadeIn 0.5s; }
+        #adminArea { display: none; background: #fff; border: 2px dashed var(--primary); padding: 25px; border-radius: 15px; margin-bottom: 30px; }
         .prof-header { display: flex; align-items: center; gap: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px; margin-bottom: 15px; }
         .prof-img-wrapper { position: relative; width: 90px; height: 90px; }
         .prof-img { width: 100%; height: 100%; border-radius: 50%; border: 4px solid var(--primary); object-fit: cover; }
@@ -76,8 +80,6 @@
         .m-content { background: white; border-radius: 15px; width: 100%; max-width: 450px; padding: 35px; color: #333; position: relative; }
         .m-head { font-size: 22px; font-weight: bold; margin-bottom: 20px; color: var(--primary); border-bottom: 1px solid #eee; padding-bottom: 10px; }
         .close-icon { position: absolute; top: 15px; right: 20px; font-size: 24px; cursor: pointer; color: #999; }
-
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
@@ -227,7 +229,7 @@
         // --- REAL Count Logic ---
         function getC(id, type) {
             let val = localStorage.getItem(`c_${type}_${id}`);
-            return val ? parseInt(val) : 0; // Starts strictly from 0
+            return val ? parseInt(val) : 0; 
         }
 
         function upd(id, type, el) {
@@ -238,7 +240,6 @@
             if(type==='like') el.querySelector('i').style.color = '#e91e63';
         }
 
-        // --- Gallery Image Upload ---
         function uploadPic(event) {
             const file = event.target.files[0];
             if (file) {
@@ -251,7 +252,6 @@
             }
         }
 
-        // --- Admin Access ---
         function checkAdmin() {
             if(typeof SiteConfig !== 'undefined' && document.getElementById('adminPass').value === SiteConfig.adminPass) {
                 document.getElementById('adminArea').style.display = 'block';
@@ -267,6 +267,7 @@
             } else { alert("Galat Password ya config file load nahi hui!"); }
         }
 
+        // --- FAST RENDERING LOGIC ---
         function render(p) {
             if(typeof allShayari === 'undefined') {
                 document.getElementById('feed').innerHTML = '<h3 style="color:red; text-align:center;">data.js link nahi ho rahi hai!</h3>';
@@ -277,43 +278,47 @@
             const start = (p - 1) * size;
             const data = allShayari.slice(start, start + size);
             
-            feed.innerHTML = '';
+            let htmlStr = ''; // String banane se DOM jaldi load hota hai
             data.forEach((text, i) => {
                 const gIdx = start + i;
                 const likes = getC(gIdx, 'like');
                 const shares = getC(gIdx, 'share');
                 
-                const card = document.createElement('div');
-                card.className = 'card';
-                card.innerHTML = `
-                    <div class="s-text">${text.split('#')[0]}</div>
-                    <div class="actions">
-                        <div class="act-btn" onclick="upd(${gIdx}, 'like', this)">
-                            <i class="far fa-heart" ${likes > 0 ? 'style="color:#e91e63"' : ''}></i>
-                            <span class="count-val pub-count">${likes}</span><span>Like</span>
-                        </div>
-                        <div class="act-btn" onclick="navigator.clipboard.writeText('${text.replace(/'/g, "\\'")}'); alert('Copied!');">
-                            <i class="far fa-copy"></i><span style="opacity:0;">0</span><span>Copy</span>
-                        </div>
-                        <div class="act-btn" onclick="upd(${gIdx}, 'share', this); window.open('https://wa.me/?text=${encodeURIComponent(text)}')">
-                            <i class="fas fa-share-alt"></i>
-                            <span class="count-val pub-count">${shares}</span><span>Share</span>
+                htmlStr += `
+                    <div class="card">
+                        <div class="s-text">${text.split('#')[0]}</div>
+                        <div class="actions">
+                            <div class="act-btn" onclick="upd(${gIdx}, 'like', this)">
+                                <i class="far fa-heart" ${likes > 0 ? 'style="color:#e91e63"' : ''}></i>
+                                <span class="count-val pub-count">${likes}</span><span>Like</span>
+                            </div>
+                            <div class="act-btn" onclick="navigator.clipboard.writeText('${text.replace(/'/g, "\\'")}'); alert('Copied!');">
+                                <i class="far fa-copy"></i><span style="opacity:0;">0</span><span>Copy</span>
+                            </div>
+                            <div class="act-btn" onclick="upd(${gIdx}, 'share', this); window.open('https://wa.me/?text=${encodeURIComponent(text)}')">
+                                <i class="fas fa-share-alt"></i>
+                                <span class="count-val pub-count">${shares}</span><span>Share</span>
+                            </div>
                         </div>
                     </div>
                 `;
-                feed.appendChild(card);
-                if((i+1) % 5 === 0) feed.innerHTML += `<img src="https://picsum.photos/seed/${gIdx}/750/350" style="width:100%; border-radius:12px; margin:20px 0;">`;
+                if((i+1) % 5 === 0) {
+                    // Added loading="lazy" to fix speed issue
+                    htmlStr += `<img src="https://picsum.photos/seed/${gIdx}/750/350" loading="lazy" style="width:100%; border-radius:12px; margin:20px 0; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">`;
+                }
             });
+            feed.innerHTML = htmlStr;
             genPag();
         }
 
         function genPag() {
             const t = Math.ceil(allShayari.length / size);
             const box = document.getElementById('pagBox');
-            box.innerHTML = '';
+            let pagHtml = '';
             for(let i=1; i<=t; i++) {
-                box.innerHTML += `<button class="page-btn ${i===curP ? 'active' : ''}" onclick="curP=${i}; render(${i}); window.scrollTo(0,0);">${i}</button>`;
+                pagHtml += `<button class="page-btn ${i===curP ? 'active' : ''}" onclick="curP=${i}; render(${i}); window.scrollTo(0,0);">${i}</button>`;
             }
+            box.innerHTML = pagHtml;
         }
 
         let selectedAmt = 250;
@@ -340,7 +345,6 @@
             } else {
                 console.warn("config.js load nahi hui hai.");
             }
-            
             render(1);
         };
     </script>
