@@ -15,24 +15,20 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Noto Serif Devanagari', serif; }
         body { background: var(--bg); color: var(--text); overflow-x: hidden; }
 
-        /* Header & Dashboard Navigation */
         header { border-bottom: 1px solid var(--border); padding: 15px 20px; display: flex; align-items: center; background: white; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
         .logo { font-size: 24px; font-weight: bold; flex: 1; text-align: center; color: var(--text); text-decoration: none; }
         .menu-btn { font-size: 22px; cursor: pointer; color: var(--text); z-index: 2100; }
 
-        /* Sidebar Dashboard */
         .sidebar { position: fixed; left: -100%; top: 0; width: 300px; height: 100%; background: var(--sidebar); z-index: 2050; transition: 0.4s; padding: 25px; color: white; box-shadow: 5px 0 15px rgba(0,0,0,0.2); }
         .sidebar.active { left: 0; }
         .sidebar-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; padding-bottom: 15px; margin-bottom: 20px; }
         .sidebar ul li { padding: 15px 0; border-bottom: 1px solid #222; cursor: pointer; display: flex; align-items: center; gap: 12px; transition: 0.3s; list-style: none; }
         .sidebar ul li:hover { color: var(--primary); padding-left: 10px; }
 
-        /* Hero & Banner Section */
         .hero { padding: 80px 20px; text-align: center; color: white; background: url('https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?auto=format&fit=crop&w=1200&q=80') center/cover; position: relative;}
         .hero::before { content: ''; position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.6); }
         .hero-content { position: relative; z-index: 2; }
 
-        /* Shayari Card Design with Flowers */
         .container { max-width: 750px; margin: 0 auto; padding: 20px; }
         .card { 
             background: #fff; 
@@ -45,49 +41,29 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             background-image: url('https://www.transparenttextures.com/patterns/floral-paper.png');
         }
-        .card::before, .card::after { 
-            content: '✿'; 
-            position: absolute; 
-            color: var(--primary); 
-            font-size: 24px; 
-            opacity: 0.3; 
-        }
+        .card::before, .card::after { content: '✿'; position: absolute; color: var(--primary); font-size: 24px; opacity: 0.3; }
         .card::before { top: 10px; left: 10px; }
         .card::after { bottom: 10px; right: 10px; }
-        
         .s-text { font-size: 26px; line-height: 1.6; margin-bottom: 20px; color: #111;}
 
-        /* Public Like/Share Action Buttons */
         .actions { display: flex; justify-content: center; gap: 30px; color: #666; font-size: 12px; margin-top: 20px; }
         .act-btn { cursor: pointer; display: flex; flex-direction: column; align-items: center; transition: 0.3s; }
         .act-btn i { font-size: 20px; margin-bottom: 4px; }
         .act-btn:hover { color: var(--primary); }
         .pub-count { font-weight: bold; color: #444; margin-bottom: 2px; }
 
-        /* Admin Creator Profile */
-        #adminArea { 
-            display: none; 
-            background: #fff; 
-            border: 2px dashed var(--primary); 
-            padding: 25px; 
-            border-radius: 15px; 
-            margin-bottom: 30px; 
-            animation: fadeIn 0.5s; 
-        }
+        #adminArea { display: none; background: #fff; border: 2px dashed var(--primary); padding: 25px; border-radius: 15px; margin-bottom: 30px; animation: fadeIn 0.5s; }
         .prof-header { display: flex; align-items: center; gap: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px; margin-bottom: 15px; }
         .prof-img-wrapper { position: relative; width: 90px; height: 90px; }
         .prof-img { width: 100%; height: 100%; border-radius: 50%; border: 4px solid var(--primary); object-fit: cover; }
         .cam-btn { position: absolute; bottom: 0; right: -5px; background: var(--primary); color: white; border: none; border-radius: 50%; width: 28px; height: 28px; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.3); }
-        
         .real-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         .stat-box { background: #fff5f8; padding: 10px; border-radius: 8px; text-align: center; }
 
-        /* Pagination & Buttons */
-        .pagination { display: flex; justify-content: center; gap: 10px; margin: 40px 0; }
+        .pagination { display: flex; justify-content: center; gap: 10px; margin: 40px 0; flex-wrap: wrap; }
         .page-btn { width: 40px; height: 40px; border: 1px solid var(--primary); background: white; color: var(--primary); border-radius: 50%; cursor: pointer; transition: 0.3s; }
         .page-btn.active { background: var(--primary); color: white; }
 
-        /* Full Professional Footer */
         footer { background: var(--sidebar); color: #888; padding: 60px 20px 20px; margin-top: 60px; text-align: center; }
         .footer-grid { max-width: 1000px; margin: 0 auto 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; text-align: left; }
         .footer-col h4 { color: white; margin-bottom: 25px; font-size: 16px; border-left: 4px solid var(--primary); padding-left: 12px; }
@@ -96,7 +72,6 @@
         .social-box i { font-size: 24px; margin: 0 15px; cursor: pointer; transition: 0.3s; }
         .social-box i:hover { color: var(--primary); transform: translateY(-5px); }
 
-        /* Professional English Modals */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 3000; justify-content: center; align-items: center; padding: 20px; }
         .m-content { background: white; border-radius: 15px; width: 100%; max-width: 450px; padding: 35px; color: #333; position: relative; }
         .m-head { font-size: 22px; font-weight: bold; margin-bottom: 20px; color: var(--primary); border-bottom: 1px solid #eee; padding-bottom: 10px; }
@@ -128,7 +103,7 @@
         <button onclick="openModal('donateModal')" style="background:var(--primary); color:white; border:none; padding:8px 18px; border-radius:5px; cursor:pointer; font-weight:bold;">Donate</button>
     </header>
 
-    <div class="hero" id="bannerImg">
+    <div class="hero">
         <div class="hero-content">
             <h1>अल्फ़ाज़ों का चमन</h1>
             <p>जहाँ हर शायरी दिल की धड़कन है</p>
@@ -152,7 +127,7 @@
                 <div class="stat-box">Total Content: <br><b id="totalS">0</b></div>
                 <div class="stat-box">Total Likes (Real): <br><b id="totalL">0</b></div>
             </div>
-            <button onclick="window.open('https://sheets.google.com')" style="width:100%; margin-top:15px; padding:10px; background:#27ae60; color:#fff; border:none; border-radius:8px; cursor:pointer;">Manage Suggestions Database</button>
+            <button onclick="window.open('https://sheets.google.com')" style="width:100%; margin-top:15px; padding:10px; background:#27ae60; color:#fff; border:none; border-radius:8px; cursor:pointer;">Manage Database</button>
         </div>
 
         <div id="feed"></div>
@@ -163,7 +138,7 @@
         <div class="footer-grid">
             <div class="footer-col">
                 <h4 style="color:white;">About The Hub</h4>
-                <p>The Shayari Hub is a premium platform for Hindi and Urdu poetry lovers. Our goal is to preserve the linguistic heritage and promote creative expression.</p>
+                <p>The Shayari Hub is a premium platform for Hindi and Urdu poetry lovers.</p>
             </div>
             <div class="footer-col">
                 <h4>Legal Resources</h4>
@@ -184,15 +159,15 @@
                 </div>
             </div>
         </div>
-        <p style="border-top: 1px solid #333; padding-top:20px; font-size:12px;">© 2026 The Shayari Hub. All rights reserved. Registered in Hamirpur, H.P.</p>
+        <p style="border-top: 1px solid #333; padding-top:20px; font-size:12px;">© 2026 The Shayari Hub. All rights reserved.</p>
     </footer>
 
     <div class="modal" id="loginModal">
         <div class="m-content">
             <span class="close-icon" onclick="closeModal('loginModal')">&times;</span>
             <div class="m-head">Creator Access</div>
-            <input type="password" id="adminPass" placeholder="Enter Access Code" style="width:100%; padding:12px; border:1px solid #ddd; border-radius:8px; outline:none;">
-            <button onclick="checkAdmin()" style="width:100%; margin-top:20px; padding:12px; background:var(--primary); color:#fff; border:none; border-radius:8px; font-weight:bold;">Authenticate</button>
+            <input type="password" id="adminPass" placeholder="Enter Password" style="width:100%; padding:12px; border:1px solid #ddd; border-radius:8px; outline:none;">
+            <button onclick="checkAdmin()" style="width:100%; margin-top:20px; padding:12px; background:var(--primary); color:#fff; border:none; border-radius:8px; font-weight:bold;">Login</button>
         </div>
     </div>
 
@@ -202,7 +177,7 @@
             <div class="m-head">Contact Support</div>
             <p style="margin-bottom:10px;"><strong>Email:</strong> <span id="modEmail"></span></p>
             <p style="margin-bottom:10px;"><strong>Address:</strong> <span id="modAddress"></span></p>
-            <p style="font-size:13px; color:#666; margin-top:15px;">Please feel free to reach out to us. We will get back to you within 24 hours.</p>
+            <p style="font-size:13px; color:#666; margin-top:15px;">Please feel free to reach out to us.</p>
         </div>
     </div>
 
@@ -211,7 +186,7 @@
             <span class="close-icon" onclick="closeModal('privacyModal')">&times;</span>
             <div class="m-head">Privacy Policy</div>
             <div style="font-size:14px; color:#555; text-align:justify;">
-                Your privacy is paramount at The Shayari Hub. We do not collect personal data without explicit consent. Feedback and suggestions submitted are stored securely and used only for internal analysis.
+                Your privacy is paramount at The Shayari Hub. We do not collect personal data without explicit consent. Feedback and suggestions submitted are stored securely.
             </div>
         </div>
     </div>
@@ -221,7 +196,7 @@
             <span class="close-icon" onclick="closeModal('disclaimerModal')">&times;</span>
             <div class="m-head">Legal Disclaimer</div>
             <div style="font-size:14px; color:#555; text-align:justify;">
-                Content provided on this website is for entertainment purposes only. While we strive for originality, any resemblance to existing works is coincidental. Reproduction of content without prior permission is prohibited.
+                Content provided on this website is for entertainment purposes only. Reproduction of content without prior permission is prohibited.
             </div>
         </div>
     </div>
@@ -229,7 +204,7 @@
     <div class="modal" id="donateModal">
         <div class="m-content">
             <span class="close-icon" onclick="closeModal('donateModal')">&times;</span>
-            <div class="m-head">Support Cultural Legacy</div>
+            <div class="m-head">Support Us</div>
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:20px;">
                 <button class="page-btn" style="width:100%; border-radius:5px;" onclick="setAmt(100)">₹100</button>
                 <button class="page-btn" style="width:100%; border-radius:5px;" onclick="setAmt(500)">₹500</button>
@@ -240,138 +215,132 @@
 
     <script src="config.js"></script>
     <script src="data.js"></script>
+
     <script>
         let curP = 1;
-        const size = 20; // 20 Shayari per page
+        const size = 20;
 
         function toggleSidebar() { document.getElementById('sidebar').classList.toggle('active'); }
         function openModal(id) { document.getElementById(id).style.display = 'flex'; }
         function closeModal(id) { document.getElementById(id).style.display = 'none'; }
 
-        // --- REAL Count Logic (Starts at 0, no random fakes) ---
+        // --- REAL Count Logic ---
         function getC(id, type) {
-            let k = `c_${type}_${id}`;
-            let val = localStorage.getItem(k);
-            return val ? parseInt(val) : 0; // Agar koi data nahi hai to 0 return karega
+            let val = localStorage.getItem(`c_${type}_${id}`);
+            return val ? parseInt(val) : 0; // Starts strictly from 0
         }
 
         function upd(id, type, el) {
             let k = `c_${type}_${id}`;
-            let current = getC(id, type);
-            let v = current + 1;
+            let v = getC(id, type) + 1;
             localStorage.setItem(k, v);
             el.querySelector('.count-val').innerText = v;
             if(type==='like') el.querySelector('i').style.color = '#e91e63';
         }
 
-        // --- Profile Photo Upload Logic (From Gallery to Browser Storage) ---
+        // --- Gallery Image Upload ---
         function uploadPic(event) {
             const file = event.target.files[0];
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    const base64Image = e.target.result;
-                    localStorage.setItem('adminProfilePic', base64Image); // Save to storage
-                    document.getElementById('adminPic').src = base64Image; // Update image instantly
+                    localStorage.setItem('adminProfilePic', e.target.result);
+                    document.getElementById('adminPic').src = e.target.result;
                 };
                 reader.readAsDataURL(file);
             }
         }
 
-        // --- Admin Auth ---
+        // --- Admin Access ---
         function checkAdmin() {
-            if(document.getElementById('adminPass').value === SiteConfig.adminPass) {
+            if(typeof SiteConfig !== 'undefined' && document.getElementById('adminPass').value === SiteConfig.adminPass) {
                 document.getElementById('adminArea').style.display = 'block';
-                
-                // Load Photo (Priority: Uploaded photo -> Config photo -> Default placeholder)
                 const savedPic = localStorage.getItem('adminProfilePic');
-                document.getElementById('adminPic').src = savedPic ? savedPic : (SiteConfig.adminPhoto || 'https://via.placeholder.com/90');
+                if(savedPic) document.getElementById('adminPic').src = savedPic;
                 
-                // Load Stats
                 document.getElementById('totalS').innerText = allShayari.length;
-                
-                // Calculate Real Total Likes from all shayari
                 let realTotalLikes = 0;
-                for(let i=0; i<allShayari.length; i++) {
-                    realTotalLikes += getC(i, 'like');
-                }
+                for(let i=0; i<allShayari.length; i++) realTotalLikes += getC(i, 'like');
                 document.getElementById('totalL').innerText = realTotalLikes;
                 
                 closeModal('loginModal');
-                alert("Identity Verified: Welcome Creator.");
-            } else { alert("Access Denied."); }
+            } else { alert("Galat Password ya config file load nahi hui!"); }
         }
 
         function render(p) {
+            if(typeof allShayari === 'undefined') {
+                document.getElementById('feed').innerHTML = '<h3 style="color:red; text-align:center;">data.js link nahi ho rahi hai!</h3>';
+                return;
+            }
+            
             const feed = document.getElementById('feed');
             const start = (p - 1) * size;
-            const end = start + size;
-            const data = allShayari.slice(start, end);
+            const data = allShayari.slice(start, start + size);
             
             feed.innerHTML = '';
             data.forEach((text, i) => {
-                const globalIndex = start + i;
+                const gIdx = start + i;
+                const likes = getC(gIdx, 'like');
+                const shares = getC(gIdx, 'share');
+                
                 const card = document.createElement('div');
                 card.className = 'card';
                 card.innerHTML = `
                     <div class="s-text">${text.split('#')[0]}</div>
                     <div class="actions">
-                        <div class="act-btn" onclick="upd(${globalIndex}, 'like', this)">
-                            <i class="far fa-heart" ${getC(globalIndex, 'like') > 0 ? 'style="color:#e91e63"' : ''}></i>
-                            <span class="count-val pub-count">${getC(globalIndex, 'like')}</span>
-                            <span>Like</span>
+                        <div class="act-btn" onclick="upd(${gIdx}, 'like', this)">
+                            <i class="far fa-heart" ${likes > 0 ? 'style="color:#e91e63"' : ''}></i>
+                            <span class="count-val pub-count">${likes}</span><span>Like</span>
                         </div>
-                        <div class="act-btn" onclick="navigator.clipboard.writeText('${text}'); alert('Copied Successfully.');">
-                            <i class="far fa-copy"></i>
-                            <span style="opacity:0;">0</span> <span>Copy</span>
+                        <div class="act-btn" onclick="navigator.clipboard.writeText('${text.replace(/'/g, "\\'")}'); alert('Copied!');">
+                            <i class="far fa-copy"></i><span style="opacity:0;">0</span><span>Copy</span>
                         </div>
-                        <div class="act-btn" onclick="upd(${globalIndex}, 'share', this); window.open('https://wa.me/?text=${encodeURIComponent(text)}')">
+                        <div class="act-btn" onclick="upd(${gIdx}, 'share', this); window.open('https://wa.me/?text=${encodeURIComponent(text)}')">
                             <i class="fas fa-share-alt"></i>
-                            <span class="count-val pub-count">${getC(globalIndex, 'share')}</span>
-                            <span>Share</span>
+                            <span class="count-val pub-count">${shares}</span><span>Share</span>
                         </div>
                     </div>
                 `;
                 feed.appendChild(card);
-                // Photos after every 5th
-                if((i+1) % 5 === 0) {
-                    feed.innerHTML += `<img src="https://picsum.photos/seed/${globalIndex}/750/350" style="width:100%; border-radius:12px; margin:20px 0; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">`;
-                }
+                if((i+1) % 5 === 0) feed.innerHTML += `<img src="https://picsum.photos/seed/${gIdx}/750/350" style="width:100%; border-radius:12px; margin:20px 0;">`;
             });
             genPag();
         }
 
         function genPag() {
-            const total = Math.ceil(allShayari.length / size);
+            const t = Math.ceil(allShayari.length / size);
             const box = document.getElementById('pagBox');
             box.innerHTML = '';
-            for(let i=1; i<=total; i++) {
+            for(let i=1; i<=t; i++) {
                 box.innerHTML += `<button class="page-btn ${i===curP ? 'active' : ''}" onclick="curP=${i}; render(${i}); window.scrollTo(0,0);">${i}</button>`;
             }
         }
 
         let selectedAmt = 250;
         function setAmt(a) { selectedAmt = a; document.getElementById('payBtn').innerText = `Proceed with ₹${a} Payment`; }
-        function processPay() { window.location.href = `upi://pay?pa=${SiteConfig.upiId}&pn=ShayariHub&am=${selectedAmt}&cu=INR`; }
+        function processPay() { 
+            if(typeof SiteConfig !== 'undefined') {
+                window.location.href = `upi://pay?pa=${SiteConfig.upiId}&pn=ShayariHub&am=${selectedAmt}&cu=INR`; 
+            }
+        }
 
         window.onload = () => {
-            // Load dynamic config data into Footer and Contact Us modal
             if(typeof SiteConfig !== 'undefined') {
-                document.getElementById('footEmail').innerText = SiteConfig.email || 'Email not provided';
-                document.getElementById('footAddress').innerText = SiteConfig.address || 'Address not provided';
-                document.getElementById('modEmail').innerText = SiteConfig.email || 'Email not provided';
-                document.getElementById('modAddress').innerText = SiteConfig.address || 'Address not provided';
+                document.getElementById('footEmail').innerText = SiteConfig.email || 'Admin Email';
+                document.getElementById('footAddress').innerText = SiteConfig.address || 'Address';
+                document.getElementById('modEmail').innerText = SiteConfig.email || 'Admin Email';
+                document.getElementById('modAddress').innerText = SiteConfig.address || 'Address';
                 
-                // Connect social icons
                 const icons = document.getElementById('socialLinks').children;
                 if(icons.length >= 3) {
                     icons[0].onclick = () => window.open(SiteConfig.instagram);
                     icons[1].onclick = () => window.open(SiteConfig.facebook);
                     icons[2].onclick = () => window.open(`https://wa.me/${SiteConfig.whatsappNumber}`);
                 }
+            } else {
+                console.warn("config.js load nahi hui hai.");
             }
-
-            // Render first page
+            
             render(1);
         };
     </script>
