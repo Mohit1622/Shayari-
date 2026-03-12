@@ -75,8 +75,8 @@ const allShayari = [
         "पिता की जेब मे भले ही पैसे कम है. लेकिन मेरे लिए हमेशा वो बादशाह ही रहेंगे",
         "Stop acting like you hate relationship, Reality is : तुमने जिसे चाहा उसने तुम्हें नहीं चाहा.",
         "नींद भी उड़ जाती है दिलों की महफ़िल में, किसी को भूल कर सो जाना इतना आसान कहाँ...",
-        "नसीब के बारे में क्या कहूँ, जो दिल ने चाहा वो कभी मिला ही नहीं...", 
-
+        "नसीब के बारे में क्या कहूँ, जो दिल ने चाहा वो कभी मिला ही नहीं...",
+    "और फिर फिक्र करने वाला ढूंढिए,क्योंकि इस्तेमाल करने वाले तो आपको ढूंढ ही लेंगे.. ", 
     // --- Aapka Purana Sara Data Niche Hai ---
 "Teri khamoshi mein bhi ek sukoon sa milta hai, ye dil ab bas tere hi khayalon mein khilta hai.",
 "Zindagi ki har raah par tera saath chahiye mujhe bas teri baahon ka mehakta sa hath chahiye.",
