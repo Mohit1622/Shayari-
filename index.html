@@ -7,7 +7,6 @@
     <meta name="description" content="Best Love, Sad, and Romantic Shayari by Mohit Kumar.">
     
     <link rel="preload" as="image" href="https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?auto=format&fit=crop&w=600&q=60">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@400;700&display=swap" rel="stylesheet">
 
@@ -25,20 +24,19 @@
         .sidebar-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; padding-bottom: 15px; margin-bottom: 20px; }
         .sidebar ul li { padding: 15px 0; border-bottom: 1px solid #222; cursor: pointer; display: flex; align-items: center; gap: 12px; list-style: none; }
 
-        .hero { padding: 60px 20px; text-align: center; color: white; background: url('https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?auto=format&fit=crop&w=600&q=60') center/cover; position: relative;}
+        .hero { padding: 60px 20px 80px; text-align: center; color: white; background: url('https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?auto=format&fit=crop&w=600&q=60') center/cover; position: relative;}
         .hero::before { content: ''; position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.6); }
         .hero-content { position: relative; z-index: 2; }
 
+        /* Search Bar Styles */
+        .search-container { max-width: 600px; margin: -25px auto 25px; position: relative; z-index: 10; padding: 0 15px; }
+        .search-box { display: flex; align-items: center; background: white; border-radius: 30px; padding: 8px 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid #ddd; }
+        .search-input { flex: 1; border: none; padding: 10px; outline: none; font-size: 16px; background: transparent; }
+
         .container { max-width: 750px; margin: 0 auto; padding: 15px; }
         .card { 
-            background: #fff; 
-            border: 2px solid #fef0f5; 
-            border-radius: 12px; 
-            padding: 40px 15px; 
-            text-align: center; 
-            margin-bottom: 25px; 
-            position: relative; 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+            background: #fff; border: 2px solid #fef0f5; border-radius: 12px; padding: 40px 15px; 
+            text-align: center; margin-bottom: 25px; position: relative; box-shadow: 0 4px 10px rgba(0,0,0,0.04);
         }
         .card::before, .card::after { content: '✿'; position: absolute; color: var(--primary); font-size: 22px; opacity: 0.3; }
         .card::before { top: 8px; left: 10px; }
@@ -47,7 +45,7 @@
 
         .actions { display: flex; justify-content: center; gap: 25px; color: #666; font-size: 11px; margin-top: 15px; }
         .act-btn { cursor: pointer; display: flex; flex-direction: column; align-items: center; }
-        .act-btn i { font-size: 18px; margin-bottom: 4px; }
+        .act-btn i { font-size: 18px; margin-bottom: 4px; transition: 0.2s; }
         .pub-count { font-weight: bold; color: #444; margin-bottom: 2px; }
 
         /* Admin Area */
@@ -102,6 +100,13 @@
         <div class="hero-content">
             <h1>अल्फ़ाज़ों का चमन</h1>
             <p style="font-size: 14px; margin-top:5px;">जहाँ हर शायरी दिल की धड़कन है</p>
+        </div>
+    </div>
+
+    <div class="search-container">
+        <div class="search-box">
+            <i class="fas fa-search" style="color:#aaa; font-size:18px;"></i>
+            <input type="text" id="searchInput" class="search-input" placeholder="शायरी तलाशें (जैसे: प्यार, दर्द, याद)..." onkeyup="searchShayari()">
         </div>
     </div>
 
@@ -213,23 +218,50 @@
     <script>
         let curP = 1;
         const size = 20;
+        let shayariDatabase = []; // Holds all shayari with their original IDs
+        let displayList = [];     // Holds currently searched/filtered shayari
 
         function toggleSidebar() { document.getElementById('sidebar').classList.toggle('active'); }
         function openModal(id) { document.getElementById(id).style.display = 'flex'; }
         function closeModal(id) { document.getElementById(id).style.display = 'none'; }
 
-        // --- REAL Count Logic ---
+        // --- FIXED: Permanent Like & Share Tracking ---
         function getC(id, type) {
             let val = localStorage.getItem(`c_${type}_${id}`);
             return val ? parseInt(val) : 0; 
         }
 
-        function upd(id, type, el) {
-            let k = `c_${type}_${id}`;
-            let v = getC(id, type) + 1;
+        // Toggle Like (1 Like per user)
+        function toggleLike(id, el) {
+            let countKey = `c_like_${id}`;
+            let userKey = `user_liked_${id}`;
+            
+            let currentCount = getC(id, 'like');
+            let hasLiked = localStorage.getItem(userKey) === 'true';
+
+            if(hasLiked) {
+                // User un-likes it
+                localStorage.setItem(countKey, currentCount - 1);
+                localStorage.setItem(userKey, 'false');
+                el.querySelector('.count-val').innerText = currentCount - 1;
+                el.querySelector('i').className = 'far fa-heart';
+                el.querySelector('i').style.color = '#666';
+            } else {
+                // User likes it
+                localStorage.setItem(countKey, currentCount + 1);
+                localStorage.setItem(userKey, 'true');
+                el.querySelector('.count-val').innerText = currentCount + 1;
+                el.querySelector('i').className = 'fas fa-heart';
+                el.querySelector('i').style.color = '#e91e63';
+            }
+        }
+
+        function shareBtn(id, el, text) {
+            let k = `c_share_${id}`;
+            let v = getC(id, 'share') + 1;
             localStorage.setItem(k, v);
             el.querySelector('.count-val').innerText = v;
-            if(type==='like') el.querySelector('i').style.color = '#e91e63';
+            window.open(`https://wa.me/?text=${encodeURIComponent(text)}`);
         }
 
         function uploadPic(event) {
@@ -250,52 +282,71 @@
                 const savedPic = localStorage.getItem('adminProfilePic');
                 if(savedPic) document.getElementById('adminPic').src = savedPic;
                 
-                document.getElementById('totalS').innerText = allShayari.length;
+                document.getElementById('totalS').innerText = shayariDatabase.length;
                 let realTotalLikes = 0;
-                for(let i=0; i<allShayari.length; i++) realTotalLikes += getC(i, 'like');
+                for(let i=0; i<shayariDatabase.length; i++) realTotalLikes += getC(i, 'like');
                 document.getElementById('totalL').innerText = realTotalLikes;
                 
                 closeModal('loginModal');
             } else { alert("Galat Password ya config file nahi mili!"); }
         }
 
-        // --- FAST RENDERING LOGIC ---
+        // --- SEARCH FUNCTIONALITY ---
+        function searchShayari() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            if(query === "") {
+                displayList = shayariDatabase;
+            } else {
+                displayList = shayariDatabase.filter(item => item.text.toLowerCase().includes(query));
+            }
+            curP = 1; // Reset to page 1 on search
+            render(1);
+        }
+
         function render(p) {
-            if(typeof allShayari === 'undefined') {
-                document.getElementById('feed').innerHTML = '<h4 style="color:red; text-align:center;">data.js link nahi ho rahi hai!</h4>';
+            const feed = document.getElementById('feed');
+            
+            if(displayList.length === 0) {
+                feed.innerHTML = '<h3 style="text-align:center; color:#888; margin: 40px 0;">Koi shayari nahi mili 💔</h3>';
+                document.getElementById('pagBox').innerHTML = '';
                 return;
             }
-            
-            const feed = document.getElementById('feed');
+
             const start = (p - 1) * size;
-            const data = allShayari.slice(start, start + size);
+            const data = displayList.slice(start, start + size);
             
             let htmlStr = ''; 
-            data.forEach((text, i) => {
-                const gIdx = start + i;
+            data.forEach((item, i) => {
+                const gIdx = item.id; // Permanent original ID
+                const text = item.text;
+                
                 const likes = getC(gIdx, 'like');
                 const shares = getC(gIdx, 'share');
+                const isLiked = localStorage.getItem(`user_liked_${gIdx}`) === 'true';
+                
+                const heartIcon = isLiked ? 'fas fa-heart' : 'far fa-heart';
+                const heartColor = isLiked ? 'color:#e91e63' : 'color:#666';
                 
                 htmlStr += `
                     <div class="card">
                         <div class="s-text">${text.split('#')[0]}</div>
                         <div class="actions">
-                            <div class="act-btn" onclick="upd(${gIdx}, 'like', this)">
-                                <i class="far fa-heart" ${likes > 0 ? 'style="color:#e91e63"' : ''}></i>
+                            <div class="act-btn" onclick="toggleLike(${gIdx}, this)">
+                                <i class="${heartIcon}" style="${heartColor}"></i>
                                 <span class="count-val pub-count">${likes}</span><span>Like</span>
                             </div>
                             <div class="act-btn" onclick="navigator.clipboard.writeText('${text.replace(/'/g, "\\'")}'); alert('Copied!');">
-                                <i class="far fa-copy"></i><span style="opacity:0;">0</span><span>Copy</span>
+                                <i class="far fa-copy" style="color:#666"></i><span style="opacity:0;">0</span><span>Copy</span>
                             </div>
-                            <div class="act-btn" onclick="upd(${gIdx}, 'share', this); window.open('https://wa.me/?text=${encodeURIComponent(text)}')">
-                                <i class="fas fa-share-alt"></i>
+                            <div class="act-btn" onclick="shareBtn(${gIdx}, this, '${text.replace(/'/g, "\\'")}')">
+                                <i class="fas fa-share-alt" style="color:#666"></i>
                                 <span class="count-val pub-count">${shares}</span><span>Share</span>
                             </div>
                         </div>
                     </div>
                 `;
+                
                 if((i+1) % 5 === 0) {
-                    // loading="lazy" and decoding="async" ensures images don't block the site from loading
                     htmlStr += `<img src="https://picsum.photos/seed/${gIdx}/600/300" loading="lazy" decoding="async" style="width:100%; border-radius:10px; margin:15px 0; background:#f5f5f5; min-height:150px;">`;
                 }
             });
@@ -304,11 +355,14 @@
         }
 
         function genPag() {
-            const t = Math.ceil(allShayari.length / size);
+            const t = Math.ceil(displayList.length / size);
             const box = document.getElementById('pagBox');
             let pagHtml = '';
-            for(let i=1; i<=t; i++) {
-                pagHtml += `<button class="page-btn ${i===curP ? 'active' : ''}" onclick="curP=${i}; render(${i}); window.scrollTo(0,0);">${i}</button>`;
+            // Only show pagination if there is more than 1 page
+            if (t > 1) {
+                for(let i=1; i<=t; i++) {
+                    pagHtml += `<button class="page-btn ${i===curP ? 'active' : ''}" onclick="curP=${i}; render(${i}); window.scrollTo(0,0);">${i}</button>`;
+                }
             }
             box.innerHTML = pagHtml;
         }
@@ -321,7 +375,6 @@
             }
         }
 
-        // THE MAIN FIX: Run immediately when HTML is ready, don't wait for heavy images
         document.addEventListener("DOMContentLoaded", () => {
             if(typeof SiteConfig !== 'undefined') {
                 document.getElementById('footEmail').innerText = SiteConfig.email || 'Admin Email';
@@ -336,8 +389,17 @@
                     icons[2].onclick = () => window.open(`https://wa.me/${SiteConfig.whatsappNumber}`);
                 }
             }
-            // Load shayari text immediately
-            render(1);
+            
+            if(typeof allShayari !== 'undefined') {
+                // Assign permanent IDs to each shayari so search doesn't mix up likes
+                shayariDatabase = allShayari.map((text, index) => {
+                    return { text: text, id: index };
+                });
+                displayList = shayariDatabase;
+                render(1);
+            } else {
+                document.getElementById('feed').innerHTML = '<h4 style="color:red; text-align:center;">data.js link nahi ho rahi hai!</h4>';
+            }
         });
     </script>
 </body>
