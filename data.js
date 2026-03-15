@@ -1,5 +1,6 @@
 const allShayari = [
     // --- Nayi Shayari Sabse Upar Yahan Likhein ---
+    "लोग अपनी आवश्यकता के अनुसार हमारा उपयोग करते हैं, और हम इस भ्रम में रहते हैं कि वे हमें पसंद करते हैं...! ", 
         "बेशक तुम जा चुके हो, पर तुम्हारा नाम आज भी, मेरे दिल की धड़कने तेज कर देता है।",
         "अरे aapko to इज़्ज़त krni chahiye thi is खामोशी ki..! Hm to iske phichhe aapki औकात छिपाये baithe the..!!",
         "Mere pass Aana to Waqt nikal kar aana Kyunki mere pass baten bahut hain aur sunane wale koi nhi.",
